@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="300" height="120">
+  <defs>
+    <linearGradient id="orange" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f9a825"/>
+      <stop offset="100%" stop-color="#e65100"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Row 1: GIÁO DỤC -->
+  <text x="150" y="48"
+        font-family="Arial Black, Arial, sans-serif"
+        font-size="40" font-weight="900"
+        text-anchor="middle" fill="#e30613"
+        textLength="230" lengthAdjust="spacingAndGlyphs">GIÁO DỤC</text>
+
+  <!-- Row 2: VÀ THỜI ĐẠI -->
+  <text x="150" y="98"
+        font-family="Arial Black, Arial, sans-serif"
+        font-size="34" font-weight="900"
+        text-anchor="middle" fill="url(#orange)"
+        textLength="230" lengthAdjust="spacingAndGlyphs">VÀ THỜI ĐẠI</text>
+</svg>

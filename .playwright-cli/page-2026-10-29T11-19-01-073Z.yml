@@ -1,0 +1,103 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e6]:
+      - generic [ref=e7]: Thứ Năm, 29/10/2026 - 18:14
+      - generic [ref=e8]:
+        - link [ref=e9] [cursor=pointer]:
+          - /url: tel:096.733.5089
+          - generic [ref=e12]:
+            - text: "Đường dây nóng:"
+            - strong [ref=e13]: 096.733.5089
+        - link [ref=e14] [cursor=pointer]:
+          - /url: mailto:gdtddientu@gmail.com
+          - generic [ref=e18]:
+            - text: "Email:"
+            - strong [ref=e19]: gdtddientu@gmail.com
+    - generic [ref=e21]:
+      - link [ref=e22] [cursor=pointer]:
+        - /url: /
+        - img "BÁO GIÁO DỤC VÀ THỜI ĐẠI ONLINE" [ref=e23]
+      - link "Quảng cáo" [ref=e24] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e25]:
+        - button "Tìm kiếm" [ref=e26] [cursor=pointer]
+        - link [ref=e30] [cursor=pointer]:
+          - /url: /
+          - img "BÁO GIÁO DỤC VÀ THỜI ĐẠI ONLINE" [ref=e31]
+    - navigation [ref=e32]:
+      - list [ref=e34]:
+        - listitem [ref=e35]:
+          - link "Trang chủ" [ref=e36] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e39]:
+          - link "Giáo dục" [ref=e40] [cursor=pointer]:
+            - /url: /giao-duc
+        - listitem [ref=e43]:
+          - link "Thời sự" [ref=e44] [cursor=pointer]:
+            - /url: /thoi-su
+        - listitem [ref=e47]:
+          - link "Giáo dục pháp luật" [ref=e48] [cursor=pointer]:
+            - /url: /giao-duc-phap-luat
+        - listitem [ref=e51]:
+          - link "Kết nối" [ref=e52] [cursor=pointer]:
+            - /url: /ket-noi
+        - listitem [ref=e55]:
+          - link "Trao đổi" [ref=e56] [cursor=pointer]:
+            - /url: /trao-doi
+        - listitem [ref=e59]:
+          - link "Học đường" [ref=e60] [cursor=pointer]:
+            - /url: /hoc-duong
+        - listitem [ref=e63]:
+          - link "Nhân ái" [ref=e64] [cursor=pointer]:
+            - /url: /nhan-ai
+        - listitem [ref=e65]:
+          - link "Thế giới" [ref=e66] [cursor=pointer]:
+            - /url: /the-gioi
+        - listitem [ref=e69]:
+          - link "Sức khoẻ" [ref=e70] [cursor=pointer]:
+            - /url: /suc-khoe
+        - listitem [ref=e73]:
+          - link "Media" [ref=e74] [cursor=pointer]:
+            - /url: /media
+        - listitem [ref=e77]:
+          - link "Văn hóa" [ref=e78] [cursor=pointer]:
+            - /url: /van-hoa
+        - listitem [ref=e81]:
+          - link "Thể thao" [ref=e82] [cursor=pointer]:
+            - /url: /the-thao
+    - generic [ref=e86]:
+      - generic [ref=e87]:
+        - generic [ref=e88]: "Sự kiện:"
+        - generic [ref=e89]: "#Đưa nghị quyết Đại hội XIV vào cuộc sống"
+      - generic [ref=e90]:
+        - generic [ref=e91]: "Chuyển động:"
+        - list [ref=e92]:
+          - listitem [ref=e93]:
+            - link "TP Hà Nội" [ref=e94] [cursor=pointer]:
+              - /url: /chuyen-dong/tp-ha-noi
+          - listitem [ref=e95]:
+            - link "TP Hồ Chí Minh" [ref=e96] [cursor=pointer]:
+              - /url: /chuyen-dong/tp-ho-chi-minh
+          - listitem [ref=e97]:
+            - link "Đồng bằng sông Cửu Long" [ref=e98] [cursor=pointer]:
+              - /url: /chuyen-dong/dbscl
+          - listitem [ref=e99]:
+            - link "Việt Bắc" [ref=e100] [cursor=pointer]:
+              - /url: /chuyen-dong/viet-bac
+          - listitem [ref=e101]:
+            - link "Tây Bắc" [ref=e102] [cursor=pointer]:
+              - /url: /chuyen-dong/tay-bac
+          - listitem [ref=e103]:
+            - link "Đồng bằng sông Hồng" [ref=e104] [cursor=pointer]:
+              - /url: /chuyen-dong/dbsh
+          - listitem [ref=e105]:
+            - link "Trung du" [ref=e106] [cursor=pointer]:
+              - /url: /chuyen-dong/trung-du
+          - listitem [ref=e107]:
+            - link "Bắc Trung Bộ" [ref=e108] [cursor=pointer]:
+              - /url: /chuyen-dong/bac-trung-bo
+          - listitem [ref=e109]:
+            - link "Miền Trung - Tây Nguyên" [ref=e110] [cursor=pointer]:
+              - /url: /chuyen-dong/mien-trung-tay-nguyen
+  - main [ref=e111]:
+    - paragraph [ref=e113]: Nội dung trang sẽ hiển thị tại đây.

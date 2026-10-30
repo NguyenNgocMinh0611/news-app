@@ -1,0 +1,116 @@
+// ============================================================
+//  GLOBAL SCSS VARIABLES — Dùng chung cho toàn bộ project
+//  File này được @use/import ở mọi file SCSS khác
+// ============================================================
+
+// ===== Color Palette =====
+$color-red:              #c8102e;
+$color-red-dark:         #a00d24;
+$color-dark:             #1a1a2e;
+$color-white:            #ffffff;
+$color-text-gray:        #e0e0e0;
+$color-text-body:        #333333;
+$color-text-secondary:   #666666;
+$color-text-muted:       #555555;
+$color-border:           #e8e8e8;
+$color-hover-bg:         #fff5f5;
+$color-bg-light:         #f8f8f8;
+
+// ===== Typography =====
+$font-size-xs:      12px;
+$font-size-sm:      13px;
+$font-size-base:    14px;
+$font-size-md:      16px;
+$font-size-lg:      22px;
+
+$font-weight-normal:    400;
+$font-weight-medium:    500;
+$font-weight-semibold:  600;
+$font-weight-bold:      700;
+$font-weight-extrabold: 800;
+
+$line-height-tight:   1.2;
+$line-height-bar:     32px;
+
+$letter-spacing-tight:   0;
+$letter-spacing-sm:      0.3px;
+$letter-spacing-md:      0.5px;
+$letter-spacing-lg:      1px;
+
+// ===== Spacing =====
+$spacing-xs:    4px;
+$spacing-sm:    6px;
+$spacing-md:    8px;
+$spacing-base:  12px;
+$spacing-lg:    16px;
+$spacing-xl:    20px;
+$spacing-2xl:   24px;
+
+// ===== Layout =====
+$container-max-width:  1200px;
+$container-padding:    16px;
+
+// ===== Breakpoints =====
+$breakpoint-xl:  1200px;
+$breakpoint-lg:  1024px;
+$breakpoint-md:  768px;
+$breakpoint-sm:  480px;
+
+// ===== Z-index =====
+$z-header:        1000;
+$z-dropdown:      1001;
+$z-mobile-menu:   1002;
+
+// ===== Transitions =====
+$transition-base:   all 0.2s ease;
+$transition-fast:   all 0.15s ease;
+
+// ===== Shadows =====
+$shadow-sm:   0 2px 8px rgba(0, 0, 0, 0.08);
+$shadow-md:   0 4px 16px rgba(0, 0, 0, 0.12);
+$shadow-lg:   0 4px 16px rgba(0, 0, 0, 0.2);
+
+// ===== Border Radius =====
+$radius-sm:   4px;
+$radius-md:   6px;
+
+// ===== Mixins =====
+// Flex helper
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Container
+@mixin container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+// Text truncation
+@mixin text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Responsive breakpoints
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == lg {
+    @media (max-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == md {
+    @media (max-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == sm {
+    @media (max-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == xl {
+    @media (max-width: $breakpoint-xl) { @content; }
+  }
+}

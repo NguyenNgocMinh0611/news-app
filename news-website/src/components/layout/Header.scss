@@ -1,0 +1,485 @@
+@use '../../styles/variables' as *;
+
+// ===== Header Root =====
+.header {
+  position: sticky;
+  top: 0;
+  z-index: $z-header;
+  background: $color-white;
+  font-size: $font-size-base;
+}
+
+.header__container {
+  @include container;
+}
+
+// ===== Top Utility Bar (nền trắng, viền dưới mảnh) =====
+.header__topbar {
+  background: $color-white;
+  border-bottom: 1px solid $color-border;
+  font-size: $font-size-xs;
+
+  &-inner {
+    @include flex-between;
+    height: 34px;
+  }
+}
+
+.header__date {
+  color: $color-text-muted;
+}
+
+.header__time {
+  color: $color-text-secondary;
+}
+
+.header__topbar-right {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+}
+
+.header__topbar-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: $color-text-muted;
+  text-decoration: none;
+  transition: $transition-base;
+
+  svg {
+    color: $color-text-muted;
+  }
+
+  strong {
+    color: $color-red;
+    font-weight: $font-weight-bold;
+  }
+
+  &:hover {
+    color: $color-red;
+
+    svg {
+      color: $color-red;
+    }
+  }
+}
+
+// ===== Logo / Banner / Search Area =====
+.header__logo-area {
+  padding: 12px 0;
+  border-bottom: 1px solid $color-border;
+}
+
+.header__logo-inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: $spacing-xl;
+}
+
+.header__mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $color-dark;
+  padding: $spacing-xs;
+}
+
+// ===== Logo bên trái =====
+.header__logo {
+  text-decoration: none;
+  display: block;
+  flex-shrink: 0;
+
+  &-img {
+    height: 62px;
+    width: auto;
+    display: block;
+  }
+}
+
+// ===== Banner quảng cáo giữa =====
+.header__banner {
+  display: block;
+  overflow: hidden;
+  border-radius: $radius-sm;
+  text-decoration: none;
+
+  &-img {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+}
+
+// ===== Phần phải: search + logo nhỏ =====
+.header__logo-right {
+  display: flex;
+  align-items: center;
+  gap: $spacing-base;
+  flex-shrink: 0;
+}
+
+.header__logo-mini {
+  display: block;
+  text-decoration: none;
+
+  &-img {
+    height: 34px;
+    width: auto;
+    display: block;
+  }
+}
+
+// ===== Search Bar (dạng pill tròn, luôn hiển thị) =====
+.header__search {
+  &-form {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    background: $color-white;
+    border: 1px solid $color-border;
+    border-radius: 50px;
+    padding: 5px 6px 5px 16px;
+    height: 40px;
+    transition: $transition-base;
+
+    &:hover,
+    &--open {
+      border-color: $color-red;
+      box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.08);
+    }
+  }
+
+  &-input {
+    border: none;
+    background: none;
+    outline: none;
+    font-size: $font-size-sm;
+    width: 175px;
+    color: $color-text-body;
+
+    &::placeholder {
+      color: #9aa0a6;
+    }
+  }
+
+  &-submit {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: $color-red;
+    @include flex-center;
+    transition: $transition-base;
+
+    &:hover {
+      color: $color-red-dark;
+    }
+  }
+}
+
+// ===== Main Navigation (đỏ, 1 dòng) =====
+.header__nav {
+  background: $color-red;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+
+  &-list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-items: stretch;
+  }
+
+  &-item {
+    position: relative;
+
+    &--home {
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      background: rgba(0, 0, 0, 0.18);
+    }
+  }
+
+  &-link {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 0 9px;
+    height: 42px;
+    color: $color-white;
+    text-decoration: none;
+    font-size: 12.5px;
+    font-weight: $font-weight-medium;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    transition: $transition-base;
+    white-space: nowrap;
+
+    &:hover {
+      background: $color-red-dark;
+      color: $color-white;
+    }
+
+    &--icon {
+      padding: 0;
+      color: $color-white;
+    }
+  }
+
+  &-item:hover > &-link {
+    background: $color-red-dark;
+    color: $color-white;
+  }
+
+  &-arrow {
+    opacity: 0.75;
+  }
+}
+
+// ===== Dropdown =====
+.header__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: $color-white;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: $shadow-md;
+  border-radius: 0 0 $radius-md $radius-md;
+  overflow: hidden;
+
+  &-item {
+    border-bottom: 1px solid $color-border;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &-link {
+    display: block;
+    padding: 10px $spacing-lg;
+    color: $color-text-body;
+    text-decoration: none;
+    font-size: $font-size-base;
+    font-weight: $font-weight-normal;
+    text-transform: none;
+    transition: $transition-base;
+
+    &:hover {
+      background: $color-hover-bg;
+      color: $color-red;
+      padding-left: 22px;
+    }
+  }
+}
+
+// ===== Ticker Bar =====
+.header__ticker-bar {
+  background: $color-bg-light;
+  border-bottom: 1px solid $color-border;
+  padding: $spacing-sm 0;
+  font-size: $font-size-sm;
+
+  &-inner {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2xl;
+  }
+}
+
+.header__ticker {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  flex: 0 0 auto;
+  max-width: 400px;
+  overflow: hidden;
+
+  &-label {
+    color: $color-red;
+    font-weight: $font-weight-bold;
+    flex-shrink: 0;
+  }
+
+  &-text {
+    color: $color-text-body;
+    @include text-truncate;
+    animation: fadeIn 0.4s ease;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.header__regions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  flex: 1;
+  min-width: 0;
+
+  &-label {
+    color: $color-text-secondary;
+    font-weight: $font-weight-semibold;
+    flex-shrink: 0;
+  }
+
+  &-list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: $spacing-base;
+    flex-wrap: wrap;
+  }
+
+  &-item a {
+    color: $color-text-muted;
+    text-decoration: none;
+    transition: $transition-base;
+
+    &:hover {
+      color: $color-red;
+    }
+  }
+}
+
+// ===== Responsive =====
+@include respond-to(lg) {
+  .header__topbar-item {
+    &:last-child {
+      display: none;
+    }
+  }
+
+  .header__regions {
+    display: none;
+  }
+
+  .header__ticker {
+    max-width: 100%;
+  }
+
+  .header__nav-link {
+    padding: 0 11px;
+    font-size: 13px;
+  }
+}
+
+@include respond-to(md) {
+  .header__mobile-toggle {
+    @include flex-center;
+  }
+
+  .header__logo-inner {
+    grid-template-columns: auto 1fr auto;
+    gap: $spacing-base;
+  }
+
+  .header__logo-img {
+    height: 46px;
+  }
+
+  .header__banner {
+    display: none;
+  }
+
+  .header__logo-mini {
+    display: none;
+  }
+
+  .header__search-form {
+    height: 36px;
+    padding: 4px 5px 4px 12px;
+  }
+
+  .header__search-input {
+    width: 120px;
+  }
+
+  .header__nav-list {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: $color-red;
+    box-shadow: $shadow-lg;
+    max-height: 420px;
+    overflow-y: auto;
+
+    &--open {
+      display: flex;
+    }
+  }
+
+  .header__nav-item {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    &--home {
+      background: rgba(0, 0, 0, 0.18);
+      padding: 0 $spacing-lg;
+    }
+  }
+
+  .header__nav-link {
+    padding: $spacing-base $spacing-lg;
+    height: auto;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .header__dropdown {
+    position: static;
+    box-shadow: none;
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.15);
+
+    &-link {
+      color: $color-white;
+      padding-left: 32px;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.1);
+        color: $color-white;
+      }
+    }
+  }
+
+  .header__topbar {
+    font-size: 11px;
+  }
+
+  .header__ticker-bar {
+    display: none;
+  }
+}
+
+@include respond-to(sm) {
+  .header__logo-img {
+    height: 38px;
+  }
+
+  .header__search-input {
+    width: 96px;
+  }
+
+  .header__topbar-right {
+    display: none;
+  }
+}
