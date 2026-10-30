@@ -14,6 +14,7 @@ $news-grid-breakpoints: (
   list-style: none;
 
   > li { display: flex; min-width: 0; }
+  > .article-list__featured { grid-column: 1 / -1; }
 }
 
 @each $name, $config in $news-grid-breakpoints {
