@@ -1,0 +1,25 @@
+@use 'variables' as *;
+
+.news-card {
+  width: 100%;
+  min-width: 0;
+  padding-bottom: $spacing-xl;
+  border-bottom: 1px solid $color-border;
+  overflow-wrap: anywhere;
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  &__category { margin-top: $spacing-base; color: $color-red; font-size: $font-size-sm; }
+  &__title { margin: $spacing-md 0; font-size: 20px; line-height: 1.4; }
+  &__title a { color: $color-ink; text-decoration: none; }
+  &__title a:hover { color: $color-red; }
+  &__title a:focus-visible { outline: 2px solid $color-blue; outline-offset: 2px; }
+  &__date { color: $color-text-muted; font-size: $font-size-xs; }
+  &__description { margin-top: $spacing-md; font-size: $font-size-base; line-height: 1.6; }
+}
