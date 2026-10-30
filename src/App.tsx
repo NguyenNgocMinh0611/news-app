@@ -1,4 +1,5 @@
 import { Header } from '@news/components/layout/Header';
+import { ArticleListDemo } from '@news/features/news/components/ArticleListDemo';
 
 function App() {
   return (
@@ -6,7 +7,7 @@ function App() {
       <Header />
       <main className="app__main">
         <div className="app__container">
-
+          <ArticleListDemo />
         </div>
       </main>
     </div>
