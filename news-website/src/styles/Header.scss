@@ -1,0 +1,249 @@
+@use 'variables' as *;
+
+.container {
+  @include container;
+}
+
+.header {
+  background: $color-white;
+}
+
+.top-info {
+  background: $color-bg-light;
+  border-bottom: 1px solid $color-border;
+  font-size: $font-size-xs;
+  color: $color-text-muted;
+
+  .container {
+    display: flex;
+    gap: $spacing-2xl;
+    align-items: center;
+    padding-top: $spacing-sm;
+    padding-bottom: $spacing-sm;
+    flex-wrap: wrap;
+  }
+
+  &__item strong {
+    color: $color-red;
+  }
+
+  a {
+    color: $color-text-muted;
+
+    &:hover {
+      color: $color-red;
+    }
+  }
+}
+
+.header-primary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-lg;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.header-primary__title {
+  margin: 0;
+}
+
+.logo {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 28px;
+  font-weight: $font-weight-bold;
+  color: $color-red;
+  line-height: 1.1;
+
+  &:hover {
+    color: $color-red-dark;
+  }
+
+  &__sub {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: $font-weight-normal;
+    color: $color-text-muted;
+    letter-spacing: 0.2px;
+    margin-top: $spacing-xs;
+  }
+}
+
+.search-head {
+  display: flex;
+  border: 1px solid $color-border;
+  border-radius: 3px;
+  overflow: hidden;
+
+  &__input {
+    border: 0;
+    padding: $spacing-md 10px;
+    width: 200px;
+    font-size: $font-size-base;
+    outline: 0;
+    color: $color-ink;
+  }
+
+  &__btn {
+    border: 0;
+    background: $color-red;
+    color: $color-white;
+    padding: 0 14px;
+    cursor: pointer;
+    font-weight: $font-weight-bold;
+    transition: $transition-base;
+
+    &:hover {
+      background: $color-red-dark;
+    }
+  }
+
+  &:focus-within {
+    outline: 2px solid $color-blue;
+  }
+}
+
+.header-secondary {
+  background: $color-red;
+  position: relative;
+  z-index: $z-dropdown;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.menu-item {
+  position: relative;
+}
+
+.menu-link {
+  display: block;
+  padding: $spacing-base 14px;
+  color: $color-white;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-base;
+  transition: $transition-base;
+
+  &:hover,
+  &--active {
+    background: $color-red-dark;
+    color: $color-white;
+  }
+}
+
+.sub-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 190px;
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-top: 0;
+  box-shadow: $shadow-md;
+
+  a {
+    display: block;
+    padding: 9px 14px;
+    font-size: $font-size-base;
+    color: $color-ink;
+    border-bottom: 1px solid $color-bg-light;
+    transition: $transition-base;
+
+    &:hover {
+      background: $color-bg-light;
+      color: $color-red;
+    }
+  }
+
+  li:last-child a {
+    border-bottom: 0;
+  }
+}
+
+.menu-item:hover > .sub-menu,
+.menu-item:focus-within > .sub-menu {
+  display: block;
+}
+
+.hot-events {
+  display: flex;
+  gap: $spacing-lg;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid $color-border;
+  overflow: hidden;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+    width: 100%;
+  }
+
+  &__title {
+    background: $color-red;
+    color: $color-white;
+    padding: $spacing-xs 10px;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-sm;
+    white-space: nowrap;
+
+    &:hover {
+      background: $color-red-dark;
+      color: $color-white;
+    }
+  }
+
+  &__list {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__item a {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+
+    &:hover {
+      color: $color-red;
+    }
+  }
+}
+
+@include respond-to(lg) {
+  .menu {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
+
+  .menu-link {
+    white-space: nowrap;
+  }
+
+  .sub-menu {
+    display: none !important;
+  }
+}
+
+@include respond-to(sm) {
+  .header-primary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-head,
+  .search-head__input {
+    width: 100%;
+  }
+}
