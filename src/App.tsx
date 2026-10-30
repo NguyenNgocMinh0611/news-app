@@ -1,4 +1,4 @@
-import { Header } from '@news/components/layout/Header';
+import Header from "./components/layout/Header";
 
 function App() {
   return (
