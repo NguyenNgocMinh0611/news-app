@@ -1,7 +1,6 @@
-export interface ArticleContentBlock {
-  type: "paragraph" | "heading";
-  text: string;
-}
+export type ArticleContentBlock = | { type: "paragraph"; text: string;}
+  | { type: "heading"; text: string; }
+  | { type: "image";src: string;alt: string;caption?: string | null;};
 export interface Article {
   id: number;
   slug: string;

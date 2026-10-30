@@ -181,3 +181,64 @@
     }
   }
 }
+.article-image {
+  width: 100%;
+  margin: 0 0 $spacing-lg;
+  &__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  &__caption {
+    margin-top: $spacing-sm;
+    color: $color-text-secondary;
+    font-size: $font-size-sm;
+    line-height: 1.5;
+    text-align: center;
+  }
+}
+.article-main-image {
+  margin-top: $spacing-lg;
+  margin-bottom: $spacing-lg;
+}
+.article-content {
+  color: $color-text-body;
+  font-size: 18px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+  &__paragraph {
+    margin: 0 0 $spacing-lg;
+    text-align: justify;
+  }
+  &__heading {
+    margin: $spacing-2xl 0 $spacing-base;
+    color: $color-ink;
+    font-size: 22px;
+    font-weight: $font-weight-bold;
+    line-height: 1.4;
+  }
+  &__image {
+    margin-top: $spacing-xl;
+    margin-bottom: $spacing-xl;
+  }
+}
+@include respond-to(sm) {
+  .article-content {
+    font-size: 16px;
+    line-height: 1.7;
+    &__heading {
+      font-size: 19px;
+    }
+    &__paragraph {
+      margin-bottom: $spacing-base;
+    }
+  }
+  .article-image {
+    margin-bottom: $spacing-base;
+    &__caption {
+      font-size: $font-size-xs;
+    }
+  }
+}
