@@ -1,6 +1,6 @@
-import type { Article } from '../types';
-import { NewsCard } from './NewsCard';
-import '../../../styles/ArticleList.scss';
+import type { Article } from '../types.ts';
+import { NewsCard } from './NewsCard.tsx';
+import '@/styles/ArticleList.scss';
 
 interface ArticleListProps {
   articles: Article[];

@@ -1,5 +1,5 @@
-import type { Article } from '../types';
-import '../../../styles/NewsCard.scss';
+import type { Article } from '../types.ts';
+import '@/styles/NewsCard.scss';
 
 export type NewsCardVariant = 'default' | 'featured';
 

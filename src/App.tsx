@@ -1,6 +1,5 @@
-import { Header } from '@news/components/layout/Header';
-import { ArticleListDemo } from '@news/features/news/components/ArticleListDemo';
-import Header from "./components/layout/Header";
+import { Header } from './components/layout/Header';
+import { ArticleListDemo } from '@/features/news/components/ArticleListDemo';
 
 function App() {
   return (
