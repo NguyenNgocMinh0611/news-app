@@ -1,4 +1,4 @@
-import type { Article } from '../types';
+import type { Article } from '../types.ts';
 
 // Fixed IDs and dates keep presentation tests independent of RSS and API data.
 export const mockArticles: Article[] = [

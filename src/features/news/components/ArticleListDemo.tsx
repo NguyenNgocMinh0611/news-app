@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { mockArticles } from '../data/mockArticles';
-import { ArticleList } from './ArticleList';
-import '../../../styles/ArticleListDemo.scss';
+import { mockArticles } from '../data/mockArticles.ts';
+import { ArticleList } from './ArticleList.tsx';
+import '@/styles/ArticleListDemo.scss';
 
 export function ArticleListDemo() {
   const [showEmpty, setShowEmpty] = useState(false);
