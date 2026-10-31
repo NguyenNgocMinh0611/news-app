@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { NAV_MENU, HOT_TOPICS, SITE_INFO } from '@news/constants/navigation';
+import { NAV_MENU, HOT_TOPICS, SITE_INFO } from '../../constants/navigation';
 import '../../styles/Header.scss';
 
 export function Header() {
