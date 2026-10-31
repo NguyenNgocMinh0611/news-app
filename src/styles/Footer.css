@@ -1,0 +1,42 @@
+.page-footer {
+  background: #c31e40;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 24px;
+  padding: 28px 0;
+  font-size: 13px;
+}
+.page-footer .container {
+  display: grid;
+  grid-template-columns: 1.2fr 1.4fr 1.4fr;
+  gap: 28px;
+}
+.page-footer__title {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.page-footer__body {
+  margin-top: 6px;
+  line-height: 1.5;
+}
+.page-footer__item {
+  margin-top: 6px;
+  line-height: 1.5;
+}
+.page-footer a {
+  color: rgba(255, 255, 255, 0.85);
+  transition: all 0.2s ease;
+}
+.page-footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+@media (max-width: 768px) {
+  .page-footer .container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/*# sourceMappingURL=Footer.css.map */
