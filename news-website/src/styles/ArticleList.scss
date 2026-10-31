@@ -1,0 +1,27 @@
+@use 'variables' as *;
+@use 'sass:map';
+
+$news-grid-breakpoints: (
+  mobile: (min-width: 0px, columns: 1, gap: $spacing-lg),
+  tablet: (min-width: $breakpoint-md, columns: 2, gap: $spacing-xl),
+  desktop: (min-width: $breakpoint-lg, columns: 3, gap: $spacing-2xl),
+);
+
+.article-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li { display: flex; min-width: 0; }
+  > .article-list__featured { grid-column: 1 / -1; }
+}
+
+@each $name, $config in $news-grid-breakpoints {
+  @media (min-width: map.get($config, min-width)) {
+    .article-list {
+      grid-template-columns: repeat(map.get($config, columns), minmax(0, 1fr));
+      gap: map.get($config, gap);
+    }
+  }
+}

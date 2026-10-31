@@ -1,0 +1,37 @@
+@use 'variables' as *;
+
+.article-demo {
+  @include container;
+  padding-top: $spacing-2xl;
+  padding-bottom: 40px;
+
+  h2 { color: $color-red; }
+
+  &__note {
+    margin: $spacing-md 0 $spacing-lg;
+    color: $color-text-muted;
+    font-size: $font-size-base;
+  }
+
+  &__toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $spacing-lg;
+    margin-bottom: $spacing-2xl;
+    padding: $spacing-base;
+    background: $color-bg-light;
+
+    button {
+      min-height: 40px;
+      padding: $spacing-md $spacing-base;
+      border: 1px solid $color-red;
+      border-radius: $radius-sm;
+      background: $color-white;
+      color: $color-red;
+      cursor: pointer;
+
+      &:focus-visible { outline: 2px solid $color-blue; outline-offset: 2px; }
+    }
+  }
+}
