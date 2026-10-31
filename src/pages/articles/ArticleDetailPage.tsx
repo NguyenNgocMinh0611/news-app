@@ -1,9 +1,9 @@
-import ArticleImage from "@/components/article/ArticleImage";
-import ArticleCategoryNav from "../../components/article/ArticleCategoryNav";
-import ArticleHeader from "../../components/article/ArticleHeader";
+import ArticleCategoryNav from "@/features/articles/components/ArticleCategoryNav";
 import "../../styles/article/article-detail.scss";
 import type { Article } from "../../types/article";
-import ArticleContent from "@/components/article/ArticleContent";
+import ArticleHeader from "@/features/articles/components/ArticleHeader";
+import ArticleImage from "@/features/articles/components/ArticleImage";
+import ArticleContent from "@/features/articles/components/ArticleContent";
 
 const mockArticle: Article = {
   id: 1,

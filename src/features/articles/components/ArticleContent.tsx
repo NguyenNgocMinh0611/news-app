@@ -1,4 +1,4 @@
-import type { ArticleContentBlock } from "../../types/article";
+import type { ArticleContentBlock } from "@/types/article";
 import ArticleImage from "./ArticleImage";
 
 interface ArticleContentProps {
