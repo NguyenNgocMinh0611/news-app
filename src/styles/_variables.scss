@@ -1,9 +1,4 @@
-// ============================================================
-//  GLOBAL SCSS VARIABLES — Dùng chung cho toàn bộ project
-//  File này được @use/import ở mọi file SCSS khác
-// ============================================================
 
-// ===== Color Palette =====
 $color-red:              #ae0001;
 $color-red-dark:         #8a0001;
 $color-blue:             #136ca8;
@@ -19,7 +14,7 @@ $color-hover-bg:         #f4f4f4;
 $color-bg-light:         #f4f4f4;
 $color-ink:              #222;
 
-// ===== Typography =====
+
 $font-size-xs:      12px;
 $font-size-sm:      13px;
 $font-size-base:    14px;
@@ -40,7 +35,6 @@ $letter-spacing-sm:      0.3px;
 $letter-spacing-md:      0.5px;
 $letter-spacing-lg:      1px;
 
-// ===== Spacing =====
 $spacing-xs:    4px;
 $spacing-sm:    6px;
 $spacing-md:    8px;
@@ -49,36 +43,29 @@ $spacing-lg:    16px;
 $spacing-xl:    20px;
 $spacing-2xl:   24px;
 
-// ===== Layout =====
 $container-max-width:  1200px;
 $container-padding:    16px;
 
-// ===== Breakpoints =====
+
 $breakpoint-xl:  1200px;
 $breakpoint-lg:  1024px;
 $breakpoint-md:  768px;
 $breakpoint-sm:  480px;
 
-// ===== Z-index =====
 $z-header:        1000;
 $z-dropdown:      1001;
 $z-mobile-menu:   1002;
 
-// ===== Transitions =====
 $transition-base:   all 0.2s ease;
 $transition-fast:   all 0.15s ease;
 
-// ===== Shadows =====
 $shadow-sm:   0 2px 8px rgba(0, 0, 0, 0.08);
 $shadow-md:   0 4px 16px rgba(0, 0, 0, 0.12);
 $shadow-lg:   0 4px 16px rgba(0, 0, 0, 0.2);
 
-// ===== Border Radius =====
 $radius-sm:   4px;
 $radius-md:   6px;
 
-// ===== Mixins =====
-// Flex helper
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -91,21 +78,18 @@ $radius-md:   6px;
   justify-content: space-between;
 }
 
-// Container
 @mixin container {
   max-width: $container-max-width;
   margin: 0 auto;
   padding: 0 $container-padding;
 }
 
-// Text truncation
 @mixin text-truncate {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-// Responsive breakpoints
 @mixin respond-to($breakpoint) {
   @if $breakpoint == lg {
     @media (max-width: $breakpoint-lg) { @content; }

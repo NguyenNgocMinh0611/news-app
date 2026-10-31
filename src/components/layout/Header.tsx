@@ -1,19 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NAV_MENU, HOT_TOPICS, SITE_INFO } from '../../constants/navigation';
 import '../../styles/Header.scss';
 
-export function Header() {
-  const [currentDate, setCurrentDate] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
+const DAYS = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'];
 
-  useEffect(() => {
-    const days = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'];
-    const now = new Date();
-    const pad = (x: number) => (x < 10 ? `0${x}` : `${x}`);
-    setCurrentDate(
-      `${days[now.getDay()]}, ${pad(now.getDate())}/${pad(now.getMonth() + 1)}/${now.getFullYear()}`,
-    );
-  }, []);
+function formatDate() {
+  const now = new Date();
+  const pad = (x: number) => (x < 10 ? `0${x}` : `${x}`);
+  return `${DAYS[now.getDay()]}, ${pad(now.getDate())}/${pad(now.getMonth() + 1)}/${now.getFullYear()}`;
+}
+
+export function Header() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const currentDate = formatDate();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();

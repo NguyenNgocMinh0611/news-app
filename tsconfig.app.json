@@ -18,8 +18,7 @@
 
     /* Path aliases */
     "paths": {
-      "@/*": ["./src/*"],
-      "@news/*": ["./news-website/src/*"]
+      "@/*": ["./src/*"]
     },
 
     /* Linting */
@@ -28,5 +27,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "news-website/src"]
+  "include": ["src"]
 }
