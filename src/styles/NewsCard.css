@@ -1,0 +1,114 @@
+.news-card {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #d9d9d9;
+  overflow-wrap: anywhere;
+}
+.news-card__thumb {
+  display: block;
+  overflow: hidden;
+  background: #f4f4f4;
+}
+.news-card__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.news-card:hover .news-card__image {
+  transform: scale(1.03);
+}
+.news-card__body {
+  min-width: 0;
+}
+.news-card__category {
+  margin: 12px 0 0;
+  color: #c31e40;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.news-card__title {
+  margin: 8px 0;
+  font-size: 20px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+.news-card__title a {
+  color: #222;
+  text-decoration: none;
+}
+.news-card__title a:hover {
+  color: #c31e40;
+}
+.news-card__title a:focus-visible {
+  outline: 2px solid #136ca8;
+  outline-offset: 2px;
+}
+.news-card__date {
+  color: #666;
+  font-size: 12px;
+}
+.news-card__description {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #666;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+.news-card--active {
+  border-bottom-color: #c31e40;
+  box-shadow: inset 0 -2px 0 #c31e40;
+}
+.news-card--active .news-card__title a {
+  color: #c31e40;
+}
+.news-card--featured .news-card__title {
+  font-size: 26px;
+  font-weight: 700;
+}
+.news-card--featured .news-card__description {
+  font-size: 16px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .news-card--featured {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 24px;
+    align-items: start;
+  }
+  .news-card--featured .news-card__category {
+    margin-top: 0;
+  }
+  .news-card--featured .news-card__title {
+    font-size: 30px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .news-card__image {
+    transition: none;
+  }
+  .news-card:hover .news-card__image {
+    transform: none;
+  }
+}
+
+/*# sourceMappingURL=NewsCard.css.map */

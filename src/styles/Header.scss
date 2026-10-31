@@ -1,5 +1,68 @@
 @use 'variables' as *;
 
+// ===== Global Reset =====
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: Arial, 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  color: $color-ink;
+  background: $color-white;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-red;
+  }
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+}
+
+// ===== Container =====
 .container {
   @include container;
 }
@@ -113,7 +176,7 @@
 
 .menu {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .menu-item {
@@ -126,6 +189,7 @@
   color: $color-white;
   font-weight: $font-weight-bold;
   font-size: $font-size-base;
+  white-space: nowrap;
   transition: $transition-base;
 
   &:hover,
@@ -225,6 +289,11 @@
   .menu {
     overflow-x: auto;
     flex-wrap: nowrap;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .menu-link {

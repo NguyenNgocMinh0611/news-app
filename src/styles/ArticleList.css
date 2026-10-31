@@ -1,0 +1,34 @@
+.article-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.article-list > li {
+  display: flex;
+  min-width: 0;
+}
+.article-list > .article-list__featured {
+  grid-column: 1/-1;
+}
+
+@media (min-width: 0px) {
+  .article-list {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+@media (min-width: 768px) {
+  .article-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .article-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+/*# sourceMappingURL=ArticleList.css.map */

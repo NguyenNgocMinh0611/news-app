@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import ArticleDetailPage from "./pages/articles/ArticleDetailPage";
 import { Header } from './components/layout/Header';
+import { Footer } from './components/layout/Footer';
 import { ArticleListDemo } from '@/features/news/components/ArticleListDemo';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/bai-viet/:slug" element={<ArticleDetailPage />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
