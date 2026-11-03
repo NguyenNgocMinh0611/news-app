@@ -4,6 +4,7 @@ import type { Article } from "../../types/article";
 import ArticleHeader from "@/features/articles/components/ArticleHeader";
 import ArticleImage from "@/features/articles/components/ArticleImage";
 import ArticleContent from "@/features/articles/components/ArticleContent";
+import RecommendedArticles from "@/features/articles/components/RecommendedArticles";
 
 const mockArticle: Article = {
   id: 1,
@@ -85,6 +86,7 @@ export default function ArticleDetailPage() {
                 className="article-main-image" />
             )}
             <ArticleContent content={article.content} />
+            <RecommendedArticles />
           </article>
           <aside className="article-sidebar" aria-label="Tin tức liên quan"></aside>
         </div>
