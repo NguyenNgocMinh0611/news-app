@@ -5,6 +5,8 @@ import ArticleHeader from "@/features/articles/components/ArticleHeader";
 import ArticleImage from "@/features/articles/components/ArticleImage";
 import ArticleContent from "@/features/articles/components/ArticleContent";
 import RecommendedArticles from "@/features/articles/components/RecommendedArticles";
+import type { RelatedArticle } from "@/features/articles/components/RelatedArticles";
+import RelatedArticles from "@/features/articles/components/RelatedArticles";
 
 const mockArticle: Article = {
   id: 1,
@@ -66,7 +68,30 @@ const mockArticle: Article = {
   originalUrl:
     "https://giaoducthoidai.vn/chuyen-tau-di-san-ket-noi-ha-noi-thai-nguyen-post797871.html",
 };
-
+const relatedArticles: RelatedArticle[] = [
+  {
+    id: 1,
+    title: "Khi đột phá giáo dục thành nền tảng của đột phá công nghệ",
+    link: "#",
+  },
+  {
+    id: 2,
+    title: "Kiến tạo hệ sinh thái thu hút, trọng dụng nhân tài",
+    link: "#",
+  },
+  {
+    id: 3,
+    title:
+      "Từ coi trọng người giỏi đến kiến tạo môi trường để nhân tài tạo ra giá trị",
+    link: "#",
+    isFeatured: true,
+  },
+]
+const relatedTags = [
+  "Kết luận số 105-KL/TW",
+  "phát triển nhân tài",
+  "giáo dục đại học",
+];
 export default function ArticleDetailPage() {
   const article = mockArticle;
   return (
@@ -87,6 +112,7 @@ export default function ArticleDetailPage() {
             )}
             <ArticleContent content={article.content} />
             <RecommendedArticles />
+            <RelatedArticles articles={relatedArticles} tags={relatedTags} />
           </article>
           <aside className="article-sidebar" aria-label="Tin tức liên quan"></aside>
         </div>
