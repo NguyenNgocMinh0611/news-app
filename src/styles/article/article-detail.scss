@@ -476,3 +476,66 @@
     }
   }
 }
+// Form bình luận
+.comment-form {
+  width: 100%;
+  margin-top: $spacing-2xl;
+
+  &__heading {
+    margin: 0 0 30px;
+    color: #555;
+    font-size: 23px;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__textarea {
+    display: block;
+    width: 100%;
+    min-height: 106px;
+    padding: 15px 18px;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    outline: none;
+    resize: vertical;
+    color: $color-dark;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.5;
+
+    &::placeholder {
+      color: #888;
+    }
+
+    &:focus {
+      border-color: $color-blue;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 28px;
+  }
+
+  &__submit {
+    padding: 8px 13px;
+    border: none;
+    border-radius: 4px;
+    background-color: $color-red;
+    color: $color-white;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background-color: darken($color-red, 8%);
+    }
+
+    &:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+  }
+}
