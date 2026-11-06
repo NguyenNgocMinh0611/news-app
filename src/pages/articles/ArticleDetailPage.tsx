@@ -4,6 +4,11 @@ import type { Article } from "../../types/article";
 import ArticleHeader from "@/features/articles/components/ArticleHeader";
 import ArticleImage from "@/features/articles/components/ArticleImage";
 import ArticleContent from "@/features/articles/components/ArticleContent";
+import RecommendedArticles from "@/features/articles/components/RecommendedArticles";
+import type { RelatedArticle } from "@/features/articles/components/RelatedArticles";
+import RelatedArticles from "@/features/articles/components/RelatedArticles";
+import CommentForm from "@/features/articles/components/CommentForm";
+import CategoryArticles, { type CategoryArticle } from "@/features/articles/components/CategoryArticles";
 
 const mockArticle: Article = {
   id: 1,
@@ -65,7 +70,63 @@ const mockArticle: Article = {
   originalUrl:
     "https://giaoducthoidai.vn/chuyen-tau-di-san-ket-noi-ha-noi-thai-nguyen-post797871.html",
 };
-
+const relatedArticles: RelatedArticle[] = [
+  {
+    id: 1,
+    title: "Khi đột phá giáo dục thành nền tảng của đột phá công nghệ",
+    link: "#",
+  },
+  {
+    id: 2,
+    title: "Kiến tạo hệ sinh thái thu hút, trọng dụng nhân tài",
+    link: "#",
+  },
+  {
+    id: 3,
+    title:
+      "Từ coi trọng người giỏi đến kiến tạo môi trường để nhân tài tạo ra giá trị",
+    link: "#",
+    isFeatured: true,
+  },
+]
+const relatedTags = [
+  "Kết luận số 105-KL/TW",
+  "phát triển nhân tài",
+  "giáo dục đại học",
+];
+const categoryArticles: CategoryArticle[] = [
+  {
+    id: 1,
+    title:
+      "Giám sát việc thực hiện các chủ trương phát triển giáo dục tại Gia Lai",
+    image: "https://cdn.giaoducthoidai.vn/images/YEBXHmKXGq0O1gH9suO7vlulJhZXta-wuTk9v2gwTHQhTTIeMMnUZEqQqywjuvs7/t11.jpg.avif",
+    publishedAt: "4 giờ trước",
+    link: "#",
+  },
+  {
+    id: 2,
+    title:
+      "Để dự báo thị trường lao động phát huy hiệu quả tại vùng cao Tây Bắc",
+    image: "https://cdn.giaoducthoidai.vn/images/kc8JW4239jgRxkq62s-Nd2qKqUlDo6S_cV2f7lSrsjC1gxh_IlhYyD39X3hTOASf/thuc-tap.jpg.avif",
+    publishedAt: "6 giờ trước",
+    link: "#",
+  },
+  {
+    id: 3,
+    title:
+      "Để tiếng Anh hiện diện trong môn học từ sự chủ động của giáo viên",
+    image: "https://cdn.giaoducthoidai.vn/images/rAUKY9Fj56VXBxg7HjhWsG_8XXrkPj9DVmWES7iyukmtw173CEJnBDqic-CyNdf2DF3ge7ww3WQ4Rj0gKfqjWw/diem-chuan-thi-lop-10.jpg.avif",
+    publishedAt: "6 giờ trước",
+    link: "#",
+  },
+  {
+    id: 4,
+    title: "Đổi mới phương pháp dạy học trong nhà trường",
+    image: "https://cdn.giaoducthoidai.vn/images/qIbgaloiZNb6_LhfgZLXK39O427tJF7mMVcSQgSmc-UrQN4u63PiSqieHM3Po9TCqJBAQfwxJ0rLT69cCnFGng/gdtd_br_b3a2297.jpg.avif",
+    publishedAt: "8 giờ trước",
+    link: "#",
+  },
+];
 export default function ArticleDetailPage() {
   const article = mockArticle;
   return (
@@ -85,6 +146,10 @@ export default function ArticleDetailPage() {
                 className="article-main-image" />
             )}
             <ArticleContent content={article.content} />
+            <RecommendedArticles />
+            <RelatedArticles articles={relatedArticles} tags={relatedTags} />
+            <CommentForm  />
+            <CategoryArticles articles={categoryArticles} />
           </article>
           <aside className="article-sidebar" aria-label="Tin tức liên quan"></aside>
         </div>
