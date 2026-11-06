@@ -46,7 +46,7 @@
 
   &__title {
     margin: $spacing-md 0;
-    font-size: 20px;
+    font-size: 1.4286rem;
     line-height: 1.4;
     @include line-clamp(3);
   }
@@ -72,7 +72,7 @@
   &--active &__title a { color: $color-red; }
 
   //   Featured  
-  &--featured &__title { font-size: 26px; font-weight: $font-weight-bold; }
+  &--featured &__title { font-size: 1.8571rem; font-weight: $font-weight-bold; }
   &--featured &__description { font-size: $font-size-md; @include line-clamp(4); }
 
   @media (min-width: $breakpoint-md) {
@@ -83,7 +83,7 @@
       align-items: start;
     }
     &--featured &__category { margin-top: 0; }
-    &--featured &__title { font-size: 30px; }
+    &--featured &__title { font-size: 2.1429rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -3,7 +3,7 @@
   color: rgba(255, 255, 255, 0.85);
   margin-top: 24px;
   padding: 28px 0;
-  font-size: 13px;
+  font-size: 0.9286rem;
 }
 .page-footer .container {
   display: grid;
@@ -12,7 +12,7 @@
 }
 .page-footer__title {
   color: #ffffff;
-  font-size: 14px;
+  font-size: 1rem;
   font-weight: 700;
   margin-bottom: 6px;
 }

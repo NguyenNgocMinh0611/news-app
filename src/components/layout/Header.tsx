@@ -4,6 +4,7 @@ import { NAV_MENU, HOT_TOPICS, SITE_INFO } from '../../constants/navigation';
 import { useSelector, useDispatch } from 'react-redux';
 import { setKeyword, clearKeyword } from '@/store/slice/SearchSlice';
 import type { RootState } from '@/store/Store';
+import { FontSizeControl } from '@/components/common/FontSizeControl';
 import '../../styles/Header.scss';
 
 const DAYS = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'];
@@ -54,6 +55,9 @@ export function Header() {
           </span>
           <span className="top-info__item">
             Email: <a href={`mailto:${SITE_INFO.email}`}>{SITE_INFO.email}</a>
+          </span>
+          <span className="top-info__item top-info__font-size">
+            <FontSizeControl />
           </span>
         </div>
       </div>

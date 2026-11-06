@@ -1,0 +1,26 @@
+@charset "UTF-8";
+/* Cỡ chữ nhỏ - giảm so với mặc định */
+html.font-size--small {
+  font-size: 12px;
+}
+
+/* Cỡ chữ vừa - mặc định */
+html.font-size--medium {
+  font-size: 14px;
+}
+
+/* Cỡ chữ to - tăng so với mặc định */
+html.font-size--large {
+  font-size: 18px;
+}
+
+/* Áp dụng rem cho nội dung chính */
+html.font-size--small body,
+html.font-size--medium body,
+html.font-size--large body {
+  font-size: 1rem;
+  line-height: 1.6;
+  transition: font-size 0.2s ease;
+}
+
+/*# sourceMappingURL=font-size.css.map */
