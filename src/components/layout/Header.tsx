@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { getRssFeed } from '@/features/news/data/rssFeeds';
 import { NAV_MENU, HOT_TOPICS, SITE_INFO } from '../../constants/navigation';
 import '../../styles/Header.scss';
 
@@ -13,6 +15,15 @@ function formatDate() {
 export function Header() {
   const [searchQuery, setSearchQuery] = useState('');
   const currentDate = formatDate();
+  const [searchParams] = useSearchParams();
+  const category = getRssFeed(searchParams.get('category') ?? '').category;
+  const categoryLink = (label: string) => {
+    const next = new URLSearchParams(searchParams);
+    if (label === 'Trang chủ') next.delete('category');
+    else next.set('category', label);
+    next.delete('page');
+    return { pathname: '/', search: next.toString() ? `?${next}` : '' };
+  };
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,28 +68,40 @@ export function Header() {
         </form>
       </div>
 
-      <nav className="header-secondary">
+      <nav className="header-secondary" aria-label="Chuyên mục tin tức">
         <div className="container">
           <ul className="menu">
-            {NAV_MENU.map((item, index) => (
+            {NAV_MENU.map((item) => {
+              const isCurrent = item.href === '/' ? !category : item.label === category;
+              const isActive = isCurrent || item.children?.some((child) =>
+                child.label === category || (child.label === 'Khoa học - Công nghệ' && category === 'Công nghệ'),
+              );
+              return (
               <li key={item.href} className="menu-item">
-                <a
-                  href={item.href}
-                  className={`menu-link ${index === 0 ? 'menu-link--active' : ''}`}
+                <Link
+                  to={categoryLink(item.label)}
+                  className={`menu-link ${isActive ? 'menu-link--active' : ''}`}
+                  aria-current={isCurrent ? 'page' : undefined}
                 >
                   {item.label}
-                </a>
+                </Link>
                 {item.children && (
                   <ul className="sub-menu">
                     {item.children.map((child) => (
                       <li key={child.href}>
-                        <a href={child.href}>{child.label}</a>
+                        <Link
+                          to={categoryLink(child.label)}
+                          aria-current={child.label === category ? 'page' : undefined}
+                        >
+                          {child.label}
+                        </Link>
                       </li>
                     ))}
                   </ul>
                 )}
               </li>
-            ))}
+              );
+            })}
           </ul>
         </div>
       </nav>
