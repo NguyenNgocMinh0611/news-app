@@ -1,7 +1,9 @@
-import { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { getRssFeed } from '@/features/news/data/rssFeeds';
 import { NAV_MENU, HOT_TOPICS, SITE_INFO } from '../../constants/navigation';
+import { useSelector, useDispatch } from 'react-redux';
+import { setKeyword, clearKeyword } from '@/store/slice/SearchSlice';
+import type { RootState } from '@/store/Store';
 import '../../styles/Header.scss';
 
 const DAYS = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'];
@@ -13,9 +15,10 @@ function formatDate() {
 }
 
 export function Header() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const dispatch = useDispatch();
+  const keyword = useSelector((state: RootState) => state.search.keyword);
   const currentDate = formatDate();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const category = getRssFeed(searchParams.get('category') ?? '').category;
   const categoryLink = (label: string) => {
     const next = new URLSearchParams(searchParams);
@@ -25,11 +28,20 @@ export function Header() {
     return { pathname: '/', search: next.toString() ? `?${next}` : '' };
   };
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setKeyword(e.target.value));
+    // tạo lại page mỗi lần nhập
+    if (e.target.value.trim()) {
+      const next = new URLSearchParams(searchParams);
+      if (next.has('page')) {
+        next.delete('page');
+        setSearchParams(next);
+      }
+    }
+  };
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      console.log('Searching for:', searchQuery.trim());
-    }
   };
 
   return (
@@ -59,8 +71,8 @@ export function Header() {
             className="search-head__input"
             placeholder="Tìm kiếm..."
             aria-label="Tìm kiếm"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            value={keyword}
+            onChange={handleSearchChange}
           />
           <button type="submit" className="search-head__btn">
             Tìm

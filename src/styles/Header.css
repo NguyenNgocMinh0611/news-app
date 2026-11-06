@@ -207,6 +207,11 @@ input {
   background: #f4f4f4;
   color: #c31e40;
 }
+.sub-menu a[aria-current=page] {
+  background: #f4f4f4;
+  color: #c31e40;
+  font-weight: 700;
+}
 .sub-menu li:last-child a {
   border-bottom: 0;
 }
