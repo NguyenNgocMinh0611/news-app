@@ -1,24 +1,8 @@
-import { Route, Routes } from "react-router-dom";
-import ArticleDetailPage from "./pages/articles/ArticleDetailPage";
-import { Header } from './components/layout/Header';
-import { Footer } from './components/layout/Footer';
-import { ArticleListDemo } from '@/features/news/components/ArticleListDemo';
+import {RouterProvider} from "react-router-dom";
+import {router} from "@/route/Router.tsx";
 
 function App() {
-  return (
-    <div className="app">
-      <Header />
-      <main className="app__main">
-        <div className="app__container">
-          <ArticleListDemo />
-        </div>
-      </main>
-      <Routes>
-        <Route path="/bai-viet/:slug" element={<ArticleDetailPage />} />
-      </Routes>
-      <Footer />
-    </div>
-  );
+  return <RouterProvider router={router}/>
 }
 
 export default App;
