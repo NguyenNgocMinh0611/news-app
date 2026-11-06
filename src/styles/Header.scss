@@ -222,6 +222,12 @@ input {
       background: $color-bg-light;
       color: $color-red;
     }
+
+    &[aria-current='page'] {
+      background: $color-bg-light;
+      color: $color-red;
+      font-weight: $font-weight-bold;
+    }
   }
 
   li:last-child a {

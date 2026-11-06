@@ -1,0 +1,41 @@
+@use 'variables' as *;
+
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+  margin: $spacing-lg 0;
+
+  &__item {
+    min-height: 44px;
+    padding: $spacing-md $spacing-lg;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    background: $color-white;
+    color: $color-text-body;
+    font: inherit;
+    cursor: pointer;
+
+    &:hover {
+      border-color: $color-red;
+      color: $color-red;
+    }
+
+    &--active {
+      border-color: $color-red;
+      background: $color-red;
+      color: $color-white;
+      font-weight: $font-weight-semibold;
+
+      &:hover {
+        background: $color-red-dark;
+        color: $color-white;
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-blue;
+      outline-offset: 2px;
+    }
+  }
+}

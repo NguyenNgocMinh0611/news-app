@@ -1,6 +1,6 @@
 @use 'variables' as *;
 
-.article-demo {
+.news-feed {
   @include container;
   padding-top: $spacing-2xl;
   padding-bottom: 40px;
