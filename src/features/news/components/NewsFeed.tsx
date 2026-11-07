@@ -1,5 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import type { RootState } from '@/store/Store';
+import { clearKeyword } from '@/store/slice/SearchSlice';
 import { getRssFeed } from '../data/rssFeeds.ts';
 import { useRssArticles } from '@/hooks/useRssArticles';
 import { ArticleList } from './ArticleList.tsx';
@@ -10,7 +13,8 @@ const ARTICLES_PER_PAGE = 10;
 
 export function NewsFeed() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [keyword, setKeyword] = useState('');
+  const dispatch = useDispatch();
+  const keyword = useSelector((state: RootState) => state.search.keyword);
 
   const requestedCategory = searchParams.get('category') ?? '';
   const feed = getRssFeed(requestedCategory);
@@ -50,7 +54,23 @@ export function NewsFeed() {
   return (
     <section className="news-feed" aria-labelledby="news-feed-heading">
       <h2 id="news-feed-heading">{category || 'Tin mới nhất'}</h2>
-  
+      {keyword.trim() && (
+        <div className="news-feed__search-info">
+          <span>Kết quả tìm kiếm cho: <strong>{keyword.trim()}</strong></span>
+          <button
+            type="button"
+            className="news-feed__clear-search"
+            onClick={() => {
+              dispatch(clearKeyword());
+              const next = new URLSearchParams(searchParams);
+              next.delete('page');
+              setSearchParams(next);
+            }}
+          >
+            ✕ Xóa tìm kiếm
+          </button>
+        </div>
+      )}
       {loading && <p role="status">Đang tải tin RSS…</p>}
       {error && (
         <div className="news-feed__toolbar">
@@ -58,7 +78,10 @@ export function NewsFeed() {
           <button type="button" onClick={retry}>Thử lại</button>
         </div>
       )}
-      {!loading && !error && (
+      {!loading && !error && articles.length === 0 && keyword.trim() && (
+        <p role="status">Không tìm thấy bài viết phù hợp.</p>
+      )}
+      {!loading && !error && articles.length > 0 && (
         <ArticleList articles={pageArticles} featuredFirst />
       )}
       {!loading && !error && articles.length > 0 && (

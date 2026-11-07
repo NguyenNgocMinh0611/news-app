@@ -10,14 +10,15 @@
 }
 
 html {
-  font-size: 16px;
+  // khớp mức "Vừa" (mặc định) trong font-size.scss, tránh nhảy cỡ khi trang vừa tải
+  font-size: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   font-family: Arial, 'Helvetica Neue', sans-serif;
-  font-size: 15px;
+  font-size: 1rem;
   line-height: 1.45;
   color: $color-ink;
   background: $color-white;
@@ -114,7 +115,7 @@ input {
 
 .logo {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 28px;
+  font-size: 2rem;
   font-weight: $font-weight-bold;
   color: $color-red;
   line-height: 1.1;
@@ -126,7 +127,7 @@ input {
   &__sub {
     display: block;
     font-family: Arial, sans-serif;
-    font-size: 11px;
+    font-size: 0.7857rem;
     font-weight: $font-weight-normal;
     color: $color-text-muted;
     letter-spacing: 0.2px;

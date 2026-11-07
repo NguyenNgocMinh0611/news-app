@@ -1,0 +1,55 @@
+.font-size-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.font-size-control__label {
+  font-size: 0.9286rem;
+  color: #666;
+  white-space: nowrap;
+}
+.font-size-control__buttons {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+.font-size-control__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 6px;
+  border: none;
+  background: #fff;
+  color: #555;
+  cursor: pointer;
+  font-weight: 600;
+  line-height: 1;
+  transition: background 0.15s, color 0.15s;
+}
+.font-size-control__btn:hover {
+  background: #f0f0f0;
+}
+.font-size-control__btn--active {
+  background: #c0392b;
+  color: #fff;
+}
+.font-size-control__btn--active:hover {
+  background: #a93226;
+}
+.font-size-control__btn--small {
+  font-size: 12px;
+}
+.font-size-control__btn--medium {
+  font-size: 14px;
+}
+.font-size-control__btn--large {
+  font-size: 16px;
+}
+
+/*# sourceMappingURL=FontSizeControl.css.map */

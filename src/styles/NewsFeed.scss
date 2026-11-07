@@ -13,6 +13,30 @@
     font-size: $font-size-base;
   }
 
+  &__search-info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+    padding: $spacing-base $spacing-md;
+    background: $color-bg-light;
+    border-radius: $radius-sm;
+    font-size: $font-size-base;
+  }
+
+  &__clear-search {
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    background: $color-white;
+    color: $color-text-body;
+    padding: $spacing-sm $spacing-md;
+    cursor: pointer;
+    font-size: $font-size-sm;
+
+    &:hover { color: $color-red; border-color: $color-red; }
+  }
+
   &__toolbar {
     display: flex;
     align-items: center;
@@ -69,8 +93,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
+    width: 2rem;
+    height: 2rem;
     padding: 0;
     border: 1px solid $color-border;
     border-radius: $radius-sm;

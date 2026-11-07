@@ -35,7 +35,7 @@
     padding-left: 13px;
     border-left: 6px solid $color-red;
     color: $color-dark;
-    font-size: 22px;
+    font-size: 1.5714rem;
     font-weight: $font-weight-bold;
     line-height: 1.2;
     text-decoration: none;
@@ -50,7 +50,7 @@
   }
   &__link {
     color: $color-dark;
-    font-size: 15px;
+    font-size: 1.0714rem;
     font-weight: $font-weight-medium;
     line-height: 1.5;
     text-decoration: none;
@@ -67,7 +67,7 @@
     padding: 0 0 10px;
     border-bottom: 1px solid $color-border;
     color: #454545;
-    font-size: 28px;
+    font-size: 2rem;
     font-weight: $font-weight-bold;
     line-height: 1.3;
     letter-spacing: -0.3px;
@@ -76,7 +76,7 @@
   &__description {
     margin: 16px 0 18px;
     color: $color-text-body;
-    font-size: 20px;
+    font-size: 1.4286rem;
     font-weight: $font-weight-semibold;
     line-height: 1.45;
     overflow-wrap: anywhere;
@@ -91,13 +91,13 @@
   border-bottom: 1px solid $color-border;
   &__author {
     color: $color-text-body;
-    font-size: 16px;
+    font-size: 1.1429rem;
     font-weight: $font-weight-medium;
     line-height: 1.4;
   }
   &__time {
     color: #888;
-    font-size: 15px;
+    font-size: 1.0714rem;
     font-weight: $font-weight-normal;
     line-height: 1.4;
   }
@@ -118,7 +118,7 @@
   }
   .article-header {
     &__title {
-      font-size: 26px;
+      font-size: 1.8571rem;
     }
   }
 }
@@ -139,10 +139,10 @@
   }
   .article-header {
     &__title {
-      font-size: 25px;
+      font-size: 1.7857rem;
     }
     &__description {
-      font-size: 18px;
+      font-size: 1.2857rem;
     }
   }
 }
@@ -152,32 +152,32 @@
   }
   .article-category-nav {
     &__main {
-      font-size: 19px;
+      font-size: 1.3571rem;
     }
     &__items {
       gap: 8px 14px;
     }
     &__link {
-      font-size: 14px;
+      font-size: 1rem;
     }
   }
   .article-header {
     &__title {
-      font-size: 22px;
+      font-size: 1.5714rem;
       line-height: 1.35;
     }
     &__description {
       margin-top: 13px;
-      font-size: 17px;
+      font-size: 1.2143rem;
       line-height: 1.5;
     }
   }
   .article-meta {
     &__author {
-      font-size: 15px;
+      font-size: 1.0714rem;
     }
     &__time {
-      font-size: 14px;
+      font-size: 1rem;
     }
   }
 }
@@ -205,7 +205,7 @@
 }
 .article-content {
   color: $color-text-body;
-  font-size: 18px;
+  font-size: 1.2857rem;
   line-height: 1.75;
   overflow-wrap: anywhere;
   &__paragraph {
@@ -215,7 +215,7 @@
   &__heading {
     margin: $spacing-2xl 0 $spacing-base;
     color: $color-ink;
-    font-size: 22px;
+    font-size: 1.5714rem;
     font-weight: $font-weight-bold;
     line-height: 1.4;
   }
@@ -226,10 +226,10 @@
 }
 @include respond-to(sm) {
   .article-content {
-    font-size: 16px;
+    font-size: 1.1429rem;
     line-height: 1.7;
     &__heading {
-      font-size: 19px;
+      font-size: 1.3571rem;
     }
     &__paragraph {
       margin-bottom: $spacing-base;
@@ -257,7 +257,7 @@
     flex-shrink: 0;
     margin: 0;
     color: $color-red;
-    font-size: 24px;
+    font-size: 1.7143rem;
     font-weight: $font-weight-bold;
     line-height: 1.3;
     text-transform: uppercase;
@@ -312,7 +312,7 @@
   &__title {
     margin: 5px 0 0;
     color: $color-dark;
-    font-size: 17px;
+    font-size: 1.2143rem;
     font-weight: $font-weight-semibold;
     line-height: 1.4;
     transition: color 0.2s ease;
@@ -325,10 +325,10 @@
       gap: 16px 12px;
     }
     &__heading {
-      font-size: 21px;
+      font-size: 1.5rem;
     }
     &__title {
-      font-size: 15px;
+      font-size: 1.0714rem;
     }
   }
 }
@@ -337,13 +337,13 @@
     margin-top: $spacing-xl;
     padding-top: $spacing-base;
     &__heading {
-      font-size: 18px;
+      font-size: 1.2857rem;
     }
     &__logo {
-      font-size: 20px;
+      font-size: 1.4286rem;
     }
     &__logo-icon {
-      font-size: 20px;
+      font-size: 1.4286rem;
     }
     &__grid {
       grid-template-columns: 1fr;
@@ -356,7 +356,7 @@
       font-size: $font-size-sm;
     }
     &__title {
-      font-size: 16px;
+      font-size: 1.1429rem;
     }
   }
 }
@@ -371,7 +371,7 @@
   &__heading {
   margin: 0 0 16px;
   color: $color-red;
-  font-size: 23px;
+  font-size: 1.6429rem;
   font-weight: $font-weight-bold;
   line-height: 1.4;
   text-transform: uppercase;
@@ -389,12 +389,12 @@
     color: #e9ecef;
     &::marker {
       color: #e9ecef;
-      font-size: 20px;
+      font-size: 1.4286rem;
     }
   }
  &__link {
     color: $color-dark;
-    font-size: 19px;
+    font-size: 1.3571rem;
     font-weight: $font-weight-semibold;
     line-height: 1.4;
     text-decoration: none;
@@ -424,7 +424,7 @@
     border: 1px solid $color-border;
     border-radius: 30px;
     color: $color-text-secondary;
-    font-size: 17px;
+    font-size: 1.2143rem;
     line-height: 1.4;
     text-decoration: none;
     transition: all 0.2s ease;
@@ -441,10 +441,10 @@
       padding: 24px 20px;
     }
     &__heading {
-      font-size: 21px;
+      font-size: 1.5rem;
     }
     &__link {
-      font-size: 17px;
+      font-size: 1.2143rem;
     }
     &__tags {
       justify-content: flex-start;
@@ -457,14 +457,14 @@
       padding: 18px 15px;
     }
     &__heading {
-      font-size: 19px;
+      font-size: 1.3571rem;
     }
     &__list {
       gap: 10px;
       padding-left: 20px;
     }
     &__link {
-      font-size: 15px;
+      font-size: 1.0714rem;
     }
     &__tags {
       gap: 8px;
@@ -472,7 +472,7 @@
     &__tag {
       min-height: 34px;
       padding: 6px 13px;
-      font-size: 14px;
+      font-size: 1rem;
     }
   }
 }
@@ -484,7 +484,7 @@
   &__heading {
     margin: 0 0 30px;
     color: #555;
-    font-size: 23px;
+    font-size: 1.6429rem;
     font-weight: $font-weight-semibold;
   }
 
@@ -499,7 +499,7 @@
     resize: vertical;
     color: $color-dark;
     font-family: inherit;
-    font-size: 16px;
+    font-size: 1.1429rem;
     line-height: 1.5;
 
     &::placeholder {
@@ -524,7 +524,7 @@
     background-color: $color-red;
     color: $color-white;
     font-family: inherit;
-    font-size: 16px;
+    font-size: 1.1429rem;
     font-weight: $font-weight-semibold;
     cursor: pointer;
     transition: background-color 0.2s ease;
@@ -561,7 +561,7 @@
     flex-shrink: 0;
     margin: 0;
     color: $color-white;
-    font-size: 25px;
+    font-size: 1.7857rem;
     font-weight: $font-weight-bold;
     line-height: 1.4;
   }
@@ -629,7 +629,7 @@
     margin: 10px 0 8px;
     overflow: hidden;
     color: $color-white;
-    font-size: 18px;
+    font-size: 1.2857rem;
     font-weight: $font-weight-semibold;
     line-height: 1.65;
     -webkit-box-orient: vertical;
@@ -646,24 +646,24 @@
   .category-articles {
     padding: 22px 20px;
     &__heading {
-      font-size: 21px;
+      font-size: 1.5rem;
     }
     &__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 20px;
     }
     &__title {
-      font-size: 16px;
+      font-size: 1.1429rem;
     }
   }
 }
 @media (max-width: 480px) {
   .comment-form {
     &__heading {
-      font-size: 20px;
+      font-size: 1.4286rem;
     }
     &__textarea {
-      font-size: 14px;
+      font-size: 1rem;
     }
   }
   .category-articles {
@@ -673,7 +673,7 @@
       margin-bottom: 20px;
     }
     &__heading {
-      font-size: 18px;
+      font-size: 1.2857rem;
     }
     &__line {
       display: none;
@@ -687,7 +687,7 @@
       gap: 22px;
     }
     &__title {
-      font-size: 16px;
+      font-size: 1.1429rem;
     }
   }
 }
