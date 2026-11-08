@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import type { Article } from '../types.ts';
 import '@/styles/NewsCard.scss';
 
@@ -30,10 +31,21 @@ function toShortDescription(text: string, maxLength: number) {
   return `${(lastSpace > 0 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
 }
 
+/** Mã hóa link bài viết thành articleId an toàn cho URL */
+export function toArticleId(link: string): string {
+  return encodeURIComponent(link);
+}
+
+/** Giải mã articleId ra lại link gốc */
+export function fromArticleId(articleId: string): string {
+  return decodeURIComponent(articleId);
+}
+
 export function NewsCard({ article, active = false, variant = 'default' }: NewsCardProps) {
   const date = article.pubDate ? new Date(article.pubDate) : null;
   const publishedAt = date && !Number.isNaN(date.getTime()) ? date : null;
   const description = toShortDescription(article.description ?? '', DESCRIPTION_MAX_LENGTH[variant]);
+  const articleId = toArticleId(article.link);
 
   const className = [
     'news-card',
@@ -44,11 +56,9 @@ export function NewsCard({ article, active = false, variant = 'default' }: NewsC
   return (
     <article className={className} aria-current={active ? 'true' : undefined}>
       {article.image && (
-        <a
+        <Link
           className="news-card__thumb"
-          href={article.link}
-          target="_blank"
-          rel="noopener noreferrer"
+          to={`/article/${articleId}`}
           tabIndex={-1}
           aria-hidden="true"
         >
@@ -58,12 +68,12 @@ export function NewsCard({ article, active = false, variant = 'default' }: NewsC
             alt=""
             loading={variant === 'featured' ? 'eager' : 'lazy'}
           />
-        </a>
+        </Link>
       )}
       <div className="news-card__body">
         {article.category && <p className="news-card__category">{article.category}</p>}
         <h3 className="news-card__title">
-          <a href={article.link} target="_blank" rel="noopener noreferrer">{article.title}</a>
+          <Link to={`/article/${articleId}`}>{article.title}</Link>
         </h3>
         {publishedAt && (
           <time className="news-card__date" dateTime={publishedAt.toISOString()}>
