@@ -76,7 +76,7 @@ const categoryArticles: CategoryArticle[] = [
   },
 ];
 
-/** Chuyển đổi Article từ RSS sang định dạng chi tiết hiển thị */
+// chuyển từ rss sang article chi tiết
 function toDetailArticle(rss: RssArticle): DetailArticle {
   const content: ArticleContentBlock[] = [
     { type: 'paragraph', text: rss.description ?? '' },

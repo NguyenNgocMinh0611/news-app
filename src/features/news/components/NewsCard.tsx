@@ -31,12 +31,12 @@ function toShortDescription(text: string, maxLength: number) {
   return `${(lastSpace > 0 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
 }
 
-/** Mã hóa link bài viết thành articleId an toàn cho URL */
+// Mã hóa link bài viết thành articleId an toàn cho URL
 export function toArticleId(link: string): string {
   return encodeURIComponent(link);
 }
 
-/** Giải mã articleId ra lại link gốc */
+// Giải mã articleId ra lại link gốc
 export function fromArticleId(articleId: string): string {
   return decodeURIComponent(articleId);
 }

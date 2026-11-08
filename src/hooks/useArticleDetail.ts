@@ -10,10 +10,7 @@ interface ArticleDetailState {
   error: string | null;
 }
 
-/**
- * Lấy chi tiết bài viết từ RSS dựa trên articleId trong URL.
- * ArticleId là link bài viết đã được encodeURIComponent.
- */
+// bài viết chi tiết khi nhấn vào thì là vẫn ở trang mình chứ không nhảy qua trang của ngta
 export function useArticleDetail(): ArticleDetailState & { retry: () => void } {
   const { articleId } = useParams<{ articleId: string }>();
   const [attempt, setAttempt] = useState(0);
