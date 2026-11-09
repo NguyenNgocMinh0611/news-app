@@ -1,4 +1,5 @@
 import { useArticleDetail } from '@/hooks/useArticleDetail';
+import { useRssArticles } from '@/hooks/useRssArticles';
 import type { Article as DetailArticle, ArticleContentBlock } from '../../types/article';
 import type { Article as RssArticle } from '@/features/news/types';
 import ArticleCategoryNav from '@/features/articles/components/ArticleCategoryNav';
@@ -11,6 +12,8 @@ import RelatedArticles from '@/features/articles/components/RelatedArticles';
 import CommentForm from '@/features/articles/components/CommentForm';
 import CategoryArticles, { type CategoryArticle } from '@/features/articles/components/CategoryArticles';
 import '../../styles/article/article-detail.scss';
+import type { FeaturedArticleData } from '@/types/featured-article';
+import FeaturedArticles from '@/features/articles/components/feature/FeaturedArticles';
 
 const relatedArticles: RelatedArticle[] = [
   {
@@ -103,6 +106,7 @@ function toDetailArticle(rss: RssArticle): DetailArticle {
 
 export default function ArticleDetailPage() {
   const { article: rssArticle, loading, error, retry } = useArticleDetail();
+  const { articles: rssArticles } = useRssArticles('home.rss', '');
 
   if (loading) {
     return (
@@ -126,6 +130,26 @@ export default function ArticleDetailPage() {
   }
 
   const article = toDetailArticle(rssArticle);
+  const featuredArticle: FeaturedArticleData = {
+    id: rssArticle.id,
+    title: rssArticle.title,
+    image: rssArticle.image,
+    category: rssArticle.category ?? article.category,
+    publishedAt: rssArticle.pubDate ?? '',
+    description: rssArticle.description ?? '',
+    link: rssArticle.link,
+  };
+  const articles: FeaturedArticleData[] = rssArticles
+    .filter((rss) => rss.id !== rssArticle.id)
+    .map((rss) => ({
+      id: rss.id,
+      title: rss.title,
+      image: rss.image,
+      category: rss.category ?? article.category,
+      publishedAt: rss.pubDate ?? '',
+      description: rss.description ?? '',
+      link: rss.link,
+    }));
 
   return (
     <main className="article-page">
@@ -149,6 +173,7 @@ export default function ArticleDetailPage() {
             <RelatedArticles articles={relatedArticles} tags={relatedTags} />
             <CommentForm />
             <CategoryArticles articles={categoryArticles} />
+            <FeaturedArticles featuredArticle={featuredArticle} articles={articles} />
           </article>
           <aside className="article-sidebar" aria-label="Tin tức liên quan"></aside>
         </div>
