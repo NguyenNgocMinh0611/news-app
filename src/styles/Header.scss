@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'variables' as *;
 
 // ===== Global Reset =====
@@ -96,6 +97,32 @@ input {
 
     &:hover {
       color: $color-red;
+    }
+  }
+
+  &__register {
+    margin-left: auto;
+  }
+
+  &__register-btn {
+    padding: 4px 12px;
+    border: 1px solid $color-red;
+    border-radius: $radius-sm;
+    background: $color-red;
+    color: $color-white;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+
+    &:hover {
+      background: color.adjust($color-red, $lightness: -8%);
+      border-color: color.adjust($color-red, $lightness: -8%);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-blue;
+      outline-offset: 2px;
     }
   }
 }

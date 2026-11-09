@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { getRssFeed } from '@/features/news/data/rssFeeds';
 import { NAV_MENU, HOT_TOPICS, SITE_INFO } from '../../constants/navigation';
@@ -5,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setKeyword, clearKeyword } from '@/store/slice/SearchSlice';
 import type { RootState } from '@/store/Store';
 import { FontSizeControl } from '@/components/common/FontSizeControl';
+import RegisterModal from '@/features/auth/components/RegisterModal';
 import '../../styles/Header.scss';
 
 const DAYS = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'];
@@ -18,6 +20,7 @@ function formatDate() {
 export function Header() {
   const dispatch = useDispatch();
   const keyword = useSelector((state: RootState) => state.search.keyword);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const currentDate = formatDate();
   const [searchParams, setSearchParams] = useSearchParams();
   const category = getRssFeed(searchParams.get('category') ?? '').category;
@@ -59,8 +62,19 @@ export function Header() {
           <span className="top-info__item top-info__font-size">
             <FontSizeControl />
           </span>
+          <span className="top-info__item top-info__register">
+            <button
+              type="button"
+              className="top-info__register-btn"
+              onClick={() => setIsRegisterOpen(true)}
+            >
+              Đăng ký
+            </button>
+          </span>
         </div>
       </div>
+
+      <RegisterModal isOpen={isRegisterOpen} onClose={() => setIsRegisterOpen(false)} />
 
       <div className="container header-primary">
         <h1 className="header-primary__title">
