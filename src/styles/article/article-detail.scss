@@ -540,6 +540,65 @@
     }
   }
 }
+
+// Đọc giọng nói
+.text-to-speech {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin: $spacing-lg 0;
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: $spacing-sm $spacing-lg;
+    border: 1px solid $color-red;
+    border-radius: $radius-sm;
+    background: $color-white;
+    color: $color-red;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      background: $color-red;
+      color: $color-white;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-blue;
+      outline-offset: 2px;
+    }
+
+    &--playing {
+      background: $color-red;
+      color: $color-white;
+
+      &:hover {
+        background: color.adjust($color-red, $lightness: -8%);
+      }
+    }
+
+    &--stop {
+      border-color: $color-border;
+      color: $color-text-secondary;
+
+      &:hover {
+        background: $color-hover-bg;
+        color: $color-text-body;
+      }
+    }
+  }
+
+  &__unsupported {
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    font-style: italic;
+  }
+}
+
 // Cùng chuyên mục
 .category-articles {
   width: 100%;
