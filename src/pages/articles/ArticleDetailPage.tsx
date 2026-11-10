@@ -14,6 +14,8 @@ import CategoryArticles, { type CategoryArticle } from '@/features/articles/comp
 import '../../styles/article/article-detail.scss';
 import type { FeaturedArticleData } from '@/types/featured-article';
 import FeaturedArticles from '@/features/articles/components/feature/FeaturedArticles';
+import type { FeaturedNewsData } from '@/types/featured-news';
+import FeaturedNewsSection from '@/features/articles/components/feature/FeaturedNewsSection';
 
 const relatedArticles: RelatedArticle[] = [
   {
@@ -150,6 +152,18 @@ export default function ArticleDetailPage() {
       description: rss.description ?? '',
       link: rss.link,
     }));
+  const featuredNews: FeaturedNewsData[] = rssArticles
+    .flatMap((rss, index) => {
+      if (rss.id === rssArticle.id || !rss.image) return [];
+      return [{
+        id: index,
+        title: rss.title,
+        image: rss.image,
+        category: rss.category ?? article.category,
+        publishedAt: rss.pubDate ?? '',
+        link: rss.link,
+      }];
+    });
 
   return (
     <main className="article-page">
@@ -174,6 +188,7 @@ export default function ArticleDetailPage() {
             <CommentForm />
             <CategoryArticles articles={categoryArticles} />
             <FeaturedArticles featuredArticle={featuredArticle} articles={articles} />
+            <FeaturedNewsSection articles={featuredNews} />
           </article>
           <aside className="article-sidebar" aria-label="Tin tức liên quan"></aside>
         </div>
