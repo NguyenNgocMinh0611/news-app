@@ -3,9 +3,8 @@ import "../../../styles/article/article-detail.scss";
 
 interface CommentFormProps {
     placeholder?: string;
-    onSubmit?: (comment: string) => void;
 }
-const CommentForm = ({placeholder="Ý kiến của bạn sẽ được biên tập trước khi đăng. Xin vui lòng gõ Tiếng Việt có dấu.", onSubmit}: CommentFormProps) => {
+const CommentForm = ({placeholder="Ý kiến của bạn sẽ được biên tập trước khi đăng. Xin vui lòng gõ Tiếng Việt có dấu."}: CommentFormProps) => {
     const [content, setContent] = useState("");
     return (
         <section className="comment-form">
