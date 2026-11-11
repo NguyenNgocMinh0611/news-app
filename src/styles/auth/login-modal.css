@@ -1,0 +1,116 @@
+.login-modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+.login-modal__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.5);
+}
+.login-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: #666;
+  font-size: 1.5714rem;
+  cursor: pointer;
+}
+.login-modal__close:hover {
+  color: #c31e40;
+}
+.login-modal__close:focus-visible {
+  outline: 2px solid #136ca8;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.login-modal__title {
+  margin-bottom: 20px;
+  color: #222;
+  font-size: 1.5714rem;
+  font-weight: 700;
+  text-align: center;
+}
+.login-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.login-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.login-modal__field label {
+  color: #222;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.login-modal__field input {
+  min-height: 40px;
+  padding: 6px 8px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #222;
+}
+.login-modal__field input:focus {
+  border-color: #136ca8;
+  outline: none;
+}
+.login-modal__error {
+  color: #c31e40;
+  font-size: 0.9286rem;
+}
+.login-modal__submit {
+  min-height: 44px;
+  margin-top: 6px;
+  padding: 6px 20px;
+  border: none;
+  border-radius: 4px;
+  background: #c31e40;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.login-modal__submit:hover {
+  background: rgb(62.6039215686%, 9.631372549%, 20.5469281046%);
+}
+.login-modal__submit:focus-visible {
+  outline: 2px solid #136ca8;
+  outline-offset: 2px;
+}
+.login-modal__success {
+  text-align: center;
+}
+.login-modal__success h2 {
+  margin-bottom: 8px;
+  color: #c31e40;
+  font-size: 1.5714rem;
+  font-weight: 700;
+}
+.login-modal__success p {
+  margin-bottom: 20px;
+  color: #222;
+  font-size: 1rem;
+}
+
+/*# sourceMappingURL=login-modal.css.map */

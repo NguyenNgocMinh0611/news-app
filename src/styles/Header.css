@@ -91,25 +91,43 @@ input {
 .top-info a:hover {
   color: #c31e40;
 }
-.top-info__register {
+.top-info__auth {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
-.top-info__register-btn {
+.top-info__user {
+  color: #222;
+  font-weight: 500;
+}
+.top-info__register-btn, .top-info__login-btn, .top-info__logout-btn {
   padding: 4px 12px;
   border: 1px solid #c31e40;
   border-radius: 4px;
-  background: #c31e40;
-  color: #ffffff;
   font-size: 0.8571rem;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
+.top-info__register-btn {
+  background: #c31e40;
+  color: #ffffff;
+}
 .top-info__register-btn:hover {
   background: rgb(62.6039215686%, 9.631372549%, 20.5469281046%);
   border-color: rgb(62.6039215686%, 9.631372549%, 20.5469281046%);
 }
-.top-info__register-btn:focus-visible {
+.top-info__login-btn, .top-info__logout-btn {
+  background: #ffffff;
+  color: #c31e40;
+}
+.top-info__login-btn:hover, .top-info__logout-btn:hover {
+  background: rgb(62.6039215686%, 9.631372549%, 20.5469281046%);
+  border-color: rgb(62.6039215686%, 9.631372549%, 20.5469281046%);
+  color: #ffffff;
+}
+.top-info__register-btn:focus-visible, .top-info__login-btn:focus-visible, .top-info__logout-btn:focus-visible {
   outline: 2px solid #136ca8;
   outline-offset: 2px;
 }
