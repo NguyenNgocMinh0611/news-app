@@ -1,4 +1,7 @@
 import { useArticleDetail } from '@/hooks/useArticleDetail';
+import { useRssArticles } from '@/hooks/useRssArticles';
+import { getRssFeed } from '@/features/news/data/rssFeeds';
+import { toArticleId } from '@/features/news/components/NewsCard';
 import type { Article as DetailArticle, ArticleContentBlock } from '../../types/article';
 import type { Article as RssArticle } from '@/features/news/types';
 import ArticleCategoryNav from '@/features/articles/components/ArticleCategoryNav';
@@ -12,70 +15,11 @@ import RelatedArticles from '@/features/articles/components/RelatedArticles';
 import CommentForm from '@/features/articles/components/CommentForm';
 import CategoryArticles, { type CategoryArticle } from '@/features/articles/components/CategoryArticles';
 import '../../styles/article/article-detail.scss';
-
-const relatedArticles: RelatedArticle[] = [
-  {
-    id: 1,
-    title: 'Khi đột phá giáo dục thành nền tảng của đột phá công nghệ',
-    link: '#',
-  },
-  {
-    id: 2,
-    title: 'Kiến tạo hệ sinh thái thu hút, trọng dụng nhân tài',
-    link: '#',
-  },
-  {
-    id: 3,
-    title:
-      'Từ coi trọng người giỏi đến kiến tạo môi trường để nhân tài tạo ra giá trị',
-    link: '#',
-    isFeatured: true,
-  },
-];
-
-const relatedTags = [
-  'Kết luận số 105-KL/TW',
-  'phát triển nhân tài',
-  'giáo dục đại học',
-];
-
-const categoryArticles: CategoryArticle[] = [
-  {
-    id: 1,
-    title:
-      'Giám sát việc thực hiện các chủ trương phát triển giáo dục tại Gia Lai',
-    image:
-      'https://cdn.giaoducthoidai.vn/images/YEBXHmKXGq0O1gH9suO7vlulJhZXta-wuTk9v2gwTHQhTTIeMMnUZEqQqywjuvs7/t11.jpg.avif',
-    publishedAt: '4 giờ trước',
-    link: '#',
-  },
-  {
-    id: 2,
-    title:
-      'Để dự báo thị trường lao động phát huy hiệu quả tại vùng cao Tây Bắc',
-    image:
-      'https://cdn.giaoducthoidai.vn/images/kc8JW4239jgRxkq62s-Nd2qKqUlDo6S_cV2f7lSrsjC1gxh_IlhYyD39X3hTOASf/thuc-tap.jpg.avif',
-    publishedAt: '6 giờ trước',
-    link: '#',
-  },
-  {
-    id: 3,
-    title:
-      'Để tiếng Anh hiện diện trong môn học từ sự chủ động của giáo viên',
-    image:
-      'https://cdn.giaoducthoidai.vn/images/rAUKY9Fj56VXBxg7HjhWsG_8XXrkPj9DVmWES7iyukmtw173CEJnBDqic-CyNdf2DF3ge7ww3WQ4Rj0gKfqjWw/diem-chuan-thi-lop-10.jpg.avif',
-    publishedAt: '6 giờ trước',
-    link: '#',
-  },
-  {
-    id: 4,
-    title: 'Đổi mới phương pháp dạy học trong nhà trường',
-    image:
-      'https://cdn.giaoducthoidai.vn/images/qIbgaloiZNb6_LhfgZLXK39O427tJF7mMVcSQgSmc-UrQN4u63PiSqieHM3Po9TCqJBAQfwxJ0rLT69cCnFGng/gdtd_br_b3a2297.jpg.avif',
-    publishedAt: '8 giờ trước',
-    link: '#',
-  },
-];
+import type { FeaturedArticleData } from '@/types/featured-article';
+import FeaturedArticles from '@/features/articles/components/feature/FeaturedArticles';
+import type { FeaturedNewsData } from '@/types/featured-news';
+import FeaturedNewsSection from '@/features/articles/components/feature/FeaturedNewsSection';
+import DontMissArticles from '@/features/articles/components/DontMissArticles';
 
 // chuyển từ rss sang article chi tiết
 function toDetailArticle(rss: RssArticle): DetailArticle {
@@ -104,6 +48,24 @@ function toDetailArticle(rss: RssArticle): DetailArticle {
 
 export default function ArticleDetailPage() {
   const { article: rssArticle, loading, error, retry } = useArticleDetail();
+  const {
+    articles: rssArticles,
+    loading: rssArticlesLoading,
+    error: rssArticlesError,
+    retry: retryRssArticles,
+  } = useRssArticles('home.rss', '');
+  const categoryFeed = rssArticle
+    ? getRssFeed(rssArticle.category ?? '')
+    : null;
+  const categoryFeedFile = categoryFeed?.file === 'home.rss'
+    ? ''
+    : categoryFeed?.file ?? '';
+  const {
+    articles: categoryFeedArticles,
+    loading: categoryFeedLoading,
+    error: categoryFeedError,
+    retry: retryCategoryFeed,
+  } = useRssArticles(categoryFeedFile, categoryFeed?.category ?? '');
 
   if (loading) {
     return (
@@ -127,6 +89,69 @@ export default function ArticleDetailPage() {
   }
 
   const article = toDetailArticle(rssArticle);
+  const relatedRssArticles = rssArticles.filter((rss) => rss.id !== rssArticle.id);
+  const relatedArticles: RelatedArticle[] = relatedRssArticles
+    .slice(0, 3)
+    .map((rss) => ({
+      id: rss.id,
+      title: rss.title,
+      link: `/article/${toArticleId(rss.link)}`,
+    }));
+  const recommendedArticles = relatedRssArticles
+    .filter((rss): rss is RssArticle & { image: string } => Boolean(rss.image))
+    .slice(0, 3)
+    .map((rss) => ({
+      id: rss.id,
+      title: rss.title,
+      source: rss.category ?? 'Báo Giáo dục và Thời đại',
+      image: rss.image,
+      link: `/article/${toArticleId(rss.link)}`,
+    }));
+  const categoryArticles: CategoryArticle[] = (
+    categoryFeedFile ? categoryFeedArticles : rssArticles
+  )
+    .filter((rss): rss is RssArticle & { image: string } =>
+      rss.id !== rssArticle.id && Boolean(rss.image),
+    )
+    .map((rss) => ({
+      id: rss.id,
+      title: rss.title,
+      image: rss.image,
+      publishedAt: rss.pubDate ?? '',
+      link: `/article/${toArticleId(rss.link)}`,
+    }));
+  const featuredArticle: FeaturedArticleData = {
+    id: rssArticle.id,
+    title: rssArticle.title,
+    image: rssArticle.image,
+    category: rssArticle.category ?? article.category,
+    publishedAt: rssArticle.pubDate ?? '',
+    description: rssArticle.description ?? '',
+    link: `/article/${toArticleId(rssArticle.link)}`,
+  };
+  const articles: FeaturedArticleData[] = rssArticles
+    .filter((rss) => rss.id !== rssArticle.id)
+    .map((rss) => ({
+      id: rss.id,
+      title: rss.title,
+      image: rss.image,
+      category: rss.category ?? article.category,
+      publishedAt: rss.pubDate ?? '',
+      description: rss.description ?? '',
+      link: `/article/${toArticleId(rss.link)}`,
+    }));
+  const featuredNews: FeaturedNewsData[] = rssArticles
+    .flatMap((rss) => {
+      if (rss.id === rssArticle.id || !rss.image) return [];
+      return [{
+        id: rss.id,
+        title: rss.title,
+        image: rss.image,
+        category: rss.category ?? article.category,
+        publishedAt: rss.pubDate ?? '',
+        link: `/article/${toArticleId(rss.link)}`,
+      }];
+    });
 
   return (
     <main className="article-page">
@@ -147,10 +172,33 @@ export default function ArticleDetailPage() {
             )}
             <TextToSpeech title={article.title} content={article.content} />
             <ArticleContent content={article.content} />
-            <RecommendedArticles />
-            <RelatedArticles articles={relatedArticles} tags={relatedTags} />
+            {rssArticlesError && (
+              <div role="alert">
+                <p>{rssArticlesError}</p>
+                <button type="button" onClick={retryRssArticles}>Thử lại</button>
+              </div>
+            )}
+            {rssArticlesLoading && (
+              <p role="status">Đang tải các tin RSS liên quan…</p>
+            )}
+            <RecommendedArticles articles={recommendedArticles} />
+            <RelatedArticles articles={relatedArticles} />
             <CommentForm />
+            {categoryFeedError && (
+              <div role="alert">
+                <p>{categoryFeedError}</p>
+                <button type="button" onClick={retryCategoryFeed}>Thử lại</button>
+              </div>
+            )}
+            {categoryFeedLoading && categoryFeedFile && (
+              <p role="status">Đang tải tin cùng chuyên mục…</p>
+            )}
             <CategoryArticles articles={categoryArticles} />
+            <FeaturedArticles featuredArticle={featuredArticle} articles={articles} />
+            <FeaturedNewsSection articles={featuredNews} />
+            <DontMissArticles
+              articles={rssArticles.filter((rss) => rss.id !== rssArticle.id)}
+            />
           </article>
           <aside className="article-sidebar" aria-label="Tin tức liên quan"></aside>
         </div>

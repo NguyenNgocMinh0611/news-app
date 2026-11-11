@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../../../styles/article/article-detail.scss";
 
 export interface CategoryArticle {
-    id: number;
+    id: number | string;
     title: string;
     image: string;
     publishedAt: string;
