@@ -71,7 +71,6 @@ export function NewsCard({ article, active = false, variant = 'default' }: NewsC
         </Link>
       )}
       <div className="news-card__body">
-        {article.category && <p className="news-card__category">{article.category}</p>}
         <h3 className="news-card__title">
           <Link to={`/article/${articleId}`}>{article.title}</Link>
         </h3>

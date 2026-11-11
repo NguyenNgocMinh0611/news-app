@@ -1,8 +1,8 @@
-import { Link, useSearchParams } from 'react-router-dom';
-import { getRssFeed } from '@/features/news/data/rssFeeds';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { getRssFeed, getRssFeedBySlug } from '@/features/news/data/rssFeeds';
 import { NAV_MENU, HOT_TOPICS, SITE_INFO } from '../../constants/navigation';
-import { useSelector, useDispatch } from 'react-redux';
-import { setKeyword, clearKeyword } from '@/store/slice/SearchSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setKeyword } from '@/store/slice/SearchSlice';
 import type { RootState } from '@/store/Store';
 import { FontSizeControl } from '@/components/common/FontSizeControl';
 import '../../styles/Header.scss';
@@ -20,18 +20,26 @@ export function Header() {
   const keyword = useSelector((state: RootState) => state.search.keyword);
   const currentDate = formatDate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const category = getRssFeed(searchParams.get('category') ?? '').category;
-  const categoryLink = (label: string) => {
+  const location = useLocation();
+  const currentSlug = location.pathname.startsWith('/category/')
+    ? location.pathname.split('/').filter(Boolean).at(-1) ?? ''
+    : '';
+  const category = currentSlug
+    ? getRssFeedBySlug(currentSlug)?.category ?? ''
+    : getRssFeed(searchParams.get('category') ?? '').category;
+  const categoryLink = (label: string, href: string) => {
     const next = new URLSearchParams(searchParams);
-    if (label === 'Trang chủ') next.delete('category');
-    else next.set('category', label);
     next.delete('page');
-    return { pathname: '/', search: next.toString() ? `?${next}` : '' };
+    if (label === 'Trang chủ') {
+      next.delete('category');
+      return { pathname: '/', search: next.toString() ? `?${next}` : '' };
+    }
+    const slug = href.split('/').filter(Boolean).at(-1) ?? '';
+    return { pathname: `/category/${slug}`, search: next.toString() ? `?${next}` : '' };
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setKeyword(e.target.value));
-    // tạo lại page mỗi lần nhập
     if (e.target.value.trim()) {
       const next = new URLSearchParams(searchParams);
       if (next.has('page')) {
@@ -95,7 +103,7 @@ export function Header() {
               return (
               <li key={item.href} className="menu-item">
                 <Link
-                  to={categoryLink(item.label)}
+                  to={categoryLink(item.label, item.href)}
                   className={`menu-link ${isActive ? 'menu-link--active' : ''}`}
                   aria-current={isCurrent ? 'page' : undefined}
                 >
@@ -106,7 +114,7 @@ export function Header() {
                     {item.children.map((child) => (
                       <li key={child.href}>
                         <Link
-                          to={categoryLink(child.label)}
+                          to={categoryLink(child.label, child.href)}
                           aria-current={child.label === category ? 'page' : undefined}
                         >
                           {child.label}
