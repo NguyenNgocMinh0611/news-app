@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
-import { getRssFeed } from '@/features/news/data/rssFeeds';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { getRssFeed, getRssFeedBySlug } from '@/features/news/data/rssFeeds';
 import { NAV_MENU, HOT_TOPICS, SITE_INFO } from '../../constants/navigation';
