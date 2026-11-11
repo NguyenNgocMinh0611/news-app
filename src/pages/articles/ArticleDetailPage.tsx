@@ -17,6 +17,7 @@ import type { FeaturedArticleData } from '@/types/featured-article';
 import FeaturedArticles from '@/features/articles/components/feature/FeaturedArticles';
 import type { FeaturedNewsData } from '@/types/featured-news';
 import FeaturedNewsSection from '@/features/articles/components/feature/FeaturedNewsSection';
+import DontMissArticles from '@/features/articles/components/DontMissArticles';
 
 const relatedArticles: RelatedArticle[] = [
   {
@@ -191,6 +192,9 @@ export default function ArticleDetailPage() {
             <CategoryArticles articles={categoryArticles} />
             <FeaturedArticles featuredArticle={featuredArticle} articles={articles} />
             <FeaturedNewsSection articles={featuredNews} />
+            <DontMissArticles
+              articles={rssArticles.filter((rss) => rss.id !== rssArticle.id)}
+            />
           </article>
           <aside className="article-sidebar" aria-label="Tin tức liên quan"></aside>
         </div>

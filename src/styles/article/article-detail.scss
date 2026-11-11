@@ -280,7 +280,7 @@
     min-width: 0;
     color: inherit;
     text-decoration: none;
-     &:hover {
+    &:hover {
       .recommended-articles__title {
         color: $color-red;
         text-decoration: underline;
@@ -340,12 +340,6 @@
     &__heading {
       font-size: 1.2857rem;
     }
-    &__logo {
-      font-size: 1.4286rem;
-    }
-    &__logo-icon {
-      font-size: 1.4286rem;
-    }
     &__grid {
       grid-template-columns: 1fr;
       gap: 18px;
@@ -358,6 +352,129 @@
     }
     &__title {
       font-size: 1.1429rem;
+    }
+  }
+}
+.dont-miss {
+  width: 100%;
+  margin-top: $spacing-2xl;
+  padding-top: $spacing-lg;
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    width: 100%;
+    margin-bottom: $spacing-base;
+  }
+  &__heading {
+    flex-shrink: 0;
+    margin: 0;
+    color: $color-red;
+    font-size: 1.5714rem;
+    font-weight: $font-weight-bold;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+  &__line {
+    flex: 1;
+    height: 1px;
+    margin-top: 8px;
+    background-color: $color-red;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  &__item {
+    display: grid;
+    grid-template-columns: minmax(0, 40%) minmax(0, 1fr);
+    align-items: start;
+    gap: 24px;
+  }
+  &__image-link {
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background-color: #f1f1f1;
+  }
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: scale(1.04);
+    }
+  }
+  &__content {
+    min-width: 0;
+  }
+  &__title {
+    margin: 0 0 5px;
+    color: $color-dark;
+    font-size: 1.2857rem;
+    font-weight: $font-weight-semibold;
+    line-height: 1.45;
+    a {
+      color: inherit;
+      text-decoration: none;
+      &:hover {
+        color: $color-red;
+      }
+    }
+  }
+  &__time {
+    display: block;
+    margin-bottom: 8px;
+    color: #888;
+    font-size: $font-size-sm;
+    line-height: 1.4;
+  }
+  &__description {
+    margin: 0;
+    color: $color-text-secondary;
+    font-size: 1.1429rem;
+    line-height: 1.55;
+  }
+}
+@media (max-width: 768px) {
+  .dont-miss {
+    &__item {
+      grid-template-columns: minmax(0, 38%) minmax(0, 1fr);
+      gap: 16px;
+    }
+    &__heading {
+      font-size: 1.5rem;
+    }
+    &__title {
+      font-size: 1.0714rem;
+    }
+    &__description {
+      font-size: 1rem;
+    }
+  }
+}
+@media (max-width: 480px) {
+  .dont-miss {
+    margin-top: $spacing-xl;
+    padding-top: $spacing-base;
+    &__heading {
+      font-size: 1.2857rem;
+    }
+    &__list {
+      gap: 18px;
+    }
+    &__item {
+      grid-template-columns: minmax(0, 36%) minmax(0, 1fr);
+      gap: 12px;
+    }
+    &__title {
+      font-size: 1rem;
+    }
+    &__description {
+      font-size: $font-size-sm;
     }
   }
 }
