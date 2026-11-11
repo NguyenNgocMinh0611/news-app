@@ -15,6 +15,8 @@ export function useRssArticles(file: string, category: string) {
   const [state, setState] = useState<FeedState>({ request: null, articles: [], loading: true, error: null });
 
   useEffect(() => {
+    if (!file) return undefined;
+
     const controller = new AbortController();
     let active = true;
     const timeout = window.setTimeout(() => controller.abort(), 20000);

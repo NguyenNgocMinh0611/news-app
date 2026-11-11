@@ -53,3 +53,17 @@ export const RSS_FEEDS = [
 export function getRssFeed(category: string) {
   return RSS_FEEDS.find((feed) => feed.category === category) ?? RSS_FEEDS[0];
 }
+
+function toSlug(value: string) {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/đ/g, 'd')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+export function getRssFeedBySlug(slug: string) {
+  return RSS_FEEDS.find((feed) => toSlug(feed.category) === slug);
+}
