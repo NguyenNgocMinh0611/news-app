@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { getRssFeed, getRssFeedBySlug } from '@/features/news/data/rssFeeds';
 import { NAV_MENU, HOT_TOPICS, SITE_INFO } from '../../constants/navigation';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,7 +26,11 @@ export function Header() {
   const [loggedInEmail, setLoggedInEmail] = useState<string | null>(null);
   const currentDate = formatDate();
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const location = useLocation();
+  const searchValue = location.pathname === '/search'
+    ? searchParams.get('q') ?? ''
+    : keyword;
   const currentSlug = location.pathname.startsWith('/category/')
     ? location.pathname.split('/').filter(Boolean).at(-1) ?? ''
     : '';
@@ -45,8 +49,17 @@ export function Header() {
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setKeyword(e.target.value));
-    if (e.target.value.trim()) {
+    const value = e.target.value;
+    dispatch(setKeyword(value));
+    if (location.pathname === '/search') {
+      const next = new URLSearchParams(searchParams);
+      if (value.trim()) next.set('q', value);
+      else next.delete('q');
+      next.delete('page');
+      setSearchParams(next);
+      return;
+    }
+    if (value.trim()) {
       const next = new URLSearchParams(searchParams);
       if (next.has('page')) {
         next.delete('page');
@@ -57,6 +70,10 @@ export function Header() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
+    const query = searchValue.trim();
+    if (!query) return;
+
+    navigate(`/search?q=${encodeURIComponent(query)}`);
   };
 
   return (
@@ -127,7 +144,7 @@ export function Header() {
             className="search-head__input"
             placeholder="Tìm kiếm..."
             aria-label="Tìm kiếm"
-            value={keyword}
+            value={searchValue}
             onChange={handleSearchChange}
           />
           <button type="submit" className="search-head__btn">

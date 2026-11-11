@@ -3,6 +3,7 @@ import { Home, HomePage } from "@/pages/Home.tsx";
 import ArticleDetailPage from "@/pages/articles/ArticleDetailPage.tsx";
 import ErrorPage from "@/pages/ErrorPage.tsx";
 import { CategoryPage } from "@/pages/CategoryPage.tsx";
+import { SearchResultsPage } from "@/pages/SearchResultsPage.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: "category/:slug",
         element: <CategoryPage />,
+      },
+      {
+        path: "search",
+        element: <SearchResultsPage />,
       },
     ],
   },
