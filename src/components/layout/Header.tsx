@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { getRssFeed, getRssFeedBySlug } from '@/features/news/data/rssFeeds';
 import { NAV_MENU, HOT_TOPICS, SITE_INFO } from '../../constants/navigation';
@@ -5,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setKeyword } from '@/store/slice/SearchSlice';
 import type { RootState } from '@/store/Store';
 import { FontSizeControl } from '@/components/common/FontSizeControl';
+import RegisterModal from '@/features/auth/components/RegisterModal';
+import LoginModal from '@/features/auth/components/LoginModal';
 import '../../styles/Header.scss';
 
 const DAYS = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'];
@@ -18,6 +21,9 @@ function formatDate() {
 export function Header() {
   const dispatch = useDispatch();
   const keyword = useSelector((state: RootState) => state.search.keyword);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [loggedInEmail, setLoggedInEmail] = useState<string | null>(null);
   const currentDate = formatDate();
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
@@ -67,8 +73,46 @@ export function Header() {
           <span className="top-info__item top-info__font-size">
             <FontSizeControl />
           </span>
+          <span className="top-info__item top-info__auth">
+            {loggedInEmail ? (
+              <>
+                <span className="top-info__user">{loggedInEmail}</span>
+                <button
+                  type="button"
+                  className="top-info__logout-btn"
+                  onClick={() => setLoggedInEmail(null)}
+                >
+                  Đăng xuất
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  className="top-info__login-btn"
+                  onClick={() => setIsLoginOpen(true)}
+                >
+                  Đăng nhập
+                </button>
+                <button
+                  type="button"
+                  className="top-info__register-btn"
+                  onClick={() => setIsRegisterOpen(true)}
+                >
+                  Đăng ký
+                </button>
+              </>
+            )}
+          </span>
         </div>
       </div>
+
+      <RegisterModal isOpen={isRegisterOpen} onClose={() => setIsRegisterOpen(false)} />
+      <LoginModal
+        isOpen={isLoginOpen}
+        onClose={() => setIsLoginOpen(false)}
+        onLoginSuccess={setLoggedInEmail}
+      />
 
       <div className="container header-primary">
         <h1 className="header-primary__title">

@@ -5,6 +5,7 @@ import ArticleCategoryNav from '@/features/articles/components/ArticleCategoryNa
 import ArticleHeader from '@/features/articles/components/ArticleHeader';
 import ArticleImage from '@/features/articles/components/ArticleImage';
 import ArticleContent from '@/features/articles/components/ArticleContent';
+import TextToSpeech from '@/features/articles/components/TextToSpeech';
 import RecommendedArticles from '@/features/articles/components/RecommendedArticles';
 import type { RelatedArticle } from '@/features/articles/components/RelatedArticles';
 import RelatedArticles from '@/features/articles/components/RelatedArticles';
@@ -144,6 +145,7 @@ export default function ArticleDetailPage() {
                 caption={article.imageCaption}
                 className="article-main-image" />
             )}
+            <TextToSpeech title={article.title} content={article.content} />
             <ArticleContent content={article.content} />
             <RecommendedArticles />
             <RelatedArticles articles={relatedArticles} tags={relatedTags} />

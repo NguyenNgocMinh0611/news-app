@@ -1,0 +1,134 @@
+@use "sass:color";
+@use "../../styles/variables" as *;
+
+.register-modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: $spacing-2xl;
+  background: $color-white;
+  border-radius: $radius-md;
+  box-shadow: $shadow-lg;
+
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-lg;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  &__close {
+    position: absolute;
+    top: $spacing-base;
+    right: $spacing-base;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: $color-text-muted;
+    font-size: $font-size-lg;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-red;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-blue;
+      outline-offset: 2px;
+      border-radius: $radius-sm;
+    }
+  }
+
+  &__title {
+    margin-bottom: $spacing-xl;
+    color: $color-text-body;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    text-align: center;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+
+    label {
+      color: $color-text-body;
+      font-size: $font-size-base;
+      font-weight: $font-weight-medium;
+    }
+
+    input {
+      min-height: 40px;
+      padding: $spacing-sm $spacing-md;
+      border: 1px solid $color-border;
+      border-radius: $radius-sm;
+      font-size: $font-size-base;
+      color: $color-text-body;
+
+      &:focus {
+        border-color: $color-blue;
+        outline: none;
+      }
+    }
+  }
+
+  &__error {
+    color: $color-red;
+    font-size: $font-size-sm;
+  }
+
+  &__submit {
+    min-height: 44px;
+    margin-top: $spacing-sm;
+    padding: $spacing-sm $spacing-xl;
+    border: none;
+    border-radius: $radius-sm;
+    background: $color-red;
+    color: $color-white;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: color.adjust($color-red, $lightness: -8%);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-blue;
+      outline-offset: 2px;
+    }
+  }
+
+  &__success {
+    text-align: center;
+
+    h2 {
+      margin-bottom: $spacing-md;
+      color: $color-red;
+      font-size: $font-size-lg;
+      font-weight: $font-weight-bold;
+    }
+
+    p {
+      margin-bottom: $spacing-xl;
+      color: $color-text-body;
+      font-size: $font-size-base;
+    }
+  }
+}
