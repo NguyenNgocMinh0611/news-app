@@ -1,0 +1,39 @@
+@use 'variables' as *;
+
+.search-results {
+  @include container;
+  padding-top: $spacing-2xl;
+  padding-bottom: 40px;
+
+  &__header {
+    margin-bottom: $spacing-2xl;
+
+    h1 {
+      margin: 0 0 $spacing-md;
+      color: $color-red;
+    }
+
+    p {
+      margin: 0;
+      color: $color-text-secondary;
+    }
+  }
+
+  &__error {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $spacing-lg;
+
+    button {
+      min-height: 40px;
+      padding: $spacing-md $spacing-base;
+      border: 1px solid $color-red;
+      border-radius: $radius-sm;
+      background: $color-white;
+      color: $color-red;
+      cursor: pointer;
+    }
+  }
+}
+
