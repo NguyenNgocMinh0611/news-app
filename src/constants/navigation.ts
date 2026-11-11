@@ -121,15 +121,6 @@ export const NAV_MENU: NavItem[] = [
   },
 ];
 
-export const HOT_TOPICS: string[] = [
-  '#Đưa nghị quyết Đại hội XIV vào cuộc sống',
-  '#Nghị quyết 71-NQ/TW về đột phá phát triển giáo dục và đào tạo',
-  '#Hiện thực hóa Nghị quyết 57 - NQ/TW',
-  '#Kỷ niệm 81 năm Cách mạng Tháng Tám và Quốc khánh 2/9',
-  '#Phòng chống tác hại thuốc lá',
-  '#Xây dựng Luật Nhà giáo',
-];
-
 export const REGIONS: NavSubItem[] = [
   { label: 'TP Hà Nội', href: '/chuyen-dong/tp-ha-noi' },
   { label: 'TP Hồ Chí Minh', href: '/chuyen-dong/tp-ho-chi-minh' },
