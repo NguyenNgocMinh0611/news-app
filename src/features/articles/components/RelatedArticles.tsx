@@ -1,7 +1,7 @@
 import "../../../styles/article/article-detail.scss";
 
 export interface RelatedArticle{
-    id: number;
+    id: number | string;
     title: string;
     link: string;
     isFeatured?: boolean;

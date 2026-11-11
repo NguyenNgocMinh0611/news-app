@@ -1,4 +1,6 @@
 import type { Article } from '@/features/news/types';
+import { Link } from 'react-router-dom';
+import { toArticleId } from '@/features/news/components/NewsCard';
 
 interface DontMissArticlesProps {
   articles: Article[];
@@ -47,17 +49,17 @@ export default function DontMissArticles({ articles }: DontMissArticlesProps) {
 
           return (
             <article className="dont-miss__item" key={article.id}>
-              <a className="dont-miss__image-link" href={article.link}>
+              <Link className="dont-miss__image-link" to={`/article/${toArticleId(article.link)}`}>
                 <img
                   className="dont-miss__image"
                   src={article.image}
                   alt={article.title}
                   loading="lazy"
                 />
-              </a>
+              </Link>
               <div className="dont-miss__content">
                 <h3 className="dont-miss__title">
-                  <a href={article.link}>{article.title}</a>
+                  <Link to={`/article/${toArticleId(article.link)}`}>{article.title}</Link>
                 </h3>
                 {publishedAt && (
                   <time className="dont-miss__time" dateTime={article.pubDate}>

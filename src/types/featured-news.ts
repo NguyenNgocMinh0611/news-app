@@ -1,5 +1,5 @@
 export interface FeaturedNewsData {
-  id: number;
+  id: number | string;
   title: string;
   image: string;
   category: string;
