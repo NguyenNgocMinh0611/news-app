@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchRss } from '@/services/rss';
+import { fetchArticleContent, fetchRss } from '@/services/rss';
 import type { Article } from '@/features/news/types';
 import { fromArticleId } from '@/features/news/components/NewsCard';
 
@@ -42,7 +42,21 @@ export function useArticleDetail(): ArticleDetailState & { retry: () => void } {
             const articles = await fetchRss(feed.file, feed.category, controller.signal);
             const found = articles.find((a) => a.link === link);
             if (found && active) {
-              setState({ article: found, loading: false, error: null });
+              try {
+                const content = await fetchArticleContent(found.link, controller.signal);
+                if (active) setState({ article: { ...found, content }, loading: false, error: null });
+              } catch {
+                if (active && !controller.signal.aborted) {
+                  setState({
+                    article: {
+                      ...found,
+                      contentError: 'Không tải được toàn bộ nội dung bài viết. Đang hiển thị phần tóm tắt từ RSS.',
+                    },
+                    loading: false,
+                    error: null,
+                  });
+                }
+              }
               return;
             }
           } catch {

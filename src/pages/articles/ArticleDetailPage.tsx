@@ -23,9 +23,9 @@ import DontMissArticles from '@/features/articles/components/DontMissArticles';
 
 // chuyển từ rss sang article chi tiết
 function toDetailArticle(rss: RssArticle): DetailArticle {
-  const content: ArticleContentBlock[] = [
-    { type: 'paragraph', text: rss.description ?? '' },
-  ];
+  const content: ArticleContentBlock[] = rss.content?.length
+    ? rss.content
+    : [{ type: 'paragraph', text: rss.description ?? '' }];
 
   return {
     id: 0,
@@ -172,6 +172,9 @@ export default function ArticleDetailPage() {
             )}
             <TextToSpeech title={article.title} content={article.content} />
             <ArticleContent content={article.content} />
+            {rssArticle.contentError && (
+              <p role="alert">{rssArticle.contentError}</p>
+            )}
             {rssArticlesError && (
               <div role="alert">
                 <p>{rssArticlesError}</p>
