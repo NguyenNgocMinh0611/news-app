@@ -97,8 +97,14 @@ export default function ArticleDetailPage() {
       title: rss.title,
       link: `/article/${toArticleId(rss.link)}`,
     }));
-  const recommendedArticles = relatedRssArticles
-    .filter((rss): rss is RssArticle & { image: string } => Boolean(rss.image))
+  const recommendationFeedArticles = categoryFeedFile ? categoryFeedArticles : rssArticles;
+  const recommendedArticles = recommendationFeedArticles
+    .filter((rss): rss is RssArticle & { image: string } =>
+      rss.id !== rssArticle.id
+      && rss.link !== rssArticle.link
+      && Boolean(rss.title.trim())
+      && Boolean(rss.image?.trim()),
+    )
     .slice(0, 3)
     .map((rss) => ({
       id: rss.id,
