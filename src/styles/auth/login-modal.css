@@ -33,7 +33,7 @@
   cursor: pointer;
 }
 .login-modal__close:hover {
-  color: #c31e40;
+  color: #136ca8;
 }
 .login-modal__close:focus-visible {
   outline: 2px solid #136ca8;
@@ -84,7 +84,7 @@
   padding: 6px 20px;
   border: none;
   border-radius: 4px;
-  background: #c31e40;
+  background: #136ca8;
   color: #ffffff;
   font-size: 1rem;
   font-weight: 600;
@@ -92,10 +92,10 @@
   transition: background 0.15s ease;
 }
 .login-modal__submit:hover {
-  background: rgb(62.6039215686%, 9.631372549%, 20.5469281046%);
+  background: rgb(5.825311943%, 33.1122994652%, 51.5080213904%);
 }
 .login-modal__submit:focus-visible {
-  outline: 2px solid #136ca8;
+  outline: 2px solid #c31e40;
   outline-offset: 2px;
 }
 .login-modal__success {
@@ -103,7 +103,7 @@
 }
 .login-modal__success h2 {
   margin-bottom: 8px;
-  color: #c31e40;
+  color: #136ca8;
   font-size: 1.5714rem;
   font-weight: 700;
 }

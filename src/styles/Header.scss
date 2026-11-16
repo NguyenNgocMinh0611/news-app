@@ -116,7 +116,6 @@ input {
   &__login-btn,
   &__logout-btn {
     padding: 4px 12px;
-    border: 1px solid $color-red;
     border-radius: $radius-sm;
     font-size: $font-size-xs;
     font-weight: $font-weight-medium;
@@ -124,7 +123,21 @@ input {
     transition: background 0.15s ease, border-color 0.15s ease;
   }
 
+  /* Đăng ký — màu xanh */
   &__register-btn {
+    border: 1px solid $color-blue;
+    background: $color-blue;
+    color: $color-white;
+
+    &:hover {
+      background: color.adjust($color-blue, $lightness: -8%);
+      border-color: color.adjust($color-blue, $lightness: -8%);
+    }
+  }
+
+  /* Đăng nhập — màu đỏ */
+  &__login-btn {
+    border: 1px solid $color-red;
     background: $color-red;
     color: $color-white;
 
@@ -134,15 +147,16 @@ input {
     }
   }
 
-  &__login-btn,
+  /* Đăng xuất — viền đỏ */
   &__logout-btn {
+    border: 1px solid $color-border;
     background: $color-white;
-    color: $color-red;
+    color: $color-text-secondary;
 
     &:hover {
-      background: color.adjust($color-red, $lightness: -8%);
-      border-color: color.adjust($color-red, $lightness: -8%);
-      color: $color-white;
+      background: $color-hover-bg;
+      border-color: $color-red;
+      color: $color-red;
     }
   }
 

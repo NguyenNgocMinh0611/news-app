@@ -37,7 +37,7 @@
     cursor: pointer;
 
     &:hover {
-      color: $color-red;
+      color: $color-blue;
     }
 
     &:focus-visible {
@@ -98,7 +98,7 @@
     padding: $spacing-sm $spacing-xl;
     border: none;
     border-radius: $radius-sm;
-    background: $color-red;
+    background: $color-blue;
     color: $color-white;
     font-size: $font-size-base;
     font-weight: $font-weight-semibold;
@@ -106,11 +106,11 @@
     transition: background 0.15s ease;
 
     &:hover {
-      background: color.adjust($color-red, $lightness: -8%);
+      background: color.adjust($color-blue, $lightness: -8%);
     }
 
     &:focus-visible {
-      outline: 2px solid $color-blue;
+      outline: 2px solid $color-red;
       outline-offset: 2px;
     }
   }
@@ -120,7 +120,7 @@
 
     h2 {
       margin-bottom: $spacing-md;
-      color: $color-red;
+      color: $color-blue;
       font-size: $font-size-lg;
       font-weight: $font-weight-bold;
     }

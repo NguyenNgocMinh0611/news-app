@@ -1,0 +1,143 @@
+@charset "UTF-8";
+/* Dark mode toàn cục */
+html.dark-mode {
+  --dm-bg: #1a1a1a;
+  --dm-bg-secondary: #2a2a2a;
+  --dm-text: #e0e0e0;
+  --dm-text-muted: #999;
+  --dm-border: #444;
+  --dm-hover: #333;
+}
+html.dark-mode body {
+  background: var(--dm-bg);
+  color: var(--dm-text);
+}
+html.dark-mode .header {
+  background: var(--dm-bg);
+}
+html.dark-mode .top-info {
+  background: var(--dm-bg-secondary);
+  border-bottom: 1px solid var(--dm-border);
+  color: var(--dm-text-muted);
+}
+html.dark-mode .top-info a {
+  color: var(--dm-text-muted);
+}
+html.dark-mode .top-info a:hover {
+  color: #e74c3c;
+}
+html.dark-mode .search-head__input {
+  background: var(--dm-bg-secondary);
+  border-color: var(--dm-border);
+  color: var(--dm-text);
+}
+html.dark-mode .search-head__input::placeholder {
+  color: var(--dm-text-muted);
+}
+html.dark-mode .search-head__input:focus {
+  border-color: #136ca8;
+}
+html.dark-mode .search-head__btn {
+  background: #c0392b;
+  color: #fff;
+}
+html.dark-mode .header-secondary {
+  background: var(--dm-bg-secondary);
+  border-bottom: 1px solid var(--dm-border);
+}
+html.dark-mode .menu-link {
+  color: var(--dm-text);
+}
+html.dark-mode .menu-link:hover, html.dark-mode .menu-link--active {
+  color: #e74c3c;
+}
+html.dark-mode .sub-menu {
+  background: var(--dm-bg-secondary);
+  border-color: var(--dm-border);
+}
+html.dark-mode .sub-menu a {
+  color: var(--dm-text);
+}
+html.dark-mode .hot-events {
+  background: var(--dm-bg-secondary);
+  border-bottom: 1px solid var(--dm-border);
+}
+html.dark-mode .hot-events__title {
+  color: #e74c3c;
+}
+html.dark-mode .hot-events a {
+  color: var(--dm-text-muted);
+}
+html.dark-mode .news-feed {
+  background: var(--dm-bg);
+  color: var(--dm-text);
+}
+html.dark-mode .news-card {
+  background: var(--dm-bg-secondary);
+  border-color: var(--dm-border);
+}
+html.dark-mode .news-card__title a {
+  color: var(--dm-text);
+}
+html.dark-mode .news-card__category {
+  color: #e74c3c;
+}
+html.dark-mode .news-card__description {
+  color: var(--dm-text-muted);
+}
+html.dark-mode .article-page {
+  background: var(--dm-bg);
+  color: var(--dm-text);
+}
+html.dark-mode .article-main {
+  background: var(--dm-bg-secondary);
+}
+html.dark-mode .article-content__paragraph,
+html.dark-mode .article-content__heading {
+  color: var(--dm-text);
+}
+html.dark-mode .footer,
+html.dark-mode .footer__bottom {
+  background: #111;
+  color: var(--dm-text-muted);
+}
+html.dark-mode .top-info__register-btn {
+  background: #136ca8;
+  border-color: #136ca8;
+  color: #fff;
+}
+html.dark-mode .top-info__register-btn:hover {
+  background: #0d5a8f;
+  border-color: #0d5a8f;
+}
+html.dark-mode .top-info__login-btn {
+  background: #c0392b;
+  border-color: #c0392b;
+  color: #fff;
+}
+html.dark-mode .top-info__login-btn:hover {
+  background: #a93226;
+  border-color: #a93226;
+}
+html.dark-mode .font-size-control__btn {
+  background: var(--dm-bg-secondary);
+  color: var(--dm-text);
+  border-color: var(--dm-border);
+}
+html.dark-mode .register-modal,
+html.dark-mode .login-modal {
+  background: var(--dm-bg-secondary);
+  color: var(--dm-text);
+}
+html.dark-mode .register-modal__field input,
+html.dark-mode .login-modal__field input {
+  background: var(--dm-bg);
+  border-color: var(--dm-border);
+  color: var(--dm-text);
+}
+html.dark-mode .register-modal__title,
+html.dark-mode .login-modal__title {
+  color: var(--dm-text);
+}
+
+/*# sourceMappingURL=dark-mode.css.map */

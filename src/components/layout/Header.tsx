@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setKeyword } from '@/store/slice/SearchSlice';
 import type { RootState } from '@/store/Store';
 import { FontSizeControl } from '@/components/common/FontSizeControl';
+import { DarkModeToggle } from '@/components/common/DarkModeToggle';
 import RegisterModal from '@/features/auth/components/RegisterModal';
 import LoginModal from '@/features/auth/components/LoginModal';
 import '../../styles/Header.scss';
@@ -74,6 +75,7 @@ export function Header() {
             <FontSizeControl />
           </span>
           <span className="top-info__item top-info__auth">
+            <DarkModeToggle />
             {loggedInEmail ? (
               <>
                 <span className="top-info__user">{loggedInEmail}</span>

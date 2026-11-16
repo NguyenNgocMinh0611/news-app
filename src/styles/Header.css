@@ -1,3 +1,4 @@
+@charset "UTF-8";
 *,
 *::before,
 *::after {
@@ -103,29 +104,48 @@ input {
 }
 .top-info__register-btn, .top-info__login-btn, .top-info__logout-btn {
   padding: 4px 12px;
-  border: 1px solid #c31e40;
   border-radius: 4px;
   font-size: 0.8571rem;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
+.top-info {
+  /* Đăng ký — màu xanh */
+}
 .top-info__register-btn {
-  background: #c31e40;
+  border: 1px solid #136ca8;
+  background: #136ca8;
   color: #ffffff;
 }
 .top-info__register-btn:hover {
-  background: rgb(62.6039215686%, 9.631372549%, 20.5469281046%);
-  border-color: rgb(62.6039215686%, 9.631372549%, 20.5469281046%);
+  background: rgb(5.825311943%, 33.1122994652%, 51.5080213904%);
+  border-color: rgb(5.825311943%, 33.1122994652%, 51.5080213904%);
 }
-.top-info__login-btn, .top-info__logout-btn {
-  background: #ffffff;
-  color: #c31e40;
+.top-info {
+  /* Đăng nhập — màu đỏ */
 }
-.top-info__login-btn:hover, .top-info__logout-btn:hover {
-  background: rgb(62.6039215686%, 9.631372549%, 20.5469281046%);
-  border-color: rgb(62.6039215686%, 9.631372549%, 20.5469281046%);
+.top-info__login-btn {
+  border: 1px solid #c31e40;
+  background: #c31e40;
   color: #ffffff;
+}
+.top-info__login-btn:hover {
+  background: rgb(62.6039215686%, 9.631372549%, 20.5469281046%);
+  border-color: rgb(62.6039215686%, 9.631372549%, 20.5469281046%);
+}
+.top-info {
+  /* Đăng xuất — viền đỏ */
+}
+.top-info__logout-btn {
+  border: 1px solid #d9d9d9;
+  background: #ffffff;
+  color: #666;
+}
+.top-info__logout-btn:hover {
+  background: #f4f4f4;
+  border-color: #c31e40;
+  color: #c31e40;
 }
 .top-info__register-btn:focus-visible, .top-info__login-btn:focus-visible, .top-info__logout-btn:focus-visible {
   outline: 2px solid #136ca8;
