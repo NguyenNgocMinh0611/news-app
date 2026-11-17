@@ -97,6 +97,57 @@ html.dark-mode {
     color: var(--dm-text);
   }
 
+  .comment-form {
+    &__heading {
+      color: var(--dm-text);
+      border-bottom-color: #c0392b;
+    }
+
+    &__body {
+      background: var(--dm-bg-secondary);
+      border-color: var(--dm-border);
+    }
+
+    &__identity-label,
+    &__hint,
+    &__item-time {
+      color: var(--dm-text-muted);
+    }
+
+    &__option,
+    &__item-author,
+    &__item-content {
+      color: var(--dm-text);
+    }
+
+    &__textarea {
+      background: var(--dm-bg);
+      border-color: var(--dm-border);
+      color: var(--dm-text);
+
+      &::placeholder {
+        color: var(--dm-text-muted);
+      }
+
+      &:focus {
+        border-color: #136ca8;
+      }
+    }
+
+    &__item {
+      border-bottom-color: var(--dm-border);
+    }
+
+    &__empty {
+      border-color: var(--dm-border);
+      color: var(--dm-text-muted);
+    }
+
+    &__login-link {
+      color: #5ba3d0;
+    }
+  }
+
   .footer,
   .footer__bottom {
     background: #111;

@@ -149,7 +149,7 @@ export default function ArticleDetailPage() {
             <ArticleContent content={article.content} />
             <RecommendedArticles />
             <RelatedArticles articles={relatedArticles} tags={relatedTags} />
-            <CommentForm />
+            <CommentForm key={rssArticle.id} articleKey={rssArticle.id} />
             <CategoryArticles articles={categoryArticles} />
           </article>
           <aside className="article-sidebar" aria-label="Tin tức liên quan"></aside>

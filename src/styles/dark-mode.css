@@ -96,6 +96,41 @@ html.dark-mode .article-content__paragraph,
 html.dark-mode .article-content__heading {
   color: var(--dm-text);
 }
+html.dark-mode .comment-form__heading {
+  color: var(--dm-text);
+  border-bottom-color: #c0392b;
+}
+html.dark-mode .comment-form__body {
+  background: var(--dm-bg-secondary);
+  border-color: var(--dm-border);
+}
+html.dark-mode .comment-form__identity-label, html.dark-mode .comment-form__hint, html.dark-mode .comment-form__item-time {
+  color: var(--dm-text-muted);
+}
+html.dark-mode .comment-form__option, html.dark-mode .comment-form__item-author, html.dark-mode .comment-form__item-content {
+  color: var(--dm-text);
+}
+html.dark-mode .comment-form__textarea {
+  background: var(--dm-bg);
+  border-color: var(--dm-border);
+  color: var(--dm-text);
+}
+html.dark-mode .comment-form__textarea::placeholder {
+  color: var(--dm-text-muted);
+}
+html.dark-mode .comment-form__textarea:focus {
+  border-color: #136ca8;
+}
+html.dark-mode .comment-form__item {
+  border-bottom-color: var(--dm-border);
+}
+html.dark-mode .comment-form__empty {
+  border-color: var(--dm-border);
+  color: var(--dm-text-muted);
+}
+html.dark-mode .comment-form__login-link {
+  color: #5ba3d0;
+}
 html.dark-mode .footer,
 html.dark-mode .footer__bottom {
   background: #111;

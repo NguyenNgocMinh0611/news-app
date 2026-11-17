@@ -4,6 +4,7 @@ import { getRssFeed, getRssFeedBySlug } from '@/features/news/data/rssFeeds';
 import { NAV_MENU, HOT_TOPICS, SITE_INFO } from '../../constants/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { setKeyword } from '@/store/slice/SearchSlice';
+import { login, logout } from '@/store/slice/AuthSlice';
 import type { RootState } from '@/store/Store';
 import { FontSizeControl } from '@/components/common/FontSizeControl';
 import { DarkModeToggle } from '@/components/common/DarkModeToggle';
@@ -24,7 +25,7 @@ export function Header() {
   const keyword = useSelector((state: RootState) => state.search.keyword);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const [loggedInEmail, setLoggedInEmail] = useState<string | null>(null);
+  const loggedInEmail = useSelector((state: RootState) => state.auth.loggedInEmail);
   const currentDate = formatDate();
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
@@ -82,7 +83,7 @@ export function Header() {
                 <button
                   type="button"
                   className="top-info__logout-btn"
-                  onClick={() => setLoggedInEmail(null)}
+                  onClick={() => dispatch(logout())}
                 >
                   Đăng xuất
                 </button>
@@ -113,7 +114,7 @@ export function Header() {
       <LoginModal
         isOpen={isLoginOpen}
         onClose={() => setIsLoginOpen(false)}
-        onLoginSuccess={setLoggedInEmail}
+        onLoginSuccess={(email) => dispatch(login(email))}
       />
 
       <div className="container header-primary">

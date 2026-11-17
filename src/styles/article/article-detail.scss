@@ -483,10 +483,75 @@
   margin-top: $spacing-2xl;
 
   &__heading {
-    margin: 0 0 30px;
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin: 0 0 $spacing-xl;
+    padding-bottom: $spacing-base;
+    border-bottom: 2px solid $color-red;
     color: #555;
     font-size: 1.6429rem;
     font-weight: $font-weight-semibold;
+  }
+
+  &__count {
+    color: $color-text-secondary;
+    font-size: 1.1429rem;
+    font-weight: $font-weight-normal;
+  }
+
+  &__body {
+    padding: $spacing-lg;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    background: #fafafa;
+  }
+
+  &__identity {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $spacing-md $spacing-lg;
+    margin-bottom: $spacing-base;
+  }
+
+  &__identity-label {
+    color: $color-text-secondary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+  }
+
+  &__option {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: $color-text-body;
+    font-size: $font-size-base;
+    cursor: pointer;
+    user-select: none;
+
+    input {
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      accent-color: $color-red;
+      cursor: pointer;
+    }
+  }
+
+  &__login-link {
+    padding: 0;
+    border: none;
+    background: none;
+    color: $color-blue;
+    font-family: inherit;
+    font-size: $font-size-sm;
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-red;
+    }
   }
 
   &__textarea {
@@ -495,7 +560,7 @@
     min-height: 106px;
     padding: 15px 18px;
     border: 1px solid #ccc;
-    border-radius: 0;
+    border-radius: $radius-sm;
     outline: none;
     resize: vertical;
     color: $color-dark;
@@ -512,13 +577,27 @@
     }
   }
 
+  &__error {
+    margin: $spacing-md 0 0;
+    color: $color-red;
+    font-size: $font-size-sm;
+  }
+
   &__actions {
     display: flex;
-    justify-content: flex-end;
-    margin-top: 28px;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-base;
+    margin-top: $spacing-lg;
+  }
+
+  &__hint {
+    color: $color-text-muted;
+    font-size: $font-size-xs;
   }
 
   &__submit {
+    flex-shrink: 0;
     padding: 8px 13px;
     border: none;
     border-radius: 4px;
@@ -538,6 +617,88 @@
       opacity: 0.55;
       cursor: not-allowed;
     }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+    margin: $spacing-xl 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    gap: $spacing-base;
+    padding-bottom: $spacing-lg;
+    border-bottom: 1px solid $color-border;
+
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+  }
+
+  &__avatar {
+    @include flex-center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: $color-red;
+    color: $color-white;
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+
+    &--anonymous {
+      background-color: #b0b0b0;
+    }
+  }
+
+  &__item-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__item-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: $spacing-md;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__item-author {
+    color: $color-text-body;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    overflow-wrap: anywhere;
+  }
+
+  &__item-time {
+    color: $color-text-muted;
+    font-size: $font-size-xs;
+  }
+
+  &__item-content {
+    margin: 0;
+    color: $color-text-body;
+    font-size: $font-size-base;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  &__empty {
+    margin: $spacing-xl 0 0;
+    padding: $spacing-lg;
+    border: 1px dashed $color-border;
+    border-radius: $radius-sm;
+    color: $color-text-muted;
+    font-size: $font-size-base;
+    text-align: center;
   }
 }
 
@@ -722,8 +883,18 @@
     &__heading {
       font-size: 1.4286rem;
     }
+    &__body {
+      padding: $spacing-base;
+    }
     &__textarea {
       font-size: 1rem;
+    }
+    &__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    &__submit {
+      width: 100%;
     }
   }
   .category-articles {
