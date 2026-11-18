@@ -20,6 +20,7 @@ import FeaturedArticles from '@/features/articles/components/feature/FeaturedArt
 import type { FeaturedNewsData } from '@/types/featured-news';
 import FeaturedNewsSection from '@/features/articles/components/feature/FeaturedNewsSection';
 import DontMissArticles from '@/features/articles/components/DontMissArticles';
+import PopularTopics from '@/features/articles/components/PopularTopics';
 
 // chuyển từ rss sang article chi tiết
 function toDetailArticle(rss: RssArticle): DetailArticle {
@@ -209,7 +210,9 @@ export default function ArticleDetailPage() {
               articles={rssArticles.filter((rss) => rss.id !== rssArticle.id)}
             />
           </article>
-          <aside className="article-sidebar" aria-label="Tin tức liên quan"></aside>
+          <aside className="article-sidebar" aria-label="Chủ đề nổi bật">
+            <PopularTopics />
+          </aside>
         </div>
       </div>
     </main>
