@@ -12,6 +12,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/rss/, '/rss'),
       },
+      '/api/article': {
+        target: 'https://giaoducthoidai.vn',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/article/, ''),
+      },
     },
   },
   resolve: {
