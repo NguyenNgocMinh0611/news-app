@@ -81,7 +81,7 @@ input {
 
   .container {
     display: flex;
-    gap: $spacing-2xl;
+    gap: $spacing-md;
     align-items: center;
     padding-top: $spacing-sm;
     padding-bottom: $spacing-sm;
@@ -168,6 +168,22 @@ input {
   }
 }
 
+// Khi cỡ chữ lớn, đẩy nhóm auth xuống hàng riêng và căn phải
+@media (max-width: 900px) {
+  .top-info {
+    .container {
+      justify-content: space-between;
+    }
+
+    &__auth {
+      margin-left: 0;
+      width: 100%;
+      justify-content: flex-end;
+      padding-top: $spacing-xs;
+    }
+  }
+}
+
 .header-primary {
   display: flex;
   align-items: center;
@@ -241,15 +257,27 @@ input {
   background: $color-red;
   position: relative;
   z-index: $z-dropdown;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .container {
+    min-width: max-content;
+  }
 }
 
 .menu {
   display: flex;
   flex-wrap: nowrap;
+  min-width: max-content;
 }
 
 .menu-item {
   position: relative;
+  flex-shrink: 0;
 }
 
 .menu-link {
