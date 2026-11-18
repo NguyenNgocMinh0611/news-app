@@ -23,9 +23,9 @@ import DontMissArticles from '@/features/articles/components/DontMissArticles';
 
 // chuyển từ rss sang article chi tiết
 function toDetailArticle(rss: RssArticle): DetailArticle {
-  const content: ArticleContentBlock[] = [
-    { type: 'paragraph', text: rss.description ?? '' },
-  ];
+  const content: ArticleContentBlock[] = rss.content?.length
+    ? rss.content
+    : [{ type: 'paragraph', text: rss.description ?? '' }];
 
   return {
     id: 0,
@@ -97,8 +97,14 @@ export default function ArticleDetailPage() {
       title: rss.title,
       link: `/article/${toArticleId(rss.link)}`,
     }));
-  const recommendedArticles = relatedRssArticles
-    .filter((rss): rss is RssArticle & { image: string } => Boolean(rss.image))
+  const recommendationFeedArticles = categoryFeedFile ? categoryFeedArticles : rssArticles;
+  const recommendedArticles = recommendationFeedArticles
+    .filter((rss): rss is RssArticle & { image: string } =>
+      rss.id !== rssArticle.id
+      && rss.link !== rssArticle.link
+      && Boolean(rss.title.trim())
+      && Boolean(rss.image?.trim()),
+    )
     .slice(0, 3)
     .map((rss) => ({
       id: rss.id,
@@ -172,6 +178,9 @@ export default function ArticleDetailPage() {
             )}
             <TextToSpeech title={article.title} content={article.content} />
             <ArticleContent content={article.content} />
+            {rssArticle.contentError && (
+              <p role="alert">{rssArticle.contentError}</p>
+            )}
             {rssArticlesError && (
               <div role="alert">
                 <p>{rssArticlesError}</p>
