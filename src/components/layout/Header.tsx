@@ -26,6 +26,7 @@ export function Header() {
   const dispatch = useDispatch();
   const keyword = useSelector((state: RootState) => state.search.keyword);
   const bookmarkCount = useSelector((state: RootState) => state.bookmark.bookmarks.length);
+  const historyCount = useSelector((state: RootState) => state.readingHistory.history.length);
   const { articles: latestArticles } = useRssArticles('thoi-su-1.rss', 'Thời sự');
   const topicsRef = useRef<HTMLUListElement>(null);
   const [hasTopicOverflow, setHasTopicOverflow] = useState(false);
@@ -168,6 +169,25 @@ export function Header() {
           </a>
         </h1>
         <div className="header-primary__actions">
+          <Link to="/history" className="history-link" title="Lịch sử đọc">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="history-link__icon"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <span className="history-link__text">Lịch sử</span>
+            {historyCount > 0 && (
+              <span className="history-link__badge">{historyCount}</span>
+            )}
+          </Link>
           <Link to="/bookmarks" className="bookmark-link" title="Bài viết đã lưu">
             <svg
               xmlns="http://www.w3.org/2000/svg"
