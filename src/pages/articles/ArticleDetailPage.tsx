@@ -202,9 +202,6 @@ export default function ArticleDetailPage() {
             {categoryFeedLoading && categoryFeedFile && (
               <p role="status">Đang tải tin cùng chuyên mục…</p>
             )}
-            <RecommendedArticles />
-            <RelatedArticles articles={relatedArticles} tags={relatedTags} />
-            <CommentForm key={rssArticle.id} articleKey={rssArticle.id} />
             <CategoryArticles articles={categoryArticles} />
             <FeaturedArticles featuredArticle={featuredArticle} articles={articles} />
             <FeaturedNewsSection articles={featuredNews} />
