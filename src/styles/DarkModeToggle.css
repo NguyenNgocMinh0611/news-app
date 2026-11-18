@@ -1,0 +1,33 @@
+.dark-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #d9d9d9;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.dark-mode-toggle:hover {
+  background: #f4f4f4;
+  border-color: #c0392b;
+}
+.dark-mode-toggle:focus-visible {
+  outline: 2px solid #136ca8;
+  outline-offset: 2px;
+}
+
+html.dark-mode .dark-mode-toggle {
+  background: #333;
+  border-color: #555;
+  color: #fff;
+}
+html.dark-mode .dark-mode-toggle:hover {
+  background: #444;
+  border-color: #888;
+}
+
+/*# sourceMappingURL=DarkModeToggle.css.map */

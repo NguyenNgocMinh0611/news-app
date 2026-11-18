@@ -1,0 +1,197 @@
+/* Dark mode toàn cục */
+html.dark-mode {
+  --dm-bg: #1a1a1a;
+  --dm-bg-secondary: #2a2a2a;
+  --dm-text: #e0e0e0;
+  --dm-text-muted: #999;
+  --dm-border: #444;
+  --dm-hover: #333;
+
+  body {
+    background: var(--dm-bg);
+    color: var(--dm-text);
+  }
+
+  .header {
+    background: var(--dm-bg);
+  }
+
+  .top-info {
+    background: var(--dm-bg-secondary);
+    border-bottom: 1px solid var(--dm-border);
+    color: var(--dm-text-muted);
+
+    a {
+      color: var(--dm-text-muted);
+      &:hover { color: #e74c3c; }
+    }
+  }
+
+  .search-head__input {
+    background: var(--dm-bg-secondary);
+    border-color: var(--dm-border);
+    color: var(--dm-text);
+
+    &::placeholder { color: var(--dm-text-muted); }
+    &:focus { border-color: #136ca8; }
+  }
+
+  .search-head__btn {
+    background: #c0392b;
+    color: #fff;
+  }
+
+  .header-secondary {
+    background: var(--dm-bg-secondary);
+    border-bottom: 1px solid var(--dm-border);
+  }
+
+  .menu-link {
+    color: var(--dm-text);
+
+    &:hover, &--active {
+      color: #e74c3c;
+    }
+  }
+
+  .sub-menu {
+    background: var(--dm-bg-secondary);
+    border-color: var(--dm-border);
+
+    a { color: var(--dm-text); }
+  }
+
+  .hot-events {
+    background: var(--dm-bg-secondary);
+    border-bottom: 1px solid var(--dm-border);
+
+    &__title { color: #e74c3c; }
+    a { color: var(--dm-text-muted); }
+  }
+
+  .news-feed {
+    background: var(--dm-bg);
+    color: var(--dm-text);
+  }
+
+  .news-card {
+    background: var(--dm-bg-secondary);
+    border-color: var(--dm-border);
+
+    &__title a { color: var(--dm-text); }
+    &__category { color: #e74c3c; }
+    &__description { color: var(--dm-text-muted); }
+  }
+
+  .article-page {
+    background: var(--dm-bg);
+    color: var(--dm-text);
+  }
+
+  .article-main {
+    background: var(--dm-bg-secondary);
+  }
+
+  .article-content__paragraph,
+  .article-content__heading {
+    color: var(--dm-text);
+  }
+
+  .comment-form {
+    &__heading {
+      color: var(--dm-text);
+      border-bottom-color: #c0392b;
+    }
+
+    &__body {
+      background: var(--dm-bg-secondary);
+      border-color: var(--dm-border);
+    }
+
+    &__identity-label,
+    &__hint,
+    &__item-time {
+      color: var(--dm-text-muted);
+    }
+
+    &__option,
+    &__item-author,
+    &__item-content {
+      color: var(--dm-text);
+    }
+
+    &__textarea {
+      background: var(--dm-bg);
+      border-color: var(--dm-border);
+      color: var(--dm-text);
+
+      &::placeholder {
+        color: var(--dm-text-muted);
+      }
+
+      &:focus {
+        border-color: #136ca8;
+      }
+    }
+
+    &__item {
+      border-bottom-color: var(--dm-border);
+    }
+
+    &__empty {
+      border-color: var(--dm-border);
+      color: var(--dm-text-muted);
+    }
+
+    &__login-link {
+      color: #5ba3d0;
+    }
+  }
+
+  .footer,
+  .footer__bottom {
+    background: #111;
+    color: var(--dm-text-muted);
+  }
+
+  .top-info__register-btn {
+    background: #136ca8;
+    border-color: #136ca8;
+    color: #fff;
+
+    &:hover {
+      background: #0d5a8f;
+      border-color: #0d5a8f;
+    }
+  }
+
+  .top-info__login-btn {
+    background: #c0392b;
+    border-color: #c0392b;
+    color: #fff;
+
+    &:hover {
+      background: #a93226;
+      border-color: #a93226;
+    }
+  }
+
+  .font-size-control__btn {
+    background: var(--dm-bg-secondary);
+    color: var(--dm-text);
+    border-color: var(--dm-border);
+  }
+
+  .register-modal,
+  .login-modal {
+    background: var(--dm-bg-secondary);
+    color: var(--dm-text);
+
+    &__field input {
+      background: var(--dm-bg);
+      border-color: var(--dm-border);
+      color: var(--dm-text);
+    }
+    &__title { color: var(--dm-text); }
+  }
+}

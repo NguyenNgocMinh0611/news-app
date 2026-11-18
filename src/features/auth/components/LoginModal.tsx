@@ -1,20 +1,17 @@
 import { useState } from 'react';
 import '@/styles/auth/login-modal.scss';
 
-const HARDCODED_EMAIL = 'ngminh6112005@gmail.com';
-const HARDCODED_PASSWORD = '123456';
-
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onLoginSuccess: (email: string) => void;
+  onLoginSuccess?: (email: string) => void;
 }
 
 export default function LoginModal({ isOpen, onClose, onLoginSuccess }: LoginModalProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
-  const [errors, setErrors] = useState<{ email?: string; password?: string; general?: string }>({});
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
 
   if (!isOpen) return null;
 
@@ -38,15 +35,10 @@ export default function LoginModal({ isOpen, onClose, onLoginSuccess }: LoginMod
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-
-    if (email.trim().toLowerCase() !== HARDCODED_EMAIL || password !== HARDCODED_PASSWORD) {
-      setErrors({ general: 'Email hoặc mật khẩu không đúng.' });
-      return;
-    }
-
-    // Giả lập đăng nhập thành công vì chỉ làm FE
-    onLoginSuccess(email.trim().toLowerCase());
+    if (onLoginSuccess) onLoginSuccess(email);
     setIsSuccess(true);
+    setEmail('');
+    setPassword('');
   };
 
   const handleClose = () => {
@@ -78,7 +70,7 @@ export default function LoginModal({ isOpen, onClose, onLoginSuccess }: LoginMod
         {isSuccess ? (
           <div className="login-modal__success">
             <h2>Đăng nhập thành công!</h2>
-            <p>Chào mừng bạn quay trở lại.</p>
+            <p>Chào mừng bạn quay lại.</p>
             <button
               type="button"
               className="login-modal__submit"
@@ -122,10 +114,6 @@ export default function LoginModal({ isOpen, onClose, onLoginSuccess }: LoginMod
                   <span className="login-modal__error">{errors.password}</span>
                 )}
               </div>
-
-              {errors.general && (
-                <span className="login-modal__error">{errors.general}</span>
-              )}
 
               <button type="submit" className="login-modal__submit">
                 Đăng nhập
