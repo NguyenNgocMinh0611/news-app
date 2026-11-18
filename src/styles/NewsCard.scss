@@ -35,6 +35,13 @@
 
   &__body { min-width: 0; }
 
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: $spacing-md;
+  }
+
   &__category {
     margin: $spacing-base 0 0;
     color: $color-red;
@@ -49,6 +56,8 @@
     font-size: 1.4286rem;
     line-height: 1.4;
     @include line-clamp(3);
+    flex: 1;
+    min-width: 0;
   }
   &__title a { color: $color-ink; text-decoration: none; }
   &__title a:hover { color: $color-red; }

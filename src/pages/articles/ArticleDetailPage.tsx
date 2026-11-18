@@ -192,7 +192,7 @@ export default function ArticleDetailPage() {
             )}
             <RecommendedArticles articles={recommendedArticles} />
             <RelatedArticles articles={relatedArticles} />
-            <CommentForm />
+            <CommentForm articleKey={rssArticle.id} />
             {categoryFeedError && (
               <div role="alert">
                 <p>{categoryFeedError}</p>

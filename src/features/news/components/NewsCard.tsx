@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { Article } from '../types.ts';
+import { BookmarkButton } from '@/features/bookmarks/components/BookmarkButton';
 import '@/styles/NewsCard.scss';
 
 export type NewsCardVariant = 'default' | 'featured';
@@ -71,9 +72,21 @@ export function NewsCard({ article, active = false, variant = 'default' }: NewsC
         </Link>
       )}
       <div className="news-card__body">
-        <h3 className="news-card__title">
-          <Link to={`/article/${articleId}`}>{article.title}</Link>
-        </h3>
+        <div className="news-card__header">
+          <h3 className="news-card__title">
+            <Link to={`/article/${articleId}`}>{article.title}</Link>
+          </h3>
+          <BookmarkButton
+            articleId={articleId}
+            title={article.title}
+            link={article.link}
+            description={article.description}
+            image={article.image}
+            category={article.category}
+            pubDate={article.pubDate}
+            variant="icon"
+          />
+        </div>
         {publishedAt && (
           <time className="news-card__date" dateTime={publishedAt.toISOString()}>
             {dateFormatter.format(publishedAt)}
