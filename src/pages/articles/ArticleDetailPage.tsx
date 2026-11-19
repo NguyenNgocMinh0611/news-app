@@ -20,8 +20,9 @@ import FeaturedArticles from '@/features/articles/components/feature/FeaturedArt
 import type { FeaturedNewsData } from '@/types/featured-news';
 import FeaturedNewsSection from '@/features/articles/components/feature/FeaturedNewsSection';
 import DontMissArticles from '@/features/articles/components/DontMissArticles';
+import { useEffect } from 'react';
+import { useReadingHistory } from '@/features/reading-history/hooks/useReadingHistory';
 
-// chuyển từ rss sang article chi tiết
 function toDetailArticle(rss: RssArticle): DetailArticle {
   const content: ArticleContentBlock[] = rss.content?.length
     ? rss.content
@@ -48,12 +49,29 @@ function toDetailArticle(rss: RssArticle): DetailArticle {
 
 export default function ArticleDetailPage() {
   const { article: rssArticle, loading, error, retry } = useArticleDetail();
+  const { addArticle } = useReadingHistory();
   const {
     articles: rssArticles,
     loading: rssArticlesLoading,
     error: rssArticlesError,
     retry: retryRssArticles,
   } = useRssArticles('home.rss', '');
+
+  useEffect(() => {
+    if (rssArticle && !loading && !error) {
+      const articleId = toArticleId(rssArticle.link);
+      addArticle({
+        id: articleId,
+        title: rssArticle.title,
+        link: rssArticle.link,
+        description: rssArticle.description,
+        image: rssArticle.image,
+        category: rssArticle.category,
+        pubDate: rssArticle.pubDate,
+      });
+    }
+  }, [rssArticle, loading, error, addArticle]);
+
   const categoryFeed = rssArticle
     ? getRssFeed(rssArticle.category ?? '')
     : null;
