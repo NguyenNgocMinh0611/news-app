@@ -283,6 +283,49 @@
     text-align: center;
   }
 }
+.article-summary {
+  margin: $spacing-lg 0;
+  padding: 20px 24px;
+  border: 1px solid #f0c7c7;
+  border-left: 4px solid $color-red;
+  border-radius: 6px;
+  background: #fff8f8;
+  &__header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  &__title {
+    margin: 0;
+    color: $color-dark;
+    font-size: 1.4286rem;
+    font-weight: $font-weight-bold;
+  }
+  &__note {
+    margin: 8px 0 14px;
+    color: $color-text-secondary;
+    font-size: 0.9286rem;
+  }
+  &__list {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  &__item {
+    display: grid;
+    grid-template-columns: minmax(130px, 175px) minmax(0, 1fr);
+    gap: 12px;
+    color: $color-text-body;
+    font-size: 1rem;
+    line-height: 1.55;
+    strong {
+      color: $color-dark;
+    }
+  }
+}
 .article-main-image {
   margin-top: $spacing-lg;
   margin-bottom: $spacing-lg;

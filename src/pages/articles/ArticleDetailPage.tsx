@@ -8,6 +8,7 @@ import ArticleCategoryNav from '@/features/articles/components/ArticleCategoryNa
 import ArticleHeader from '@/features/articles/components/ArticleHeader';
 import ArticleImage from '@/features/articles/components/ArticleImage';
 import ArticleContent from '@/features/articles/components/ArticleContent';
+import ArticleSummary from '@/features/articles/components/ArticleSummary';
 import TextToSpeech from '@/features/articles/components/TextToSpeech';
 import RecommendedArticles from '@/features/articles/components/RecommendedArticles';
 import type { RelatedArticle } from '@/features/articles/components/RelatedArticles';
@@ -172,6 +173,7 @@ export default function ArticleDetailPage() {
                 {article.description}
               </p>
             )}
+            <ArticleSummary article={article} />
             {article.image && (
               <ArticleImage src={article.image} alt={article.imageAlt || article.title}
                 caption={article.imageCaption}
