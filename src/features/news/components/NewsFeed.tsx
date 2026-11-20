@@ -6,6 +6,7 @@ import { getRssFeed } from '../data/rssFeeds.ts';
 import { useRssArticles } from '@/hooks/useRssArticles';
 import { ArticleList } from './ArticleList.tsx';
 import { NewsPagination } from './NewsPagination.tsx';
+import { RecommendedForYou } from './RecommendedForYou.tsx';
 import '@/styles/NewsFeed.scss';
 
 const ARTICLES_PER_PAGE = 10;
@@ -51,6 +52,7 @@ export function NewsFeed() {
 
   return (
     <section className="news-feed" aria-labelledby="news-feed-heading">
+      {!requestedCategory && <RecommendedForYou />}
       <h2 id="news-feed-heading">{category || 'Tin mới nhất'}</h2>
       {loading && <p role="status">Đang tải tin RSS…</p>}
       {error && (
