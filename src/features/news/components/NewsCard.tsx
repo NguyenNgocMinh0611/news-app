@@ -39,7 +39,12 @@ export function toArticleId(link: string): string {
 
 // Giải mã articleId ra lại link gốc
 export function fromArticleId(articleId: string): string {
-  return decodeURIComponent(articleId);
+  if (/^https?:\/\//i.test(articleId)) return articleId;
+  try {
+    return decodeURIComponent(articleId);
+  } catch {
+    return articleId;
+  }
 }
 
 export function NewsCard({ article, active = false, variant = 'default' }: NewsCardProps) {

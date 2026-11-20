@@ -22,7 +22,7 @@ import type { FeaturedNewsData } from '@/types/featured-news';
 import FeaturedNewsSection from '@/features/articles/components/feature/FeaturedNewsSection';
 import DontMissArticles from '@/features/articles/components/DontMissArticles';
 import PopularTopics from '@/features/articles/components/PopularTopics';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useReadingHistory } from '@/features/reading-history/hooks/useReadingHistory';
 
 function toDetailArticle(rss: RssArticle): DetailArticle {
@@ -52,6 +52,7 @@ function toDetailArticle(rss: RssArticle): DetailArticle {
 export default function ArticleDetailPage() {
   const { article: rssArticle, loading, error, retry } = useArticleDetail();
   const { addArticle } = useReadingHistory();
+  const savedArticleLink = useRef<string | null>(null);
   const {
     articles: rssArticles,
     loading: rssArticlesLoading,
@@ -60,7 +61,8 @@ export default function ArticleDetailPage() {
   } = useRssArticles('home.rss', '');
 
   useEffect(() => {
-    if (rssArticle && !loading && !error) {
+    if (rssArticle && !loading && !error && savedArticleLink.current !== rssArticle.link) {
+      savedArticleLink.current = rssArticle.link;
       const articleId = toArticleId(rssArticle.link);
       addArticle({
         id: articleId,
