@@ -8,6 +8,7 @@ import ArticleCategoryNav from '@/features/articles/components/ArticleCategoryNa
 import ArticleHeader from '@/features/articles/components/ArticleHeader';
 import ArticleImage from '@/features/articles/components/ArticleImage';
 import ArticleContent from '@/features/articles/components/ArticleContent';
+import ArticleSummary from '@/features/articles/components/ArticleSummary';
 import TextToSpeech from '@/features/articles/components/TextToSpeech';
 import RecommendedArticles from '@/features/articles/components/RecommendedArticles';
 import type { RelatedArticle } from '@/features/articles/components/RelatedArticles';
@@ -20,7 +21,8 @@ import FeaturedArticles from '@/features/articles/components/feature/FeaturedArt
 import type { FeaturedNewsData } from '@/types/featured-news';
 import FeaturedNewsSection from '@/features/articles/components/feature/FeaturedNewsSection';
 import DontMissArticles from '@/features/articles/components/DontMissArticles';
-import { useEffect } from 'react';
+import PopularTopics from '@/features/articles/components/PopularTopics';
+import { useEffect, useRef } from 'react';
 import { useReadingHistory } from '@/features/reading-history/hooks/useReadingHistory';
 
 function toDetailArticle(rss: RssArticle): DetailArticle {
@@ -50,6 +52,7 @@ function toDetailArticle(rss: RssArticle): DetailArticle {
 export default function ArticleDetailPage() {
   const { article: rssArticle, loading, error, retry } = useArticleDetail();
   const { addArticle } = useReadingHistory();
+  const savedArticleLink = useRef<string | null>(null);
   const {
     articles: rssArticles,
     loading: rssArticlesLoading,
@@ -58,7 +61,8 @@ export default function ArticleDetailPage() {
   } = useRssArticles('home.rss', '');
 
   useEffect(() => {
-    if (rssArticle && !loading && !error) {
+    if (rssArticle && !loading && !error && savedArticleLink.current !== rssArticle.link) {
+      savedArticleLink.current = rssArticle.link;
       const articleId = toArticleId(rssArticle.link);
       addArticle({
         id: articleId,
@@ -189,6 +193,7 @@ export default function ArticleDetailPage() {
                 {article.description}
               </p>
             )}
+            <ArticleSummary article={article} />
             {article.image && (
               <ArticleImage src={article.image} alt={article.imageAlt || article.title}
                 caption={article.imageCaption}
@@ -227,7 +232,9 @@ export default function ArticleDetailPage() {
               articles={rssArticles.filter((rss) => rss.id !== rssArticle.id)}
             />
           </article>
-          <aside className="article-sidebar" aria-label="Tin tức liên quan"></aside>
+          <aside className="article-sidebar" aria-label="Chủ đề nổi bật">
+            <PopularTopics />
+          </aside>
         </div>
       </div>
     </main>

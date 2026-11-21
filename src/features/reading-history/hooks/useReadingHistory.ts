@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "@/store/Store";
 import { addToHistory, removeFromHistory, clearHistory } from "@/store/slice/ReadingHistorySlice";
@@ -17,17 +18,17 @@ export function useReadingHistory(): UseReadingHistoryReturn {
   const dispatch = useDispatch();
   const history = useSelector((state: RootState) => state.readingHistory.history);
 
-  const addArticle = (article: Omit<ReadingHistoryItem, "readAt" | "readCount">): void => {
+  const addArticle = useCallback((article: Omit<ReadingHistoryItem, "readAt" | "readCount">): void => {
     dispatch(addToHistory(article));
-  };
+  }, [dispatch]);
 
-  const removeArticle = (articleId: string): void => {
+  const removeArticle = useCallback((articleId: string): void => {
     dispatch(removeFromHistory(articleId));
-  };
+  }, [dispatch]);
 
-  const clearAll = (): void => {
+  const clearAll = useCallback((): void => {
     dispatch(clearHistory());
-  };
+  }, [dispatch]);
 
   const isInHistory = (articleId: string): boolean => {
     return history.some((item) => item.id === articleId);
