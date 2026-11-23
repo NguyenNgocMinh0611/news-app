@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ShareModal } from "./ShareModal";
+import { Toast } from "@/components/common/Toast";
 import { getFullArticleUrl } from "../utils/shareUrls";
 import "@/styles/ShareButton.scss";
 
@@ -8,7 +9,6 @@ interface ShareButtonProps {
   title: string;
   variant?: "icon" | "button";
   className?: string;
-  onCopySuccess?: () => void;
 }
 
 export function ShareButton({
@@ -16,9 +16,9 @@ export function ShareButton({
   title,
   variant = "icon",
   className = "",
-  onCopySuccess,
 }: ShareButtonProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -30,6 +30,11 @@ export function ShareButton({
     setIsModalOpen(false);
   };
 
+  const handleCopySuccess = () => {
+    setShowToast(true);
+  };
+
+  // Đảm bảo URL là full URL
   const fullUrl = getFullArticleUrl(url);
 
   const buttonClass = [
@@ -76,8 +81,17 @@ export function ShareButton({
         onClose={handleClose}
         url={fullUrl}
         title={title}
-        onCopySuccess={onCopySuccess}
+        onCopySuccess={handleCopySuccess}
       />
+
+      {showToast && (
+        <Toast
+          message="Đã sao chép link bài viết"
+          type="success"
+          duration={2000}
+          onClose={() => setShowToast(false)}
+        />
+      )}
     </>
   );
 }
