@@ -1,5 +1,6 @@
 import type { Article } from "@/types/article";
 import { BookmarkButton } from "@/features/bookmarks/components/BookmarkButton";
+import { ShareButton } from "@/features/social-share/components/ShareButton";
 import { toArticleId } from "@/features/news/components/NewsCard";
 
 interface ArticleHeaderProps {
@@ -13,16 +14,23 @@ export default function ArticleHeader({ article }: ArticleHeaderProps) {
     <header className="article-header">
       <div className="article-header__top">
         <h1 className="article-header__title">{article.title}</h1>
-        <BookmarkButton
-          articleId={articleId}
-          title={article.title}
-          link={articleLink}
-          description={article.description ?? undefined}
-          image={article.image ?? undefined}
-          category={article.category}
-          pubDate={article.publishedAt ?? undefined}
-          variant="button"
-        />
+        <div className="article-header__actions">
+          <ShareButton
+            url={articleLink}
+            title={article.title}
+            variant="button"
+          />
+          <BookmarkButton
+            articleId={articleId}
+            title={article.title}
+            link={articleLink}
+            description={article.description ?? undefined}
+            image={article.image ?? undefined}
+            category={article.category}
+            pubDate={article.publishedAt ?? undefined}
+            variant="button"
+          />
+        </div>
       </div>
       <div className="article-meta">
         {article.author && (

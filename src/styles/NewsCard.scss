@@ -42,6 +42,12 @@
     gap: $spacing-md;
   }
 
+  &__actions {
+    display: flex;
+    gap: $spacing-xs;
+    flex-shrink: 0;
+  }
+
   &__category {
     margin: $spacing-base 0 0;
     color: $color-red;
