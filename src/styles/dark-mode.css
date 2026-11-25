@@ -41,6 +41,24 @@ html.dark-mode .search-head__btn {
   background: #c0392b;
   color: #fff;
 }
+html.dark-mode .search-head__suggestions,
+html.dark-mode .search-head__suggestions-header {
+  background: var(--dm-bg-secondary);
+  border-color: var(--dm-border);
+}
+html.dark-mode .search-head__suggestion-item,
+html.dark-mode .search-head__suggestions-header {
+  border-color: var(--dm-border);
+}
+html.dark-mode .search-head__suggestion-row:hover, html.dark-mode .search-head__suggestion-row:focus-within {
+  background: var(--dm-hover);
+}
+html.dark-mode .search-head__suggestion-btn {
+  color: var(--dm-text);
+}
+html.dark-mode .search-head__suggestion-remove {
+  color: var(--dm-text-muted);
+}
 html.dark-mode .header-secondary {
   background: var(--dm-bg-secondary);
   border-bottom: 1px solid var(--dm-border);
@@ -91,6 +109,20 @@ html.dark-mode .article-page {
 }
 html.dark-mode .article-main {
   background: var(--dm-bg-secondary);
+}
+html.dark-mode .article-summary {
+  border-color: #704040;
+  background: #302323;
+}
+html.dark-mode .article-summary__title, html.dark-mode .article-summary__item, html.dark-mode .article-summary__item strong {
+  color: var(--dm-text);
+}
+html.dark-mode .article-summary__badge {
+  background: #4a2d2d;
+  color: #ff9a9a;
+}
+html.dark-mode .article-summary__note {
+  color: var(--dm-text-muted);
 }
 html.dark-mode .article-content__paragraph,
 html.dark-mode .article-content__heading {

@@ -41,6 +41,32 @@ html.dark-mode {
     color: #fff;
   }
 
+  .search-head__suggestions,
+  .search-head__suggestions-header {
+    background: var(--dm-bg-secondary);
+    border-color: var(--dm-border);
+  }
+
+  .search-head__suggestion-item,
+  .search-head__suggestions-header {
+    border-color: var(--dm-border);
+  }
+
+  .search-head__suggestion-row {
+    &:hover,
+    &:focus-within {
+      background: var(--dm-hover);
+    }
+  }
+
+  .search-head__suggestion-btn {
+    color: var(--dm-text);
+  }
+
+  .search-head__suggestion-remove {
+    color: var(--dm-text-muted);
+  }
+
   .header-secondary {
     background: var(--dm-bg-secondary);
     border-bottom: 1px solid var(--dm-border);

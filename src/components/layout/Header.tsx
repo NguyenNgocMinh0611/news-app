@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-do
 import { getRssFeed, getRssFeedBySlug } from '@/features/news/data/rssFeeds';
 import { NAV_MENU, SITE_INFO } from '../../constants/navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { setKeyword } from '@/store/slice/SearchSlice';
+import { setKeyword, addRecentKeyword, removeRecentKeyword, clearRecentKeywords } from '@/store/slice/SearchSlice';
 import { login, logout } from '@/store/slice/AuthSlice';
 import type { RootState } from '@/store/Store';
 import { FontSizeControl } from '@/components/common/FontSizeControl';
@@ -25,13 +25,16 @@ function formatDate() {
 export function Header() {
   const dispatch = useDispatch();
   const keyword = useSelector((state: RootState) => state.search.keyword);
+  const recentKeywords = useSelector((state: RootState) => state.search.recentKeywords);
   const bookmarkCount = useSelector((state: RootState) => state.bookmark.bookmarks.length);
   const historyCount = useSelector((state: RootState) => state.readingHistory.history.length);
   const { articles: latestArticles } = useRssArticles('thoi-su-1.rss', 'Thời sự');
   const topicsRef = useRef<HTMLUListElement>(null);
+  const searchRef = useRef<HTMLFormElement>(null);
   const [hasTopicOverflow, setHasTopicOverflow] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const loggedInEmail = useSelector((state: RootState) => state.auth.loggedInEmail);
   const currentDate = formatDate();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -59,6 +62,19 @@ export function Header() {
     window.addEventListener('resize', updateOverflow);
     return () => window.removeEventListener('resize', updateOverflow);
   }, [latestArticles.length]);
+
+  useEffect(() => {
+    if (!isSearchFocused) return undefined;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!searchRef.current?.contains(event.target as Node)) {
+        setIsSearchFocused(false);
+      }
+    };
+
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => document.removeEventListener('pointerdown', handlePointerDown);
+  }, [isSearchFocused]);
 
   const scrollTopics = (direction: 'left' | 'right') => {
     topicsRef.current?.scrollBy({
@@ -102,7 +118,21 @@ export function Header() {
     const query = searchValue.trim();
     if (!query) return;
 
+    dispatch(addRecentKeyword(query));
+    setIsSearchFocused(false);
     navigate(`/search?q=${encodeURIComponent(query)}`);
+  };
+
+  const handleRecentClick = (kw: string) => {
+    dispatch(setKeyword(kw));
+    setIsSearchFocused(false);
+    navigate(`/search?q=${encodeURIComponent(kw)}`);
+  };
+
+  const handleSearchBlur = (event: React.FocusEvent<HTMLFormElement>) => {
+    if (!searchRef.current?.contains(event.relatedTarget as Node | null)) {
+      setIsSearchFocused(false);
+    }
   };
 
   return (
@@ -205,18 +235,88 @@ export function Header() {
               <span className="bookmark-link__badge">{bookmarkCount}</span>
             )}
           </Link>
-          <form className="search-head" onSubmit={handleSearch}>
+          <form
+            ref={searchRef}
+            className="search-head"
+            role="search"
+            onSubmit={handleSearch}
+            onBlur={handleSearchBlur}
+          >
             <input
               type="search"
               className="search-head__input"
               placeholder="Tìm kiếm..."
               aria-label="Tìm kiếm"
+              aria-controls="search-suggestions"
+              aria-expanded={isSearchFocused && recentKeywords.length > 0}
               value={searchValue}
               onChange={handleSearchChange}
+              onFocus={() => setIsSearchFocused(true)}
             />
             <button type="submit" className="search-head__btn">
               Tìm
             </button>
+            {isSearchFocused && recentKeywords.length > 0 && (
+              <ul
+                id="search-suggestions"
+                className="search-head__suggestions"
+                aria-label="Tìm kiếm gần đây"
+              >
+                <li className="search-head__suggestions-header">
+                  <span>Tìm kiếm gần đây</span>
+                  <button
+                    type="button"
+                    className="search-head__suggestions-clear"
+                    onClick={() => dispatch(clearRecentKeywords())}
+                  >
+                    Xóa tất cả
+                  </button>
+                </li>
+                {recentKeywords.map((kw) => (
+                  <li key={kw} className="search-head__suggestion-item">
+                    <div className="search-head__suggestion-row">
+                      <button
+                        type="button"
+                        className="search-head__suggestion-btn"
+                        onClick={() => handleRecentClick(kw)}
+                      >
+                        <svg
+                          className="search-head__suggestion-icon"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <circle cx="12" cy="12" r="9" />
+                          <polyline points="12 7 12 12 15 14" />
+                        </svg>
+                        <span className="search-head__suggestion-text">{kw}</span>
+                      </button>
+                      <button
+                        type="button"
+                        className="search-head__suggestion-remove"
+                        aria-label={`Xóa từ khóa ${kw}`}
+                        onClick={() => dispatch(removeRecentKeyword(kw))}
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M6 6l12 12M18 6L6 18" />
+                        </svg>
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
           </form>
         </div>
       </div>
