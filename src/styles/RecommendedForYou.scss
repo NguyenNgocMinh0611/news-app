@@ -30,10 +30,8 @@
   button {
     min-height: 40px;
     padding: $spacing-sm $spacing-base;
-    border: 1px solid $color-red;
     border-radius: $radius-sm;
     background: $color-white;
-    color: $color-red;
     cursor: pointer;
 
     &:focus-visible {

@@ -49,7 +49,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
-  border-bottom: 1px solid var(--border-color, #e0e0e0);
 }
 
 .share-modal__title {
@@ -79,8 +78,8 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--primary-color, #1a73e8);
-    outline-offset: 2px;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
   }
 
   svg {
@@ -111,7 +110,7 @@
   align-items: center;
   gap: 0.75rem;
   padding: 1rem;
-  border: 1px solid var(--border-color, #e0e0e0);
+  border: none;
   border-radius: 0.5rem;
   background: var(--card-bg, #fff);
   color: var(--text-primary, #1a1a1a);
@@ -121,6 +120,7 @@
   transition: all 0.2s ease;
   text-align: left;
   width: 100%;
+  outline: none;
 
   &:hover {
     transform: translateY(-2px);
@@ -128,8 +128,8 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--primary-color, #1a73e8);
-    outline-offset: 2px;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
   }
 
   &:active {
@@ -145,7 +145,6 @@
 
 .share-option--facebook {
   &:hover {
-    border-color: #1877f2;
     background: rgba(24, 119, 242, 0.05);
     color: #1877f2;
   }
@@ -157,7 +156,6 @@
 
 .share-option--twitter {
   &:hover {
-    border-color: #1da1f2;
     background: rgba(29, 161, 242, 0.05);
     color: #1da1f2;
   }
@@ -169,7 +167,6 @@
 
 .share-option--linkedin {
   &:hover {
-    border-color: #0a66c2;
     background: rgba(10, 102, 194, 0.05);
     color: #0a66c2;
   }
@@ -181,7 +178,6 @@
 
 .share-option--copy {
   &:hover {
-    border-color: var(--primary-color, #1a73e8);
     background: rgba(26, 115, 232, 0.05);
     color: var(--primary-color, #1a73e8);
   }
@@ -201,9 +197,7 @@
     background: var(--card-bg-dark, #2d2d2d);
   }
 
-  .share-modal__header {
-    border-color: var(--border-color-dark, #555);
-  }
+
 
   .share-modal__title {
     color: var(--text-primary-dark, #e0e0e0);
@@ -223,7 +217,6 @@
   }
 
   .share-option {
-    border-color: var(--border-color-dark, #555);
     background: var(--card-bg-dark, #2d2d2d);
     color: var(--text-primary-dark, #e0e0e0);
 
