@@ -25,6 +25,8 @@ function formatDate() {
 export function Header() {
   const dispatch = useDispatch();
   const keyword = useSelector((state: RootState) => state.search.keyword);
+  const bookmarkCount = useSelector((state: RootState) => state.bookmark.bookmarks.length);
+  const historyCount = useSelector((state: RootState) => state.readingHistory.history.length);
   const { articles: latestArticles } = useRssArticles('thoi-su-1.rss', 'Thời sự');
   const topicsRef = useRef<HTMLUListElement>(null);
   const [hasTopicOverflow, setHasTopicOverflow] = useState(false);
@@ -166,19 +168,57 @@ export function Header() {
             <small className="logo__sub">Cơ quan của Bộ Giáo dục và Đào tạo</small>
           </a>
         </h1>
-        <form className="search-head" onSubmit={handleSearch}>
-          <input
-            type="search"
-            className="search-head__input"
-            placeholder="Tìm kiếm..."
-            aria-label="Tìm kiếm"
-            value={searchValue}
-            onChange={handleSearchChange}
-          />
-          <button type="submit" className="search-head__btn">
-            Tìm
-          </button>
-        </form>
+        <div className="header-primary__actions">
+          <Link to="/history" className="history-link" title="Lịch sử đọc">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="history-link__icon"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            {historyCount > 0 && (
+              <span className="history-link__badge">{historyCount}</span>
+            )}
+          </Link>
+          <Link to="/bookmarks" className="bookmark-link" title="Bài viết đã lưu">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="bookmark-link__icon"
+            >
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+            </svg>
+            <span className="bookmark-link__text">Đã lưu</span>
+            {bookmarkCount > 0 && (
+              <span className="bookmark-link__badge">{bookmarkCount}</span>
+            )}
+          </Link>
+          <form className="search-head" onSubmit={handleSearch}>
+            <input
+              type="search"
+              className="search-head__input"
+              placeholder="Tìm kiếm..."
+              aria-label="Tìm kiếm"
+              value={searchValue}
+              onChange={handleSearchChange}
+            />
+            <button type="submit" className="search-head__btn">
+              Tìm
+            </button>
+          </form>
+        </div>
       </div>
 
       <nav className="header-secondary" aria-label="Chuyên mục tin tức">

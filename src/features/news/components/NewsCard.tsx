@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { Article } from '../types.ts';
+import { BookmarkButton } from '@/features/bookmarks/components/BookmarkButton';
+import { ShareButton } from '@/features/social-share/components/ShareButton';
 import '@/styles/NewsCard.scss';
 
 export type NewsCardVariant = 'default' | 'featured';
@@ -31,14 +33,17 @@ function toShortDescription(text: string, maxLength: number) {
   return `${(lastSpace > 0 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
 }
 
-// Mã hóa link bài viết thành articleId an toàn cho URL
 export function toArticleId(link: string): string {
   return encodeURIComponent(link);
 }
 
-// Giải mã articleId ra lại link gốc
 export function fromArticleId(articleId: string): string {
-  return decodeURIComponent(articleId);
+  if (/^https?:\/\//i.test(articleId)) return articleId;
+  try {
+    return decodeURIComponent(articleId);
+  } catch {
+    return articleId;
+  }
 }
 
 export function NewsCard({ article, active = false, variant = 'default' }: NewsCardProps) {
@@ -71,9 +76,28 @@ export function NewsCard({ article, active = false, variant = 'default' }: NewsC
         </Link>
       )}
       <div className="news-card__body">
-        <h3 className="news-card__title">
-          <Link to={`/article/${articleId}`}>{article.title}</Link>
-        </h3>
+        <div className="news-card__header">
+          <h3 className="news-card__title">
+            <Link to={`/article/${articleId}`}>{article.title}</Link>
+          </h3>
+          <div className="news-card__actions">
+            <ShareButton
+              url={`/article/${articleId}`}
+              title={article.title}
+              variant="icon"
+            />
+            <BookmarkButton
+              articleId={articleId}
+              title={article.title}
+              link={article.link}
+              description={article.description}
+              image={article.image}
+              category={article.category}
+              pubDate={article.pubDate}
+              variant="icon"
+            />
+          </div>
+        </div>
         {publishedAt && (
           <time className="news-card__date" dateTime={publishedAt.toISOString()}>
             {dateFormatter.format(publishedAt)}

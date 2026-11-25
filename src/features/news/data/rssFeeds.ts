@@ -54,7 +54,7 @@ export function getRssFeed(category: string) {
   return RSS_FEEDS.find((feed) => feed.category === category) ?? RSS_FEEDS[0];
 }
 
-function toSlug(value: string) {
+export function toRssCategorySlug(value: string) {
   return value
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
@@ -65,5 +65,5 @@ function toSlug(value: string) {
 }
 
 export function getRssFeedBySlug(slug: string) {
-  return RSS_FEEDS.find((feed) => toSlug(feed.category) === slug);
+  return RSS_FEEDS.find((feed) => toRssCategorySlug(feed.category) === slug);
 }

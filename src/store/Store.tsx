@@ -4,6 +4,8 @@ import searchReducer from "@/store/slice/SearchSlice";
 import fontSizeReducer from "@/store/slice/FontSizeSlice";
 import darkModeReducer from "@/store/slice/DarkModeSlice";
 import authReducer from "@/store/slice/AuthSlice";
+import bookmarkReducer from "@/store/slice/BookmarkSlice";
+import readingHistoryReducer from "@/store/slice/ReadingHistorySlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +14,8 @@ export const store = configureStore({
     fontSize: fontSizeReducer,
     darkMode: darkModeReducer,
     auth: authReducer,
+    bookmark: bookmarkReducer,
+    readingHistory: readingHistoryReducer,
   },
 });
 

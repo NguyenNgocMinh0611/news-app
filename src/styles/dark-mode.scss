@@ -91,6 +91,22 @@ html.dark-mode {
   .article-main {
     background: var(--dm-bg-secondary);
   }
+  .article-summary {
+    border-color: #704040;
+    background: #302323;
+    &__title,
+    &__item,
+    &__item strong {
+      color: var(--dm-text);
+    }
+    &__badge {
+      background: #4a2d2d;
+      color: #ff9a9a;
+    }
+    &__note {
+      color: var(--dm-text-muted);
+    }
+  }
 
   .article-content__paragraph,
   .article-content__heading {

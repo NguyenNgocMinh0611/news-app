@@ -1,0 +1,42 @@
+@use 'variables' as *;
+.recommended-for-you {
+  margin-bottom: $spacing-2xl;
+  padding-bottom: $spacing-xl;
+  border-bottom: 2px solid $color-red;
+  &__heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    margin-bottom: $spacing-lg;
+    h2 {
+      margin: $spacing-xs 0 0;
+      color: $color-red;
+    }
+  }
+  &__eyebrow {
+    margin: 0;
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-sm;
+  }
+  &__error {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+  }
+  button {
+    min-height: 40px;
+    padding: $spacing-sm $spacing-base;
+    border-radius: $radius-sm;
+    background: $color-white;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid $color-blue;
+      outline-offset: 2px;
+    }
+  }
+}
