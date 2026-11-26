@@ -159,16 +159,6 @@ input {
     text-transform: uppercase;
   }
 
-  &__avatar-chevron {
-    width: 0.75rem;
-    height: 0.75rem;
-    transition: transform 0.15s ease;
-  }
-
-  &__avatar-btn[aria-expanded='true'] &__avatar-chevron {
-    transform: rotate(180deg);
-  }
-
   &__user-dropdown {
     position: absolute;
     top: calc(100% + 8px);

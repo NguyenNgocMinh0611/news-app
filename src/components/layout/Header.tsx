@@ -37,9 +37,7 @@ export function Header() {
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const [isUserMenuHovered, setIsUserMenuHovered] = useState(false);
-  const [isUserMenuPinned, setIsUserMenuPinned] = useState(false);
-  const isUserMenuOpen = isUserMenuHovered || isUserMenuPinned;
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const loggedInEmail = useSelector((state: RootState) => state.auth.loggedInEmail);
   const avatarInitial = loggedInEmail?.trim().charAt(0).toUpperCase() ?? '';
   const currentDate = formatDate();
@@ -85,25 +83,14 @@ export function Header() {
   useEffect(() => {
     if (!isUserMenuOpen) return undefined;
 
-    const handlePointerDown = (event: PointerEvent) => {
-      if (!userMenuRef.current?.contains(event.target as Node)) {
-        setIsUserMenuHovered(false);
-        setIsUserMenuPinned(false);
-      }
-    };
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key !== 'Escape') return;
-      setIsUserMenuHovered(false);
-      setIsUserMenuPinned(false);
+      setIsUserMenuOpen(false);
       userMenuButtonRef.current?.focus();
     };
 
-    document.addEventListener('pointerdown', handlePointerDown);
     document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('pointerdown', handlePointerDown);
-      document.removeEventListener('keydown', handleKeyDown);
-    };
+    return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isUserMenuOpen]);
 
   const scrollTopics = (direction: 'left' | 'right') => {
@@ -185,12 +172,12 @@ export function Header() {
               <div
                 ref={userMenuRef}
                 className="top-info__user-menu"
-                onMouseEnter={() => setIsUserMenuHovered(true)}
-                onMouseLeave={() => setIsUserMenuHovered(false)}
+                onMouseEnter={() => setIsUserMenuOpen(true)}
+                onMouseLeave={() => setIsUserMenuOpen(false)}
+                onFocus={() => setIsUserMenuOpen(true)}
                 onBlur={(event) => {
                   if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-                    setIsUserMenuHovered(false);
-                    setIsUserMenuPinned(false);
+                    setIsUserMenuOpen(false);
                   }
                 }}
               >
@@ -202,21 +189,8 @@ export function Header() {
                   aria-haspopup="menu"
                   aria-expanded={isUserMenuOpen}
                   aria-controls="user-menu"
-                  onClick={() => setIsUserMenuPinned((isOpen) => !isOpen)}
                 >
                   <span className="top-info__avatar" aria-hidden="true">{avatarInitial}</span>
-                  <svg
-                    className="top-info__avatar-chevron"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="m6 9 6 6 6-6" />
-                  </svg>
                 </button>
                 {isUserMenuOpen && (
                   <div id="user-menu" className="top-info__user-dropdown" role="menu">
@@ -224,10 +198,7 @@ export function Header() {
                       to="/profile"
                       className="top-info__user-menu-item"
                       role="menuitem"
-                      onClick={() => {
-                        setIsUserMenuHovered(false);
-                        setIsUserMenuPinned(false);
-                      }}
+                      onClick={() => setIsUserMenuOpen(false)}
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -249,8 +220,7 @@ export function Header() {
                       role="menuitem"
                       onClick={() => {
                         dispatch(logout());
-                        setIsUserMenuHovered(false);
-                        setIsUserMenuPinned(false);
+                        setIsUserMenuOpen(false);
                       }}
                     >
                       <svg

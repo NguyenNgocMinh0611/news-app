@@ -141,14 +141,6 @@ input {
   font-weight: 700;
   text-transform: uppercase;
 }
-.top-info__avatar-chevron {
-  width: 0.75rem;
-  height: 0.75rem;
-  transition: transform 0.15s ease;
-}
-.top-info__avatar-btn[aria-expanded=true] .top-info__avatar-chevron {
-  transform: rotate(180deg);
-}
 .top-info__user-dropdown {
   position: absolute;
   top: calc(100% + 8px);
