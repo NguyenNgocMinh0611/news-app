@@ -4,8 +4,27 @@ interface DarkModeState {
   enabled: boolean;
 }
 
+const STORAGE_KEY = "darkMode";
+
+function loadFromStorage(): boolean {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored === "true";
+  } catch {
+    return false;
+  }
+}
+
+function saveToStorage(enabled: boolean) {
+  try {
+    localStorage.setItem(STORAGE_KEY, String(enabled));
+  } catch {
+    // ignore
+  }
+}
+
 const initialState: DarkModeState = {
-  enabled: false,
+  enabled: loadFromStorage(),
 };
 
 const darkModeSlice = createSlice({
@@ -14,9 +33,11 @@ const darkModeSlice = createSlice({
   reducers: {
     toggleDarkMode: (state) => {
       state.enabled = !state.enabled;
+      saveToStorage(state.enabled);
     },
     setDarkMode: (state, action: PayloadAction<boolean>) => {
       state.enabled = action.payload;
+      saveToStorage(state.enabled);
     },
   },
 });

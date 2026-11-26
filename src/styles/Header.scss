@@ -81,7 +81,7 @@ input {
 
   .container {
     display: flex;
-    gap: $spacing-2xl;
+    gap: $spacing-md;
     align-items: center;
     padding-top: $spacing-sm;
     padding-bottom: $spacing-sm;
@@ -165,6 +165,22 @@ input {
   &__logout-btn:focus-visible {
     outline: 2px solid $color-blue;
     outline-offset: 2px;
+  }
+}
+
+// Khi cỡ chữ lớn, đẩy nhóm auth xuống hàng riêng và căn phải
+@media (max-width: 900px) {
+  .top-info {
+    .container {
+      justify-content: space-between;
+    }
+
+    &__auth {
+      margin-left: 0;
+      width: 100%;
+      justify-content: flex-end;
+      padding-top: $spacing-xs;
+    }
   }
 }
 
@@ -310,7 +326,8 @@ input {
   display: flex;
   border: 1px solid $color-border;
   border-radius: 3px;
-  overflow: hidden;
+  overflow: visible;
+  position: relative;
 
   &__input {
     border: 0;
@@ -338,21 +355,162 @@ input {
   &:focus-within {
     outline: 2px solid $color-blue;
   }
+
+  &__suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: $z-dropdown;
+    margin-top: 4px;
+    background: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    box-shadow: $shadow-md;
+    list-style: none;
+    overflow-y: auto;
+    max-height: 320px;
+  }
+
+  &__suggestions-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-sm $spacing-md;
+    background: $color-white;
+    font-size: $font-size-xs;
+    color: $color-text-muted;
+    border-bottom: 1px solid $color-bg-light;
+  }
+
+  &__suggestions-clear {
+    border: none;
+    background: none;
+    color: $color-red;
+    font-size: $font-size-xs;
+    cursor: pointer;
+    padding: 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__suggestion-item {
+    &:not(:last-child) {
+      border-bottom: 1px solid $color-bg-light;
+    }
+  }
+
+  &__suggestion-row {
+    display: flex;
+    align-items: center;
+    transition: $transition-fast;
+
+    &:hover,
+    &:focus-within {
+      background: $color-hover-bg;
+    }
+  }
+
+  &__suggestion-btn {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    flex: 1;
+    gap: $spacing-sm;
+    padding: $spacing-sm $spacing-md;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    color: $color-text-body;
+    font-size: $font-size-base;
+
+    &:focus-visible {
+      outline: 2px solid $color-blue;
+      outline-offset: -2px;
+    }
+  }
+
+  &__suggestion-icon {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+  }
+
+  &__suggestion-text {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__suggestion-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+    margin-right: $spacing-xs;
+    border: none;
+    border-radius: $radius-sm;
+    background: none;
+    color: $color-text-muted;
+    cursor: pointer;
+
+    svg {
+      width: 0.875rem;
+      height: 0.875rem;
+    }
+
+    &:hover {
+      color: $color-red;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-blue;
+      outline-offset: -2px;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-sm + 1px) {
+  .header-primary__actions {
+    position: relative;
+    z-index: $z-header + 1;
+  }
 }
 
 .header-secondary {
   background: $color-red;
   position: relative;
   z-index: $z-dropdown;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .container {
+    min-width: max-content;
+  }
 }
 
 .menu {
   display: flex;
   flex-wrap: nowrap;
+  min-width: max-content;
 }
 
 .menu-item {
   position: relative;
+  flex-shrink: 0;
 }
 
 .menu-link {
