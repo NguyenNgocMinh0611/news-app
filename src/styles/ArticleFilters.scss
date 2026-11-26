@@ -1,0 +1,56 @@
+@use 'variables' as *;
+
+.article-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)) auto;
+  align-items: end;
+  gap: $spacing-md;
+  margin: $spacing-lg 0 $spacing-2xl;
+  padding: $spacing-lg;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  background: $color-bg-light;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+    color: $color-text-secondary;
+    font-size: $font-size-sm;
+  }
+
+  select,
+  input,
+  &__clear {
+    min-height: 40px;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    background: $color-white;
+  }
+
+  select,
+  input {
+    width: 100%;
+    padding: $spacing-sm $spacing-md;
+  }
+
+  &__error {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: $color-red;
+  }
+
+  &__clear {
+    padding: $spacing-sm $spacing-base;
+    color: $color-red;
+    cursor: pointer;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
