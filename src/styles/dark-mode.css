@@ -26,6 +26,34 @@ html.dark-mode .top-info a {
 html.dark-mode .top-info a:hover {
   color: #e74c3c;
 }
+html.dark-mode .top-info__user-dropdown a {
+  color: var(--dm-text);
+}
+html.dark-mode .top-info__user-dropdown a:hover {
+  color: #e74c3c;
+}
+html.dark-mode .top-info__avatar-btn {
+  color: var(--dm-text-muted);
+}
+html.dark-mode .top-info__avatar-btn:hover, html.dark-mode .top-info__avatar-btn:focus-visible, html.dark-mode .top-info__avatar-btn[aria-expanded=true] {
+  background: var(--dm-hover);
+  color: #e74c3c;
+}
+html.dark-mode .top-info__user-dropdown {
+  background: var(--dm-bg-secondary);
+  border-color: var(--dm-border);
+}
+html.dark-mode .top-info__user-menu-item {
+  color: var(--dm-text);
+}
+html.dark-mode .top-info__user-menu-item:hover, html.dark-mode .top-info__user-menu-item:focus-visible {
+  background: var(--dm-hover);
+  color: #e74c3c;
+}
+html.dark-mode .top-info__user-menu-item--logout {
+  border-color: var(--dm-border);
+  color: #e74c3c;
+}
 html.dark-mode .search-head__input {
   background: var(--dm-bg-secondary);
   border-color: var(--dm-border);

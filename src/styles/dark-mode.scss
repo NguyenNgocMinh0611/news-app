@@ -25,6 +25,42 @@ html.dark-mode {
       color: var(--dm-text-muted);
       &:hover { color: #e74c3c; }
     }
+
+    &__user-dropdown a {
+      color: var(--dm-text);
+      &:hover { color: #e74c3c; }
+    }
+  }
+
+  .top-info__avatar-btn {
+    color: var(--dm-text-muted);
+
+    &:hover,
+    &:focus-visible,
+    &[aria-expanded='true'] {
+      background: var(--dm-hover);
+      color: #e74c3c;
+    }
+  }
+
+  .top-info__user-dropdown {
+    background: var(--dm-bg-secondary);
+    border-color: var(--dm-border);
+  }
+
+  .top-info__user-menu-item {
+    color: var(--dm-text);
+
+    &:hover,
+    &:focus-visible {
+      background: var(--dm-hover);
+      color: #e74c3c;
+    }
+
+    &--logout {
+      border-color: var(--dm-border);
+      color: #e74c3c;
+    }
   }
 
   .search-head__input {
