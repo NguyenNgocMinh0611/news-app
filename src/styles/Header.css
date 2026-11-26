@@ -177,6 +177,8 @@ input {
 }
 
 .header-primary__actions {
+  position: relative;
+  z-index: 1002;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -426,12 +428,6 @@ input {
   outline-offset: -2px;
 }
 
-@media (min-width: 481px) {
-  .header-primary__actions {
-    position: relative;
-    z-index: 1001;
-  }
-}
 .header-secondary {
   background: #c31e40;
   position: relative;

@@ -198,6 +198,8 @@ input {
 }
 
 .header-primary__actions {
+  position: relative;
+  z-index: $z-header + 2;
   display: flex;
   align-items: center;
   gap: $spacing-lg;
@@ -476,13 +478,6 @@ input {
       outline: 2px solid $color-blue;
       outline-offset: -2px;
     }
-  }
-}
-
-@media (min-width: $breakpoint-sm + 1px) {
-  .header-primary__actions {
-    position: relative;
-    z-index: $z-header + 1;
   }
 }
 
