@@ -6,6 +6,7 @@ import { CategoryPage } from "@/pages/CategoryPage.tsx";
 import { SearchResultsPage } from "@/pages/SearchResultsPage.tsx";
 import { BookmarksPage } from "@/pages/BookmarksPage.tsx";
 import { ReadingHistoryPage } from "@/pages/ReadingHistoryPage.tsx";
+import { ProfilePage } from "@/pages/ProfilePage.tsx";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: "history",
         element: <ReadingHistoryPage />,
+      },
+      {
+        path: "profile",
+        element: <ProfilePage />,
       },
     ],
   },

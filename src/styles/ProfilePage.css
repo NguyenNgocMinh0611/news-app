@@ -1,0 +1,111 @@
+.profile-page {
+  padding-top: 24px;
+  padding-bottom: 40px;
+}
+.profile-page__header {
+  margin-bottom: 24px;
+}
+.profile-page__header h1 {
+  margin: 0;
+  color: #c31e40;
+  font-size: 1.5714rem;
+}
+.profile-page__card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 640px;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.profile-page__card h2 {
+  margin: 0 0 12px;
+  font-size: 1.1429rem;
+}
+.profile-page__card p {
+  margin: 0 0 12px;
+  color: #666;
+}
+.profile-page__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #136ca8;
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.profile-page__details {
+  min-width: 0;
+  flex: 1;
+}
+.profile-page__detail {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: 8px;
+  padding: 12px 0;
+  border-top: 1px solid #d9d9d9;
+}
+.profile-page__detail dt {
+  color: #666;
+}
+.profile-page__detail dd {
+  margin: 0;
+  color: #222;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.profile-page__card--empty {
+  max-width: 480px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.profile-page__link {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: #c31e40;
+  color: #ffffff;
+  font-weight: 500;
+}
+.profile-page__link:hover {
+  background: #9e1733;
+  color: #ffffff;
+}
+
+html.dark-mode .profile-page__card {
+  background: var(--dm-bg-secondary);
+  border-color: var(--dm-border);
+  color: var(--dm-text);
+}
+html.dark-mode .profile-page__detail {
+  border-color: var(--dm-border);
+}
+html.dark-mode .profile-page__detail dt {
+  color: var(--dm-text-muted);
+}
+html.dark-mode .profile-page__detail dd {
+  color: var(--dm-text);
+}
+
+@media (max-width: 480px) {
+  .profile-page__card {
+    align-items: flex-start;
+    padding: 20px;
+  }
+  .profile-page__avatar {
+    width: 56px;
+    height: 56px;
+    font-size: 1.5rem;
+  }
+}
+
+/*# sourceMappingURL=ProfilePage.css.map */
