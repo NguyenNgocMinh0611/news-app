@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/rss/:path*",
+      "destination": "https://giaoducthoidai.vn/rss/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
