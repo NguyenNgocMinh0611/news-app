@@ -1,0 +1,130 @@
+@use 'variables' as *;
+
+.profile-page {
+  padding-top: $spacing-2xl;
+  padding-bottom: 40px;
+
+  &__header {
+    margin-bottom: $spacing-2xl;
+
+    h1 {
+      margin: 0;
+      color: $color-red;
+      font-size: $font-size-lg;
+    }
+  }
+
+  &__card {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xl;
+    max-width: 640px;
+    padding: $spacing-2xl;
+    background: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    box-shadow: $shadow-sm;
+
+    h2 {
+      margin: 0 0 $spacing-base;
+      font-size: $font-size-md;
+    }
+
+    p {
+      margin: 0 0 $spacing-base;
+      color: $color-text-secondary;
+    }
+  }
+
+  &__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: $color-blue;
+    color: $color-white;
+    font-size: 2rem;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+  }
+
+  &__details {
+    min-width: 0;
+    flex: 1;
+  }
+
+  &__detail {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: $spacing-md;
+    padding: $spacing-base 0;
+    border-top: 1px solid $color-border;
+
+    dt {
+      color: $color-text-muted;
+    }
+
+    dd {
+      margin: 0;
+      color: $color-ink;
+      font-weight: $font-weight-medium;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  &__card--empty {
+    max-width: 480px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__link {
+    display: inline-flex;
+    padding: $spacing-sm $spacing-base;
+    border-radius: $radius-sm;
+    background: $color-red;
+    color: $color-white;
+    font-weight: $font-weight-medium;
+
+    &:hover {
+      background: $color-red-dark;
+      color: $color-white;
+    }
+  }
+}
+
+html.dark-mode {
+  .profile-page__card {
+    background: var(--dm-bg-secondary);
+    border-color: var(--dm-border);
+    color: var(--dm-text);
+  }
+
+  .profile-page__detail {
+    border-color: var(--dm-border);
+
+    dt {
+      color: var(--dm-text-muted);
+    }
+
+    dd {
+      color: var(--dm-text);
+    }
+  }
+}
+
+@include respond-to(sm) {
+  .profile-page__card {
+    align-items: flex-start;
+    padding: $spacing-xl;
+  }
+
+  .profile-page__avatar {
+    width: 56px;
+    height: 56px;
+    font-size: 1.5rem;
+  }
+}

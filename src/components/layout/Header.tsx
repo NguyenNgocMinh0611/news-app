@@ -31,11 +31,15 @@ export function Header() {
   const { articles: latestArticles } = useRssArticles('thoi-su-1.rss', 'Thời sự');
   const topicsRef = useRef<HTMLUListElement>(null);
   const searchRef = useRef<HTMLFormElement>(null);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+  const userMenuButtonRef = useRef<HTMLButtonElement>(null);
   const [hasTopicOverflow, setHasTopicOverflow] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const loggedInEmail = useSelector((state: RootState) => state.auth.loggedInEmail);
+  const avatarInitial = loggedInEmail?.trim().charAt(0).toUpperCase() ?? '';
   const currentDate = formatDate();
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -75,6 +79,19 @@ export function Header() {
     document.addEventListener('pointerdown', handlePointerDown);
     return () => document.removeEventListener('pointerdown', handlePointerDown);
   }, [isSearchFocused]);
+
+  useEffect(() => {
+    if (!isUserMenuOpen) return undefined;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      setIsUserMenuOpen(false);
+      userMenuButtonRef.current?.focus();
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isUserMenuOpen]);
 
   const scrollTopics = (direction: 'left' | 'right') => {
     topicsRef.current?.scrollBy({
@@ -149,19 +166,80 @@ export function Header() {
           <span className="top-info__item top-info__font-size">
             <FontSizeControl />
           </span>
-          <span className="top-info__item top-info__auth">
+          <div className="top-info__item top-info__auth">
             <DarkModeToggle />
             {loggedInEmail ? (
-              <>
-                <span className="top-info__user">{loggedInEmail}</span>
+              <div
+                ref={userMenuRef}
+                className="top-info__user-menu"
+                onMouseEnter={() => setIsUserMenuOpen(true)}
+                onMouseLeave={() => setIsUserMenuOpen(false)}
+                onFocus={() => setIsUserMenuOpen(true)}
+                onBlur={(event) => {
+                  if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                    setIsUserMenuOpen(false);
+                  }
+                }}
+              >
                 <button
+                  ref={userMenuButtonRef}
                   type="button"
-                  className="top-info__logout-btn"
-                  onClick={() => dispatch(logout())}
+                  className="top-info__avatar-btn"
+                  aria-label="Tài khoản"
+                  aria-haspopup="menu"
+                  aria-expanded={isUserMenuOpen}
+                  aria-controls="user-menu"
                 >
-                  Đăng xuất
+                  <span className="top-info__avatar" aria-hidden="true">{avatarInitial}</span>
                 </button>
-              </>
+                {isUserMenuOpen && (
+                  <div id="user-menu" className="top-info__user-dropdown" role="menu">
+                    <Link
+                      to="/profile"
+                      className="top-info__user-menu-item"
+                      role="menuitem"
+                      onClick={() => setIsUserMenuOpen(false)}
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <circle cx="12" cy="8" r="4" />
+                        <path d="M4 21a8 8 0 0 1 16 0" />
+                      </svg>
+                      Thông tin cá nhân
+                    </Link>
+                    <button
+                      type="button"
+                      className="top-info__user-menu-item top-info__user-menu-item--logout"
+                      role="menuitem"
+                      onClick={() => {
+                        dispatch(logout());
+                        setIsUserMenuOpen(false);
+                      }}
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                        <path d="m16 17 5-5-5-5M21 12H9" />
+                      </svg>
+                      Đăng xuất
+                    </button>
+                  </div>
+                )}
+              </div>
             ) : (
               <>
                 <button
@@ -180,7 +258,7 @@ export function Header() {
                 </button>
               </>
             )}
-          </span>
+          </div>
         </div>
       </div>
 
