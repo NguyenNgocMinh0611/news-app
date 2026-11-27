@@ -2,6 +2,9 @@ import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ArticleList } from '@/features/news/components/ArticleList';
 import { NewsPagination } from '@/features/news/components/NewsPagination';
+import { ArticleFilterBar } from '@/features/news/components/ArticleFilterBar';
+import { filterArticles, type TimePeriod } from '@/features/news/utils/articleFilters';
+import { getRssFeed } from '@/features/news/data/rssFeeds';
 import { useRssArticles } from '@/hooks/useRssArticles';
 import '@/styles/SearchResultsPage.scss';
 
@@ -10,16 +13,26 @@ const ARTICLES_PER_PAGE = 10;
 export function SearchResultsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('q')?.trim() ?? '';
-  const { articles, loading, error, retry } = useRssArticles('home.rss', '');
+  const category = searchParams.get('filterCategory') ?? '';
+  const periodParam = searchParams.get('period') ?? 'all';
+  const period: TimePeriod = ['all', 'today', '7days', 'month', 'date', 'range'].includes(periodParam)
+    ? periodParam as TimePeriod
+    : 'all';
+  const date = searchParams.get('date') ?? '';
+  const startDate = searchParams.get('from') ?? '';
+  const endDate = searchParams.get('to') ?? '';
+  const feed = getRssFeed(category);
+  const { articles, loading, error, retry } = useRssArticles(feed.file, feed.category);
 
   const results = useMemo(() => {
     const normalizedQuery = query.toLocaleLowerCase();
     if (!normalizedQuery) return [];
 
-    return articles.filter((article) =>
+    const searched = articles.filter((article) =>
       `${article.title} ${article.description}`.toLocaleLowerCase().includes(normalizedQuery),
     );
-  }, [articles, query]);
+    return filterArticles(searched, { period, date, startDate, endDate });
+  }, [articles, query, period, date, startDate, endDate]);
 
   const totalPages = Math.max(1, Math.ceil(results.length / ARTICLES_PER_PAGE));
   const requestedPage = Number(searchParams.get('page') ?? 1);
@@ -40,6 +53,31 @@ export function SearchResultsPage() {
     });
   };
 
+  const updateFilters = (filters: {
+    period: TimePeriod;
+    category: string;
+    date: string;
+    startDate: string;
+    endDate: string;
+  }) => {
+    setSearchParams((previous) => {
+      const next = new URLSearchParams(previous);
+      if (filters.period === 'all') next.delete('period');
+      else next.set('period', filters.period);
+      if (filters.category) next.set('filterCategory', filters.category);
+      else next.delete('filterCategory');
+      if (filters.date) next.set('date', filters.date);
+      else next.delete('date');
+      if (filters.startDate) next.set('from', filters.startDate);
+      else next.delete('from');
+      if (filters.endDate) next.set('to', filters.endDate);
+      else next.delete('to');
+      next.delete('author');
+      next.delete('page');
+      return next;
+    });
+  };
+
   return (
     <main className="search-results">
       <header className="search-results__header">
@@ -51,7 +89,16 @@ export function SearchResultsPage() {
           </p>
         )}
       </header>
-
+      {!loading && !error && (
+        <ArticleFilterBar
+          period={period}
+          category={category}
+          date={date}
+          startDate={startDate}
+          endDate={endDate}
+          onChange={updateFilters}
+        />
+      )}
       {!query && <p role="status">Vui lòng nhập từ khóa để tìm kiếm bài viết.</p>}
       {loading && <p role="status">Đang tải tin RSS…</p>}
       {error && (
